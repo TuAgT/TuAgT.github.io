@@ -4,6 +4,135 @@
   
     
     <entry>
+      <title>Exchange ProxyLogon RCE</title>
+      <link href="/web-an-quan/exchange-proxylogon-rce/"/>
+      <url>/web-an-quan/exchange-proxylogon-rce/</url>
+      
+        <content type="html"><![CDATA[<h3 id="参考："><a href="#参考：" class="headerlink" title="参考："></a>参考：</h3><ul><li><a href="https://www.volexity.com/blog/2021/03/02/active-exploitation-of-microsoft-exchange-zero-day-vulnerabilities/">https://www.volexity.com/blog/2021/03/02/active-exploitation-of-microsoft-exchange-zero-day-vulnerabilities/</a></li><li><a href="https://testbnull.medium.com/ph%C3%A2n-t%C3%ADch-l%E1%BB%97-h%E1%BB%95ng-proxylogon-mail-exchange-rce-s%E1%BB%B1-k%E1%BA%BFt-h%E1%BB%A3p-ho%C3%A0n-h%E1%BA%A3o-cve-2021-26855-37f4b6e06265">https://testbnull.medium.com/ph%C3%A2n-t%C3%ADch-l%E1%BB%97-h%E1%BB%95ng-proxylogon-mail-exchange-rce-s%E1%BB%B1-k%E1%BA%BFt-h%E1%BB%A3p-ho%C3%A0n-h%E1%BA%A3o-cve-2021-26855-37f4b6e06265</a></li><li><a href="https://github.com/mil1200/ProxyLogon-CVE-2021-26855">https://github.com/mil1200/ProxyLogon-CVE-2021-26855</a></li><li><a href="https://www.microsoft.com/security/blog/2021/03/02/hafnium-targeting-exchange-servers/">https://www.microsoft.com/security/blog/2021/03/02/hafnium-targeting-exchange-servers/</a></li><li><a href="https://www.anquanke.com/post/id/234607">https://www.anquanke.com/post/id/234607</a></li></ul><h3 id="漏洞详情："><a href="#漏洞详情：" class="headerlink" title="漏洞详情："></a>漏洞详情：</h3><p><a href="https://msrc.microsoft.com/update-guide/vulnerability/CVE-2021-26855">CVE-2021-26855</a>是<a href="https://msrc.microsoft.com/update-guide/vulnerability/CVE-2021-26855">Exchange</a>中的一个服务器端请求伪造（SSRF）漏洞，它使攻击者能够发送任意HTTP请求并通过Exchange Server进行身份验证。</p><p><a href="https://msrc.microsoft.com/update-guide/vulnerability/CVE-2021-26857">CVE-2021-26857</a>是统一消息服务中的不安全的反序列化漏洞。不安全的反序列化是不可信的用户可控制数据被程序反序列化的地方。利用此漏洞，HAFNIUM可以在Exchange服务器上以SYSTEM身份运行代码。这需要管理员权限或要利用的另一个漏洞。</p><p><a href="https://msrc.microsoft.com/update-guide/vulnerability/CVE-2021-26858">CVE-2021-26858</a>是Exchange中身份验证后的任意文件写入漏洞。如果HAFNIUM可以通过Exchange服务器进行身份验证，则他们可以使用此漏洞将文件写入服务器上的任何路径。他们可以通过利用CVE-2021-26855 SSRF漏洞或通过破坏合法管理员的凭据来进行身份验证。</p><p><a href="https://msrc.microsoft.com/update-guide/vulnerability/CVE-2021-27065">CVE-2021-27065</a>是Exchange中身份验证后的任意文件写入漏洞。如果HAFNIUM可以通过Exchange服务器进行身份验证，则他们可以使用此漏洞将文件写入服务器上的任何路径。他们可以通过利用CVE-2021-26855 SSRF漏洞或通过破坏合法管理员的凭据来进行身份验证。</p><h3 id="利用过程："><a href="#利用过程：" class="headerlink" title="利用过程："></a>利用过程：</h3><ol><li><p>获取LegacyDN。利用CVE-2021-26855 ssrf攻击。</p><p>使用/Autodiscover/autodiscover.xml入口点来检索请求的输入主体</p><p>payload：</p><pre class="line-numbers language-http" data-language="http"><code class="language-http">"Cookie": "X-BEResource=%s/autodiscover/autodiscover.xml?a=~1942062522;" % FQDN&lt;Autodiscover xmlns="http://schemas.microsoft.com/exchange/autodiscover/outlook/requestschema/2006"&gt;    &lt;Request&gt;      &lt;EMailAddress&gt;%s&lt;/EMailAddress&gt; &lt;AcceptableResponseSchema&gt;http://schemas.microsoft.com/exchange/autodiscover/outlook/responseschema/2006a&lt;/AcceptableResponseSchema&gt;    &lt;/Request&gt;&lt;/Autodiscover&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li><li><p>获取SID，并置换成管理员SID。</p><p>使用入口点：/autodiscover/autodiscover.xml和/ mapi / emsmdb</p><p>发生错误时，入口点/ mapi处的功能部件将返回SID</p><pre class="line-numbers language-http" data-language="http"><code class="language-http">mapi_body = legacyDn + \    "\x00\x00\x00\x00\x00\xe4\x04\x00\x00\x09\x04\x00\x00\x09\x04\x00\x00\x00\x00\x00\x00"<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></li><li><p>获取Session id和msExchEcpCanary。CVE-2021-26855</p><p>使用入口点：/ecp/proxyLogon.ecp获取Session ID和Canary</p><p>payload：</p><pre class="line-numbers language-http" data-language="http"><code class="language-http">proxyLogon_request = """&lt;r at="Negotiate" ln="john"&gt;&lt;s&gt;%s&lt;/s&gt;&lt;s a="7" t="1"&gt;S-1-1-0&lt;/s&gt;&lt;s a="7" t="1"&gt;S-1-5-2&lt;/s&gt;&lt;s a="7" t="1"&gt;S-1-5-11&lt;/s&gt;&lt;s a="7" t="1"&gt;S-1-5-15&lt;/s&gt;&lt;s a="3221225479" t="1"&gt;S-1-5-5-0-6948923&lt;/s&gt;&lt;/r&gt;""" % sid<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></li><li><p>利用CVE-2021–27065写入webshell</p><p>攻击者使用Exchange管理中心中的ResetOAB功能来写入文件。</p></li></ol><h3 id="细节分析："><a href="#细节分析：" class="headerlink" title="细节分析："></a>细节分析：</h3><ol><li><p>请求/ecp/x.js，请求/ecp下以.js、.css结尾的静态资源，会交由<code>BEResourceRequestHandler</code>处理，确定类是否可以处理请求是基于方法<code>BEResourceRequestHandler.CanHandle()</code>，使用<code>GetBEResouceCookie()</code>方法检查特殊cookie的存在，此方法获取并返回<code>X-BEResource</code>的值。</p><p>然后<code>BEResourceRequestHandler.IsResourceRequest()</code>将检查请求URL是否以资源文件结尾，最后值<code>X-BEResource</code>将继续传递到<code>BackEndServer.FromString()</code>，以确定此请求的后端服务器。</p><p>为了满足上述条件，<code>X-BEResource</code>需要具备下面的形式</p><pre class="line-numbers language-http" data-language="http"><code class="language-http">X-BEResource = EXCHANGE2016〜1942062522<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li><li></li></ol><h3 id="名词解释："><a href="#名词解释：" class="headerlink" title="名词解释："></a>名词解释：</h3><ul><li>LegacyDN：Exchange Server 2013开始引入，使用邮箱的专有名称标识邮箱</li><li>FQDN：标识内部Exchange服务器的完全限定域名</li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> web安全 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> web security </tag>
+            
+            <tag> Exchenge </tag>
+            
+            <tag> RCE </tag>
+            
+            <tag> CVE-2021-26855 </tag>
+            
+            <tag> CVE-2021-27065 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>修改Users下的文件夹名</title>
+      <link href="/blogs/xiu-gai-users-xia-de-wen-jian-jia-ming/"/>
+      <url>/blogs/xiu-gai-users-xia-de-wen-jian-jia-ming/</url>
+      
+        <content type="html"><![CDATA[<ol><li>使用Administrator用户登录系统</li><li>修改注册表中<code>计算机\HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\ProfileList\S-1-5-21-1049184755-2560237090-294228926-xxxx</code>里ProfileImagePath的内容，就是用户文件夹路径</li><li>然后切换到自己的用户账号，会提示错误，不要慌…..</li><li>将自己的文件夹命名为要修改的名字，然后注销，重新登录</li></ol><p>修改之后会有很多问题，因为很多设置里面都是绝对路径，更改完找不到原来的文件了，比如环境变量等等。</p><p>修改中配置中，</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> blogs </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>更换ssd硬盘</title>
+      <link href="/blogs/geng-huan-ssd-ying-pan/"/>
+      <url>/blogs/geng-huan-ssd-ying-pan/</url>
+      
+        <content type="html"><![CDATA[<p>电脑上自带的ssd是sn730 500G，实际大小是470多G。要更换的是sn750 1T。我的电脑只有一个m.2的硬盘接口，需要将原来的硬盘克隆到新的硬盘。</p><p>使用<code>DiskGenius</code>克隆硬盘，使用PE模式重启电脑，选择系统迁移，就是系统盘克隆到系统盘，包括引导分区，这样克隆完就可以直接换硬盘，无缝切换。</p><img src="/blogs/geng-huan-ssd-ying-pan/image-20210314210514277.png" class="" title="image-20210314210514277">]]></content>
+      
+      
+      <categories>
+          
+          <category> blogs </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>CRLF注入</title>
+      <link href="/websecurity/crlf-zhu-ru/"/>
+      <url>/websecurity/crlf-zhu-ru/</url>
+      
+        <content type="html"><![CDATA[<h3 id="CRLF简介"><a href="#CRLF简介" class="headerlink" title="CRLF简介"></a>CRLF简介</h3><p>CRLF 指的是回车符(CR，ASCII 13，\r，%0d) 和换行符(LF，ASCII 10，\n，%0a)，操作系统就是根据这个标识来进行换行的，你在键盘输入回车键就是输出这个字符，只不过win和linux系统采用的标识不一样而已。</p><p>在HTTP当中HTTP的Header和Body之间就是用两个crlf进行分隔的，如果能控制HTTP消息头中的字符，注入一些恶意的换行，这样就能注入一些会话cookie和html代码，所以CRLF injection 又叫做 HTTP response Splitting，简称HRS。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> websecurity </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> web security </tag>
+            
+            <tag> CRLF </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>pythontip 100days-day40</title>
+      <link href="/code/python/pythontip-100days-day40/"/>
+      <url>/code/python/pythontip-100days-day40/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      <categories>
+          
+          <category> Code </category>
+          
+          <category> python </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> python </tag>
+            
+            <tag> python days100 </tag>
+            
+            <tag> pythontip </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>pythontip 100days-day39</title>
       <link href="/code/python/pythontip-100days-day39/"/>
       <url>/code/python/pythontip-100days-day39/</url>
