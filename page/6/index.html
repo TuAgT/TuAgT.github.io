@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>ENDZHT</title>
+    <title>TuAg&#39;s Blog</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -31,7 +31,7 @@
 
 <meta name="generator" content="Hexo 5.4.1">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
-<link rel="alternate" href="/atom.xml" title="ENDZHT" type="application/atom+xml">
+<link rel="alternate" href="/atom.xml" title="TuAg's Blog" type="application/atom+xml">
 </head>
 
 
@@ -44,9 +44,9 @@
             <div class="brand-logo">
                 <a href="/" class="waves-effect waves-light">
                     
-                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    <img src="/favicon.png" class="logo-img" alt="LOGO">
                     
-                    <span class="logo-span">ENDZHT</span>
+                    <span class="logo-span">TuAg&#39;s Blog</span>
                 </a>
             </div>
             
@@ -168,9 +168,9 @@
 
     <div class="mobile-head bg-color">
         
-        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        <img src="/favicon.png" class="logo-img circle responsive-img">
         
-        <div class="logo-name">ENDZHT</div>
+        <div class="logo-name">TuAg&#39;s Blog</div>
         <div class="logo-desc">
             
             Never really desperate, only the lost of the soul.
@@ -352,30 +352,27 @@
             
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/code/python/python-xiao-you-xi-xiao-qiu-chi-da-qiu/">
+                    <a href="/code/python/pythontip-100days-day35/">
                         <div class="card-image">
                             
                             
-                            <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="python小游戏—小球吃大球">
+                            <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="pythontip 100days-day35">
                             
-                            <span class="card-title">python小游戏—小球吃大球</span>
+                            <span class="card-title">pythontip 100days-day35</span>
                         </div>
                     </a>
 
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                大球吃小球完整代码：
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-# @Time       : 2020/12/16 15:52
-# @Author     : ENDZHT
-# @Pro
+                                和最接近的分隔位置给定一个数组a，返回位置i,使得sum(a[: i + 1])和sum(a[i + 1 : ])最接近
+如果有多个满足条件的位置，返回最小的那个
+例子nearest_split_sum([7,3,2,8,0,-1,9]) 
                             
                         </div>
                         <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-12-16
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-02-04
                             </span>
                             <span class="publish-author">
                                 
@@ -401,16 +398,12 @@
                             <span class="chip bg-color">python</span>
                         </a>
                         
-                        <a href="/tags/pygame/">
-                            <span class="chip bg-color">pygame</span>
+                        <a href="/tags/python-days100/">
+                            <span class="chip bg-color">python days100</span>
                         </a>
                         
-                        <a href="/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/">
-                            <span class="chip bg-color">面向对象</span>
-                        </a>
-                        
-                        <a href="/tags/%E5%B0%8F%E6%B8%B8%E6%88%8F/">
-                            <span class="chip bg-color">小游戏</span>
+                        <a href="/tags/pythontip/">
+                            <span class="chip bg-color">pythontip</span>
                         </a>
                         
                     </div>
@@ -420,34 +413,45 @@
             
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/python/pip-huan-yuan/">
+                    <a href="/code/python/dnslog/">
                         <div class="card-image">
                             
                             
-                            <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="pip 换源">
+                            <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="dnslog">
                             
-                            <span class="card-title">pip 换源</span>
+                            <span class="card-title">dnslog</span>
                         </div>
                     </a>
 
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                更换中科大pip镜像
-pip config set global.index-url https://pypi.mirrors.ustc.edu.cn/simple/
+                                python封装dnslog类# dnslog.py
+import requests
 
 
+class dnslog:
+    def __init__(self) -&gt; None:
+        self._get_dns_doma
                             
                         </div>
                         <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-12-16
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-02-05
                             </span>
                             <span class="publish-author">
                                 
                                 <i class="fas fa-bookmark fa-fw icon-category"></i>
                                 
-                                <a href="/categories/python/" class="post-category">
+                                <a href="/categories/blogs/" class="post-category">
+                                    blogs
+                                </a>
+                                
+                                <a href="/categories/Code/" class="post-category">
+                                    Code
+                                </a>
+                                
+                                <a href="/categories/Code/python/" class="post-category">
                                     python
                                 </a>
                                 
@@ -459,8 +463,12 @@ pip config set global.index-url https://pypi.mirrors.ustc.edu.cn/simple/
                     
                     <div class="card-action article-tags">
                         
-                        <a href="/tags/pip/">
-                            <span class="chip bg-color">pip</span>
+                        <a href="/tags/dnslog/">
+                            <span class="chip bg-color">dnslog</span>
+                        </a>
+                        
+                        <a href="/tags/python/">
+                            <span class="chip bg-color">python</span>
                         </a>
                         
                     </div>
@@ -470,39 +478,26 @@ pip config set global.index-url https://pypi.mirrors.ustc.edu.cn/simple/
             
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/code/python/python-bian-ma/">
+                    <a href="/code/python/pythontip-100days-day36/">
                         <div class="card-image">
                             
                             
-                            <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="python 编码">
+                            <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="pythontip 100days-day36">
                             
-                            <span class="card-title">python 编码</span>
+                            <span class="card-title">pythontip 100days-day36</span>
                         </div>
                     </a>
 
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                关于python的字符编码
-
-
-字符的编码ord()输出字符的十进制编码
-In [22]: ord("A")
-Out[22]: 65
-
-In [23]: ord("中")
-Out[23]: 20013
-
-
-
-
-chr()输出编码对应的字符
-
+                                最长上升子序列一个元素为数值的列表，找到其最长上升子序列的长度。比如 [5, 4, 1, 2, 5, 3]， 最长上升子序列是 [1, 2, 3], 长度为3。
+例子get_long_incr_lst(5, 4, 1, 2, 5, 3]) 
                             
                         </div>
                         <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-12-15
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-02-05
                             </span>
                             <span class="publish-author">
                                 
@@ -528,12 +523,12 @@ chr()输出编码对应的字符
                             <span class="chip bg-color">python</span>
                         </a>
                         
-                        <a href="/tags/%E7%BC%96%E7%A0%81/">
-                            <span class="chip bg-color">编码</span>
+                        <a href="/tags/python-days100/">
+                            <span class="chip bg-color">python days100</span>
                         </a>
                         
-                        <a href="/tags/code/">
-                            <span class="chip bg-color">code</span>
+                        <a href="/tags/pythontip/">
+                            <span class="chip bg-color">pythontip</span>
                         </a>
                         
                     </div>
@@ -543,29 +538,35 @@ chr()输出编码对应的字符
             
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/code/python/python-jin-zhi-zhuan-huan/">
+                    <a href="/code/python/pythontip-100days-day37/">
                         <div class="card-image">
                             
                             
-                            <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="python进制转换">
+                            <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="pythontip 100days-day37">
                             
-                            <span class="card-title">python进制转换</span>
+                            <span class="card-title">pythontip 100days-day37</span>
                         </div>
                     </a>
 
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-# @Time       : 2020/12/12 20:58
-# @Author     : ENDZHT
-# @ProjectName: p
+                                二进制中1的位数给定一个整数，请计算二进制中为1的位数
+例子count_one_bits(13) -&gt; 3
+
+假设
+输入一定为整数
+
+tips
+位运算
+移位操作
+
+解法1：def count_one_bits(n: int) -&gt
                             
                         </div>
                         <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-12-12
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-02-08
                             </span>
                             <span class="publish-author">
                                 
@@ -591,12 +592,12 @@ chr()输出编码对应的字符
                             <span class="chip bg-color">python</span>
                         </a>
                         
-                        <a href="/tags/code/">
-                            <span class="chip bg-color">code</span>
+                        <a href="/tags/python-days100/">
+                            <span class="chip bg-color">python days100</span>
                         </a>
                         
-                        <a href="/tags/%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2/">
-                            <span class="chip bg-color">进制转换</span>
+                        <a href="/tags/pythontip/">
+                            <span class="chip bg-color">pythontip</span>
                         </a>
                         
                     </div>
@@ -606,32 +607,34 @@ chr()输出编码对应的字符
             
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/code/python/turtle-hua-tu/">
+                    <a href="/code/python/pythontip-100days-day38/">
                         <div class="card-image">
                             
                             
-                            <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="turtle画图">
+                            <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="pythontip 100days-day38">
                             
-                            <span class="card-title">turtle画图</span>
+                            <span class="card-title">pythontip 100days-day38</span>
                         </div>
                     </a>
 
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                使用turtle画图
+                                题目有一组数字，从1到n，中减少了一个数，顺序也被打乱，放在一个n-1的数组里，请找出丢失的数字
+例子find_missing_num([1,2,3,5]) -&gt; 4
 
+假设
+输入的数组不为空，且一定符合题意
 
-国旗画五角星代码如下：
-def draw_star(x, y, radius):
-    """绘制五角星"""
-    turtle.setpos(x, y)  # 同goto()
-    pos1 = turt
+tips
+位运算
+
+答
                             
                         </div>
                         <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-12-11
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-02-08
                             </span>
                             <span class="publish-author">
                                 
@@ -657,8 +660,12 @@ def draw_star(x, y, radius):
                             <span class="chip bg-color">python</span>
                         </a>
                         
-                        <a href="/tags/turtle/">
-                            <span class="chip bg-color">turtle</span>
+                        <a href="/tags/python-days100/">
+                            <span class="chip bg-color">python days100</span>
+                        </a>
+                        
+                        <a href="/tags/pythontip/">
+                            <span class="chip bg-color">pythontip</span>
                         </a>
                         
                     </div>
@@ -668,36 +675,38 @@ def draw_star(x, y, radius):
             
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/lou-dong/weblogic-wls-core-components-fan-xu-lie-hua-ming-ling-zhi-xing-lou-dong-cve-2018-2628/">
+                    <a href="/code/python/pythontip-100days-day39/">
                         <div class="card-image">
                             
                             
-                            <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="Weblogic WLS Core Components 反序列化命令执行漏洞（CVE-2018-2628）">
+                            <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="pythontip 100days-day39">
                             
-                            <span class="card-title">Weblogic WLS Core Components 反序列化命令执行漏洞（CVE-2018-2628）</span>
+                            <span class="card-title">pythontip 100days-day39</span>
                         </div>
                     </a>
 
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                Weblogic WLS Core Components 反序列化命令执行漏洞（CVE-2018-2628）影响版本
-Weblogic 10.3.6.0
-Weblogic 12.1.3.0
-Weblogic 12.2.1.2
-Weblogi
+                                题目已知一个有序序列,请原地删除序列中重复出现的元素,返回删除重复元素后的序列长度 要求时间复杂度O(n),空间复杂度O(1)
+例子remove_duplicate([0,0,1,1,1,2,2,3,3,4,4,4,5]) -&gt; 6
+
                             
                         </div>
                         <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-12-11
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-02-08
                             </span>
                             <span class="publish-author">
                                 
                                 <i class="fas fa-bookmark fa-fw icon-category"></i>
                                 
-                                <a href="/categories/%E6%BC%8F%E6%B4%9E/" class="post-category">
-                                    漏洞
+                                <a href="/categories/Code/" class="post-category">
+                                    Code
+                                </a>
+                                
+                                <a href="/categories/Code/python/" class="post-category">
+                                    python
                                 </a>
                                 
                                 
@@ -708,28 +717,16 @@ Weblogi
                     
                     <div class="card-action article-tags">
                         
-                        <a href="/tags/CVE/">
-                            <span class="chip bg-color">CVE</span>
+                        <a href="/tags/python/">
+                            <span class="chip bg-color">python</span>
                         </a>
                         
-                        <a href="/tags/Weblogic-WLS-Core-Components-%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/">
-                            <span class="chip bg-color">Weblogic WLS Core Components 反序列化命令执行漏洞</span>
+                        <a href="/tags/python-days100/">
+                            <span class="chip bg-color">python days100</span>
                         </a>
                         
-                        <a href="/tags/CVE-2018-2628/">
-                            <span class="chip bg-color">CVE-2018-2628</span>
-                        </a>
-                        
-                        <a href="/tags/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/">
-                            <span class="chip bg-color">反序列化</span>
-                        </a>
-                        
-                        <a href="/tags/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/">
-                            <span class="chip bg-color">命令执行</span>
-                        </a>
-                        
-                        <a href="/tags/Weblogic/">
-                            <span class="chip bg-color">Weblogic</span>
+                        <a href="/tags/pythontip/">
+                            <span class="chip bg-color">pythontip</span>
                         </a>
                         
                     </div>
@@ -739,37 +736,34 @@ Weblogi
             
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/lou-dong-fen-xi/git-shell-sha-he-rao-guo-cve-2017-8386/">
+                    <a href="/code/python/pythontip-100days-day40/">
                         <div class="card-image">
                             
                             
-                            <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="GIT-SHELL 沙盒绕过（CVE-2017-8386）">
+                            <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="pythontip 100days-day40">
                             
-                            <span class="card-title">GIT-SHELL 沙盒绕过（CVE-2017-8386）</span>
+                            <span class="card-title">pythontip 100days-day40</span>
                         </div>
                     </a>
 
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                GIT-SHELL 沙盒绕过（CVE-2017-8386）影响版本
-Git 2.4.12之前的版本
-Git 2.5.6之前的2.5.x版本
-Git 2.6.7之前的2.6.x版本
-Git 2.7.5之前的2.7.x版本
-Git 2.8.5之
-                            
                         </div>
                         <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-12-11
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-02-22
                             </span>
                             <span class="publish-author">
                                 
                                 <i class="fas fa-bookmark fa-fw icon-category"></i>
                                 
-                                <a href="/categories/%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90/" class="post-category">
-                                    漏洞分析
+                                <a href="/categories/Code/" class="post-category">
+                                    Code
+                                </a>
+                                
+                                <a href="/categories/Code/python/" class="post-category">
+                                    python
                                 </a>
                                 
                                 
@@ -780,20 +774,16 @@ Git 2.8.5之
                     
                     <div class="card-action article-tags">
                         
-                        <a href="/tags/GIT-SHELL-%E6%B2%99%E7%9B%92%E7%BB%95%E8%BF%87/">
-                            <span class="chip bg-color">GIT-SHELL 沙盒绕过</span>
+                        <a href="/tags/python/">
+                            <span class="chip bg-color">python</span>
                         </a>
                         
-                        <a href="/tags/CVE-2017-8386/">
-                            <span class="chip bg-color">CVE-2017-8386</span>
+                        <a href="/tags/python-days100/">
+                            <span class="chip bg-color">python days100</span>
                         </a>
                         
-                        <a href="/tags/CVE/">
-                            <span class="chip bg-color">CVE</span>
-                        </a>
-                        
-                        <a href="/tags/%E6%BC%8F%E6%B4%9E/">
-                            <span class="chip bg-color">漏洞</span>
+                        <a href="/tags/pythontip/">
+                            <span class="chip bg-color">pythontip</span>
                         </a>
                         
                     </div>
@@ -803,35 +793,32 @@ Git 2.8.5之
             
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/lou-dong-fen-xi/apache-shiro-1.2.4-fan-xu-lie-hua-lou-dong-cve-2016-4437-fu-xian/">
+                    <a href="/websecurity/crlf-zhu-ru/">
                         <div class="card-image">
                             
                             
-                            <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="Apache Shiro 1.2.4反序列化漏洞（CVE-2016-4437）复现">
+                            <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="CRLF注入">
                             
-                            <span class="card-title">Apache Shiro 1.2.4反序列化漏洞（CVE-2016-4437）复现</span>
+                            <span class="card-title">CRLF注入</span>
                         </div>
                     </a>
 
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                Apache Shiro 1.2.4反序列化漏洞（CVE-2016-4437）影响版本
-Apache Shiro &lt;= 1.2.4
-
-漏洞描述Apache Shiro是一款开源安全框架，提供身份验证、授权、密码学和会话管理。Shiro
+                                CRLF简介CRLF 指的是回车符(CR，ASCII 13，\r，%0d) 和换行符(LF，ASCII 10，\n，%0a)，操作系统就是根据这个标识来进行换行的，你在键盘输入回车键就是输出这个字符，只不过win和linux系统采用的标识不
                             
                         </div>
                         <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-12-11
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-02-22
                             </span>
                             <span class="publish-author">
                                 
                                 <i class="fas fa-bookmark fa-fw icon-category"></i>
                                 
-                                <a href="/categories/%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90/" class="post-category">
-                                    漏洞分析
+                                <a href="/categories/websecurity/" class="post-category">
+                                    websecurity
                                 </a>
                                 
                                 
@@ -842,16 +829,12 @@ Apache Shiro &lt;= 1.2.4
                     
                     <div class="card-action article-tags">
                         
-                        <a href="/tags/Apache-Shiro-1-2-4%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E/">
-                            <span class="chip bg-color">Apache Shiro 1.2.4反序列化漏洞</span>
+                        <a href="/tags/CRLF/">
+                            <span class="chip bg-color">CRLF</span>
                         </a>
                         
-                        <a href="/tags/CVE-2016-4437/">
-                            <span class="chip bg-color">CVE-2016-4437</span>
-                        </a>
-                        
-                        <a href="/tags/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/">
-                            <span class="chip bg-color">漏洞复现</span>
+                        <a href="/tags/web-security/">
+                            <span class="chip bg-color">web security</span>
                         </a>
                         
                     </div>
@@ -861,97 +844,26 @@ Apache Shiro &lt;= 1.2.4
             
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/lou-dong-fen-xi/bao-ta-hou-men-shu-ju-ku-wei-shou-quan-fang-wen-lou-dong/">
+                    <a href="/blogs/geng-huan-ssd-ying-pan/">
                         <div class="card-image">
                             
                             
-                            <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="宝塔后门-数据库未授权访问漏洞">
+                            <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="更换ssd硬盘">
                             
-                            <span class="card-title">宝塔后门-数据库未授权访问漏洞</span>
+                            <span class="card-title">更换ssd硬盘</span>
                         </div>
                     </a>
 
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                宝塔后门-数据库未授权访问漏洞影响版本
-宝塔Linux版本 7.4.2版本
-
-宝塔Linux测试版本 7.5.14版本
-
-宝塔Windows版 6.8版本
-
-
-漏洞描述攻击者可以直接通过访问 http://网站IP:888/pma的方式。直
+                                电脑上自带的ssd是sn730 500G，实际大小是470多G。要更换的是sn750 1T。我的电脑只有一个m.2的硬盘接口，需要将原来的硬盘克隆到新的硬盘。
+使用DiskGenius克隆硬盘，使用PE模式重启电脑，选择系统迁移，就是系统盘
                             
                         </div>
                         <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-12-11
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90/" class="post-category">
-                                    漏洞分析
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/tags/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/">
-                            <span class="chip bg-color">漏洞复现</span>
-                        </a>
-                        
-                        <a href="/tags/%E5%AE%9D%E5%A1%94%E5%90%8E%E9%97%A8-%E6%95%B0%E6%8D%AE%E5%BA%93%E6%9C%AA%E6%8E%88%E6%9D%83%E8%AE%BF%E9%97%AE%E6%BC%8F%E6%B4%9E/">
-                            <span class="chip bg-color">宝塔后门-数据库未授权访问漏洞</span>
-                        </a>
-                        
-                        <a href="/tags/%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90/">
-                            <span class="chip bg-color">漏洞分析</span>
-                        </a>
-                        
-                        <a href="/tags/%E5%AE%9D%E5%A1%94/">
-                            <span class="chip bg-color">宝塔</span>
-                        </a>
-                        
-                        <a href="/tags/%E6%9C%AA%E6%8E%88%E6%9D%83%E8%AE%BF%E9%97%AE/">
-                            <span class="chip bg-color">未授权访问</span>
-                        </a>
-                        
-                    </div>
-                    
-                </div>
-            </div>
-            
-            <div class="article col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/blogs/mian-shi-za-tan/">
-                        <div class="card-image">
-                            
-                            
-                            <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="面试杂谈">
-                            
-                            <span class="card-title">面试杂谈</span>
-                        </div>
-                    </a>
-
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                聊一下这次技术面试的感受，最致命的问题是基础，对于一些漏洞没有很牢靠掌握，还有就是对一下敏感问题的交流。
-面试官很好，问的很全面，最后也给了明确答复和我面试出现的问题。
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-12-11
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-03-14
                             </span>
                             <span class="publish-author">
                                 
@@ -967,49 +879,80 @@ Apache Shiro &lt;= 1.2.4
                     </div>
 
                     
-                    <div class="card-action article-tags">
-                        
-                        <a href="/tags/%E9%9D%A2%E8%AF%95/">
-                            <span class="chip bg-color">面试</span>
-                        </a>
-                        
-                    </div>
-                    
                 </div>
             </div>
             
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/booknote/hei-ke-gong-fang-ji-zhu-bao-dian-web-shi-zhan-pian/hei-ke-gong-fang-ji-zhu-bao-dian-web-shi-zhan-pian/">
+                    <a href="/blogs/xiu-gai-users-xia-de-wen-jian-jia-ming/">
                         <div class="card-image">
                             
                             
-                            <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="笔记——《黑客攻防技术宝典（web实战篇）》">
+                            <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="修改Users下的文件夹名">
                             
-                            <span class="card-title">笔记——《黑客攻防技术宝典（web实战篇）》</span>
+                            <span class="card-title">修改Users下的文件夹名</span>
                         </div>
                     </a>
 
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                这是我读过的关于信息安全的读书笔记。
+                                
+使用Administrator用户登录系统
+修改注册表中计算机\HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\ProfileList\S-1-5-21-10
                             
                         </div>
                         <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-07
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-03-14
                             </span>
                             <span class="publish-author">
                                 
                                 <i class="fas fa-bookmark fa-fw icon-category"></i>
                                 
-                                <a href="/categories/booknote/" class="post-category">
-                                    booknote
+                                <a href="/categories/blogs/" class="post-category">
+                                    blogs
                                 </a>
                                 
-                                <a href="/categories/booknote/%E3%80%8A%E9%BB%91%E5%AE%A2%E6%94%BB%E9%98%B2%E6%8A%80%E6%9C%AF%E5%AE%9D%E5%85%B8%EF%BC%88web%E5%AE%9E%E6%88%98%E7%AF%87%EF%BC%89%E3%80%8B/" class="post-category">
-                                    《黑客攻防技术宝典（web实战篇）》
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/web-an-quan/exchange-proxylogon-rce/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="Exchange ProxyLogon RCE">
+                            
+                            <span class="card-title">Exchange ProxyLogon RCE</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                参考：
+https://www.volexity.com/blog/2021/03/02/active-exploitation-of-microsoft-exchange-zero-day-vulnerabilities/
+https:/
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-03-15
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/web%E5%AE%89%E5%85%A8/" class="post-category">
+                                    web安全
                                 </a>
                                 
                                 
@@ -1020,16 +963,24 @@ Apache Shiro &lt;= 1.2.4
                     
                     <div class="card-action article-tags">
                         
-                        <a href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">
-                            <span class="chip bg-color">读书笔记</span>
+                        <a href="/tags/web-security/">
+                            <span class="chip bg-color">web security</span>
                         </a>
                         
-                        <a href="/tags/%E9%BB%91%E5%AE%A2%E6%94%BB%E9%98%B2%E6%8A%80%E6%9C%AF%E5%AE%9D%E5%85%B8%EF%BC%88web%E5%AE%9E%E6%88%98%E7%AF%87%EF%BC%89/">
-                            <span class="chip bg-color">黑客攻防技术宝典（web实战篇）</span>
+                        <a href="/tags/Exchenge/">
+                            <span class="chip bg-color">Exchenge</span>
                         </a>
                         
-                        <a href="/tags/%E4%BF%A1%E5%AE%89%E4%B9%8B%E8%B7%AF/">
-                            <span class="chip bg-color">信安之路</span>
+                        <a href="/tags/RCE/">
+                            <span class="chip bg-color">RCE</span>
+                        </a>
+                        
+                        <a href="/tags/CVE-2021-26855/">
+                            <span class="chip bg-color">CVE-2021-26855</span>
+                        </a>
+                        
+                        <a href="/tags/CVE-2021-27065/">
+                            <span class="chip bg-color">CVE-2021-27065</span>
                         </a>
                         
                     </div>
@@ -1071,14 +1022,14 @@ Apache Shiro &lt;= 1.2.4
 
     <footer class="page-footer bg-color">
     
-    <div class="container row center-align" style="margin-bottom: 0px !important;">
+    <div class="container row center-align" style="margin-bottom: 15px !important;">
         <div class="col s12 m8 l8 copy-right">
             Copyright&nbsp;&copy;
             
-                <span id="year">2020-2022</span>
+                <span id="year">2020-2023</span>
             
             <span id="year">2020</span>
-            <a href="/about" target="_blank">ENDZHT</a>
+            <a href="/about" target="_blank">TuAg</a>
             |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
             |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
             <br>
@@ -1103,6 +1054,50 @@ Apache Shiro &lt;= 1.2.4
             </span>
             
             <br>
+            
+            <span id="sitetime">载入运行时间...</span>
+            <script>
+                function siteTime() {
+                    var seconds = 1000;
+                    var minutes = seconds * 60;
+                    var hours = minutes * 60;
+                    var days = hours * 24;
+                    var years = days * 365;
+                    var today = new Date();
+                    var startYear = "2020";
+                    var startMonth = "11";
+                    var startDate = "28";
+                    var startHour = "0";
+                    var startMinute = "0";
+                    var startSecond = "0";
+                    var todayYear = today.getFullYear();
+                    var todayMonth = today.getMonth() + 1;
+                    var todayDate = today.getDate();
+                    var todayHour = today.getHours();
+                    var todayMinute = today.getMinutes();
+                    var todaySecond = today.getSeconds();
+                    var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                    var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                    var diff = t2 - t1;
+                    var diffYears = Math.floor(diff / years);
+                    var diffDays = Math.floor((diff / days) - diffYears * 365);
+                    var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                    var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                        minutes);
+                    var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                        diffMinutes * minutes) / seconds);
+                    if (startYear == todayYear) {
+                        document.getElementById("year").innerHTML = todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffDays + " 天 " + diffHours +
+                            " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    } else {
+                        document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffYears + " 年 " + diffDays +
+                            " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    }
+                }
+                setInterval(siteTime, 1000);
+            </script>
             
             <br>
             
@@ -1153,94 +1148,9 @@ Apache Shiro &lt;= 1.2.4
     </div>
 </div>
 
+<script src="/js/search.js"></script>
 <script type="text/javascript">
 $(function () {
-    var searchFunc = function (path, search_id, content_id) {
-        'use strict';
-        $.ajax({
-            url: path,
-            dataType: "xml",
-            success: function (xmlResponse) {
-                // get the contents from search data
-                var datas = $("entry", xmlResponse).map(function () {
-                    return {
-                        title: $("title", this).text(),
-                        content: $("content", this).text(),
-                        url: $("url", this).text()
-                    };
-                }).get();
-                var $input = document.getElementById(search_id);
-                var $resultContent = document.getElementById(content_id);
-                $input.addEventListener('input', function () {
-                    var str = '<ul class=\"search-result-list\">';
-                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
-                    $resultContent.innerHTML = "";
-                    if (this.value.trim().length <= 0) {
-                        return;
-                    }
-                    // perform local searching
-                    datas.forEach(function (data) {
-                        var isMatch = true;
-                        var data_title = data.title.trim().toLowerCase();
-                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
-                        var data_url = data.url;
-                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
-                        var index_title = -1;
-                        var index_content = -1;
-                        var first_occur = -1;
-                        // only match artiles with not empty titles and contents
-                        if (data_title !== '' && data_content !== '') {
-                            keywords.forEach(function (keyword, i) {
-                                index_title = data_title.indexOf(keyword);
-                                index_content = data_content.indexOf(keyword);
-                                if (index_title < 0 && index_content < 0) {
-                                    isMatch = false;
-                                } else {
-                                    if (index_content < 0) {
-                                        index_content = 0;
-                                    }
-                                    if (i === 0) {
-                                        first_occur = index_content;
-                                    }
-                                }
-                            });
-                        }
-                        // show search results
-                        if (isMatch) {
-                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
-                            var content = data.content.trim().replace(/<[^>]+>/g, "");
-                            if (first_occur >= 0) {
-                                // cut out 100 characters
-                                var start = first_occur - 20;
-                                var end = first_occur + 80;
-                                if (start < 0) {
-                                    start = 0;
-                                }
-                                if (start === 0) {
-                                    end = 100;
-                                }
-                                if (end > content.length) {
-                                    end = content.length;
-                                }
-                                var match_content = content.substr(start, end);
-                                // highlight all keywords
-                                keywords.forEach(function (keyword) {
-                                    var regS = new RegExp(keyword, "gi");
-                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
-                                });
-
-                                str += "<p class=\"search-result\">" + match_content + "...</p>"
-                            }
-                            str += "</li>";
-                        }
-                    });
-                    str += "</ul>";
-                    $resultContent.innerHTML = str;
-                });
-            }
-        });
-    };
-
     searchFunc('/search.xml', 'searchInput', 'searchResult');
 });
 </script>
