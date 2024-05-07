@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="SMTP是发送邮件的协议，Python内置对SMTP的支持，可以发送纯文本邮件、HTML邮件以及带附件的邮件。 Python对SMTP支持有smtplib和email两个模块，email负责构造邮件，smtplib负责发送邮件。 发送纯文本文件import smtplib from email.mime.text import MIMEText  mail_user, mail_pass &#x3D; &quot;x">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python发送邮件">
+<meta property="og:url" content="https://tuagt.github.io/code/python/python-fa-song-you-jian/">
+<meta property="og:site_name" content="TuAg&#39;s Blog">
+<meta property="og:description" content="SMTP是发送邮件的协议，Python内置对SMTP的支持，可以发送纯文本邮件、HTML邮件以及带附件的邮件。 Python对SMTP支持有smtplib和email两个模块，email负责构造邮件，smtplib负责发送邮件。 发送纯文本文件import smtplib from email.mime.text import MIMEText  mail_user, mail_pass &#x3D; &quot;x">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-01-19T12:07:07.000Z">
+<meta property="article:modified_time" content="2021-01-19T13:57:36.000Z">
+<meta property="article:author" content="TuAg">
+<meta property="article:tag" content="python">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>python发送邮件</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 5.4.1">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="TuAg's Blog" type="application/atom+xml">
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="顶部" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/probberechts">项目</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="上一篇" href="/blogs/wsl2-pei-zhi/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="下一篇" href="/code/python/python-huo-qu-mu-lu-jie-gou/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://tuagt.github.io/code/python/python-fa-song-you-jian/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://tuagt.github.io/code/python/python-fa-song-you-jian/&text=python发送邮件"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://tuagt.github.io/code/python/python-fa-song-you-jian/&title=python发送邮件"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://tuagt.github.io/code/python/python-fa-song-you-jian/&is_video=false&description=python发送邮件"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=python发送邮件&body=Check out this article: https://tuagt.github.io/code/python/python-fa-song-you-jian/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://tuagt.github.io/code/python/python-fa-song-you-jian/&title=python发送邮件"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://tuagt.github.io/code/python/python-fa-song-you-jian/&title=python发送邮件"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://tuagt.github.io/code/python/python-fa-song-you-jian/&title=python发送邮件"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://tuagt.github.io/code/python/python-fa-song-you-jian/&title=python发送邮件"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://tuagt.github.io/code/python/python-fa-song-you-jian/&name=python发送邮件&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://tuagt.github.io/code/python/python-fa-song-you-jian/&t=python发送邮件"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%91%E9%80%81%E7%BA%AF%E6%96%87%E6%9C%AC%E6%96%87%E4%BB%B6"><span class="toc-number">1.</span> <span class="toc-text">发送纯文本文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%91%E9%80%81HTML"><span class="toc-number">2.</span> <span class="toc-text">发送HTML</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%91%E9%80%81%E9%99%84%E4%BB%B6"><span class="toc-number">3.</span> <span class="toc-text">发送附件</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        python发送邮件
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">ENDZHT</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2021-01-19T12:07:07.000Z" class="dt-published" itemprop="datePublished">2021-01-19</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fa-solid fa-archive"></i>
+        <a class="category-link" href="/categories/Code/">Code</a> › <a class="category-link" href="/categories/Code/python/">python</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/python/" rel="tag">python</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <p>SMTP是发送邮件的协议，Python内置对SMTP的支持，可以发送纯文本邮件、HTML邮件以及带附件的邮件。</p>
+<p>Python对SMTP支持有<code>smtplib</code>和<code>email</code>两个模块，<code>email</code>负责构造邮件，<code>smtplib</code>负责发送邮件。</p>
+<h3 id="发送纯文本文件"><a href="#发送纯文本文件" class="headerlink" title="发送纯文本文件"></a>发送纯文本文件</h3><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> smtplib
+<span class="token keyword">from</span> email<span class="token punctuation">.</span>mime<span class="token punctuation">.</span>text <span class="token keyword">import</span> MIMEText
+
+mail_user<span class="token punctuation">,</span> mail_pass <span class="token operator">=</span> <span class="token string">"xxxxxx@qq.com"</span><span class="token punctuation">,</span> <span class="token string">'xxxxxxxxxxxx'</span>
+receivers <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'xxx@xxxx.com'</span><span class="token punctuation">,</span> <span class="token string">'xxxx@xxxx.com'</span><span class="token punctuation">]</span>
+
+<span class="token comment"># 构造MIMEText对象时，第一个参数就是邮件正文，第二个参数是MIME的subtype，传入'plain'表示纯文本，最终的MIME就是'text/plain'，最后一定要用utf-8编码保证多语言兼容性。</span>
+message <span class="token operator">=</span> MIMEText<span class="token punctuation">(</span><span class="token string">"邮件内容"</span><span class="token punctuation">,</span> <span class="token string">'plain'</span><span class="token punctuation">,</span> <span class="token string">'utf-8'</span><span class="token punctuation">)</span>
+
+<span class="token keyword">try</span><span class="token punctuation">:</span>
+    smtp <span class="token operator">=</span> smtplib<span class="token punctuation">.</span>SMTP<span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment"># 创建一个SMTP实例</span>
+    smtp<span class="token punctuation">.</span>connect<span class="token punctuation">(</span><span class="token string">'smtp.qq.com'</span><span class="token punctuation">,</span> <span class="token number">25</span><span class="token punctuation">)</span>  <span class="token comment"># 连接到stmp服务器，默认端口为25</span>
+    smtp<span class="token punctuation">.</span>login<span class="token punctuation">(</span>mail_user<span class="token punctuation">,</span> mail_pass<span class="token punctuation">)</span>  <span class="token comment"># 设置登录用户名和用户密码</span>
+    smtp<span class="token punctuation">.</span>sendmail<span class="token punctuation">(</span>mail_user<span class="token punctuation">,</span> receivers<span class="token punctuation">,</span> message<span class="token punctuation">.</span>as_string<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>  <span class="token comment"># 发送邮件，receivers是一个列表，可以同时给对多个邮箱发送邮件</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"邮件发送成功"</span><span class="token punctuation">)</span>
+<span class="token keyword">except</span> smtplib<span class="token punctuation">.</span>SMTPException<span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"邮件发送失败"</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+
+
+<h3 id="发送HTML"><a href="#发送HTML" class="headerlink" title="发送HTML"></a>发送HTML</h3><p>无论是纯文本内容还是html或者二进制内容，都是通过email这个库来实现的</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">msg <span class="token operator">=</span> MIMEText<span class="token punctuation">(</span><span class="token string">'&lt;html&gt;&lt;body&gt;&lt;h1&gt;Hello&lt;/h1&gt;'</span> <span class="token operator">+</span>
+    <span class="token string">'&lt;p&gt;send by &lt;a href="http://www.python.org"&gt;Python&lt;/a&gt;...&lt;/p&gt;'</span> <span class="token operator">+</span>
+    <span class="token string">'&lt;/body&gt;&lt;/html&gt;'</span><span class="token punctuation">,</span> <span class="token string">'html'</span><span class="token punctuation">,</span> <span class="token string">'utf-8'</span><span class="token punctuation">)</span> <span class="token comment"># 设置第二个参数为html</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h3 id="发送附件"><a href="#发送附件" class="headerlink" title="发送附件"></a>发送附件</h3><p>1、实例化一个MIMEMultipart对象</p>
+<p>2、attach一个MIMEText对象作为邮件正文</p>
+<p>3、attach MIMEBase对象作为附件</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">msg <span class="token operator">=</span> MIMEMultipart<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    msg<span class="token punctuation">.</span>attach<span class="token punctuation">(</span>MIMEText<span class="token punctuation">(</span><span class="token string">"附件"</span><span class="token punctuation">,</span> <span class="token string">'plain'</span><span class="token punctuation">,</span> <span class="token string">'utf-8'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token keyword">with</span> <span class="token builtin">open</span><span class="token punctuation">(</span><span class="token string">'emailDemo.py'</span><span class="token punctuation">,</span> <span class="token string">'rb'</span><span class="token punctuation">)</span> <span class="token keyword">as</span> fp<span class="token punctuation">:</span>
+        <span class="token comment"># # 设置附件的MIME和文件名</span>
+        attach <span class="token operator">=</span> MIMEBase<span class="token punctuation">(</span><span class="token string">'text'</span><span class="token punctuation">,</span> <span class="token string">'plain'</span><span class="token punctuation">,</span> filename<span class="token operator">=</span><span class="token string">'emailDemo.py'</span><span class="token punctuation">)</span>
+        <span class="token comment"># 读入文件</span>
+        attach<span class="token punctuation">.</span>set_payload<span class="token punctuation">(</span>fp<span class="token punctuation">.</span>read<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token comment"># 加上必要的头信息:</span>
+        attach<span class="token punctuation">.</span>add_header<span class="token punctuation">(</span><span class="token string">'Content-Disposition'</span><span class="token punctuation">,</span> <span class="token string">'attachment'</span><span class="token punctuation">,</span> filename<span class="token operator">=</span><span class="token string">'emailDemo.py'</span><span class="token punctuation">)</span>
+        attach<span class="token punctuation">.</span>add_header<span class="token punctuation">(</span><span class="token string">'Content-ID'</span><span class="token punctuation">,</span> <span class="token string">'&lt;0&gt;'</span><span class="token punctuation">)</span>
+        attach<span class="token punctuation">.</span>add_header<span class="token punctuation">(</span><span class="token string">'X-Attachment-Id'</span><span class="token punctuation">,</span> <span class="token string">'0'</span><span class="token punctuation">)</span>
+        <span class="token comment"># # 用Base64编码</span>
+        encoders<span class="token punctuation">.</span>encode_base64<span class="token punctuation">(</span>attach<span class="token punctuation">)</span>
+        msg<span class="token punctuation">.</span>attach<span class="token punctuation">(</span>attach<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+
+
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">首页</a></li>
+        
+          <li><a href="/about/">关于</a></li>
+        
+          <li><a href="/archives/">归档</a></li>
+        
+          <li><a target="_blank" rel="noopener" href="http://github.com/probberechts">项目</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%91%E9%80%81%E7%BA%AF%E6%96%87%E6%9C%AC%E6%96%87%E4%BB%B6"><span class="toc-number">1.</span> <span class="toc-text">发送纯文本文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%91%E9%80%81HTML"><span class="toc-number">2.</span> <span class="toc-text">发送HTML</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%91%E9%80%81%E9%99%84%E4%BB%B6"><span class="toc-number">3.</span> <span class="toc-text">发送附件</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://tuagt.github.io/code/python/python-fa-song-you-jian/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://tuagt.github.io/code/python/python-fa-song-you-jian/&text=python发送邮件"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://tuagt.github.io/code/python/python-fa-song-you-jian/&title=python发送邮件"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://tuagt.github.io/code/python/python-fa-song-you-jian/&is_video=false&description=python发送邮件"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=python发送邮件&body=Check out this article: https://tuagt.github.io/code/python/python-fa-song-you-jian/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://tuagt.github.io/code/python/python-fa-song-you-jian/&title=python发送邮件"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://tuagt.github.io/code/python/python-fa-song-you-jian/&title=python发送邮件"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://tuagt.github.io/code/python/python-fa-song-you-jian/&title=python发送邮件"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://tuagt.github.io/code/python/python-fa-song-you-jian/&title=python发送邮件"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://tuagt.github.io/code/python/python-fa-song-you-jian/&name=python发送邮件&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://tuagt.github.io/code/python/python-fa-song-you-jian/&t=python发送邮件"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2024
+    TuAg
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/probberechts">项目</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功！");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>

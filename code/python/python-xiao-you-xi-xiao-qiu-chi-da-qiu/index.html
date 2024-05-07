@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="大球吃小球完整代码： #!&#x2F;usr&#x2F;bin&#x2F;env python3 # -*- coding: utf-8 -*- # @Time       : 2020&#x2F;12&#x2F;16 15:52 # @Author     : ENDZHT # @ProjectName: pythonExercise # @FileName   : 大球吃小球.py # @Software   : PyCharm   from">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python小游戏—小球吃大球">
+<meta property="og:url" content="https://tuagt.github.io/code/python/python-xiao-you-xi-xiao-qiu-chi-da-qiu/">
+<meta property="og:site_name" content="TuAg&#39;s Blog">
+<meta property="og:description" content="大球吃小球完整代码： #!&#x2F;usr&#x2F;bin&#x2F;env python3 # -*- coding: utf-8 -*- # @Time       : 2020&#x2F;12&#x2F;16 15:52 # @Author     : ENDZHT # @ProjectName: pythonExercise # @FileName   : 大球吃小球.py # @Software   : PyCharm   from">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://tuagt.github.io/code/python/python-xiao-you-xi-xiao-qiu-chi-da-qiu/1.gif">
+<meta property="og:image" content="https://tuagt.github.io/code/python/python-xiao-you-xi-xiao-qiu-chi-da-qiu/%E5%A4%A7%E7%90%83%E5%90%83%E5%B0%8F%E7%90%83.png">
+<meta property="article:published_time" content="2020-12-16T11:47:39.000Z">
+<meta property="article:modified_time" content="2020-12-16T12:00:18.000Z">
+<meta property="article:author" content="TuAg">
+<meta property="article:tag" content="python">
+<meta property="article:tag" content="pygame">
+<meta property="article:tag" content="面向对象">
+<meta property="article:tag" content="小游戏">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://tuagt.github.io/code/python/python-xiao-you-xi-xiao-qiu-chi-da-qiu/1.gif">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>python小游戏—小球吃大球</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 5.4.1">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="TuAg's Blog" type="application/atom+xml">
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="顶部" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/probberechts">项目</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="上一篇" href="/code/python/python-huo-qu-mu-lu-jie-gou/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="下一篇" href="/python/pip-huan-yuan/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://tuagt.github.io/code/python/python-xiao-you-xi-xiao-qiu-chi-da-qiu/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://tuagt.github.io/code/python/python-xiao-you-xi-xiao-qiu-chi-da-qiu/&text=python小游戏—小球吃大球"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://tuagt.github.io/code/python/python-xiao-you-xi-xiao-qiu-chi-da-qiu/&title=python小游戏—小球吃大球"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://tuagt.github.io/code/python/python-xiao-you-xi-xiao-qiu-chi-da-qiu/&is_video=false&description=python小游戏—小球吃大球"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=python小游戏—小球吃大球&body=Check out this article: https://tuagt.github.io/code/python/python-xiao-you-xi-xiao-qiu-chi-da-qiu/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://tuagt.github.io/code/python/python-xiao-you-xi-xiao-qiu-chi-da-qiu/&title=python小游戏—小球吃大球"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://tuagt.github.io/code/python/python-xiao-you-xi-xiao-qiu-chi-da-qiu/&title=python小游戏—小球吃大球"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://tuagt.github.io/code/python/python-xiao-you-xi-xiao-qiu-chi-da-qiu/&title=python小游戏—小球吃大球"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://tuagt.github.io/code/python/python-xiao-you-xi-xiao-qiu-chi-da-qiu/&title=python小游戏—小球吃大球"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://tuagt.github.io/code/python/python-xiao-you-xi-xiao-qiu-chi-da-qiu/&name=python小游戏—小球吃大球&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://tuagt.github.io/code/python/python-xiao-you-xi-xiao-qiu-chi-da-qiu/&t=python小游戏—小球吃大球"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%A7%E7%90%83%E5%90%83%E5%B0%8F%E7%90%83"><span class="toc-number">1.</span> <span class="toc-text">大球吃小球</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#UML"><span class="toc-number">1.1.</span> <span class="toc-text">UML</span></a></li></ol></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        python小游戏—小球吃大球
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">ENDZHT</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2020-12-16T11:47:39.000Z" class="dt-published" itemprop="datePublished">2020-12-16</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fa-solid fa-archive"></i>
+        <a class="category-link" href="/categories/Code/">Code</a> › <a class="category-link" href="/categories/Code/python/">python</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/pygame/" rel="tag">pygame</a>, <a class="p-category" href="/tags/python/" rel="tag">python</a>, <a class="p-category" href="/tags/%E5%B0%8F%E6%B8%B8%E6%88%8F/" rel="tag">小游戏</a>, <a class="p-category" href="/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/" rel="tag">面向对象</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <h3 id="大球吃小球"><a href="#大球吃小球" class="headerlink" title="大球吃小球"></a>大球吃小球</h3><p>完整代码：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment">#!/usr/bin/env python3</span>
+<span class="token comment"># -*- coding: utf-8 -*-</span>
+<span class="token comment"># @Time       : 2020/12/16 15:52</span>
+<span class="token comment"># @Author     : ENDZHT</span>
+<span class="token comment"># @ProjectName: pythonExercise</span>
+<span class="token comment"># @FileName   : 大球吃小球.py</span>
+<span class="token comment"># @Software   : PyCharm</span>
+
+
+<span class="token keyword">from</span> enum <span class="token keyword">import</span> Enum<span class="token punctuation">,</span> unique
+<span class="token keyword">from</span> math <span class="token keyword">import</span> sqrt
+<span class="token keyword">from</span> random <span class="token keyword">import</span> randint
+
+<span class="token keyword">import</span> pygame
+
+
+<span class="token decorator annotation punctuation">@unique</span>
+<span class="token keyword">class</span> <span class="token class-name">Color</span><span class="token punctuation">(</span>Enum<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">"""颜色"""</span>
+
+    RED <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token number">255</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span>
+    GREEN <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">255</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span>
+    BLUE <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">255</span><span class="token punctuation">)</span>
+    BLACK <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span>
+    WHITE <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token number">255</span><span class="token punctuation">,</span> <span class="token number">255</span><span class="token punctuation">,</span> <span class="token number">255</span><span class="token punctuation">)</span>
+    GRAY <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token number">242</span><span class="token punctuation">,</span> <span class="token number">242</span><span class="token punctuation">,</span> <span class="token number">242</span><span class="token punctuation">)</span>
+
+    <span class="token decorator annotation punctuation">@staticmethod</span>
+    <span class="token keyword">def</span> <span class="token function">random_color</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token triple-quoted-string string">"""获得随机颜色"""</span>
+        r <span class="token operator">=</span> randint<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">255</span><span class="token punctuation">)</span>
+        g <span class="token operator">=</span> randint<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">255</span><span class="token punctuation">)</span>
+        b <span class="token operator">=</span> randint<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">255</span><span class="token punctuation">)</span>
+        <span class="token keyword">return</span> r<span class="token punctuation">,</span> g<span class="token punctuation">,</span> b
+
+
+<span class="token keyword">class</span> <span class="token class-name">Ball</span><span class="token punctuation">(</span><span class="token builtin">object</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">"""球"""</span>
+
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> x<span class="token punctuation">,</span> y<span class="token punctuation">,</span> radius<span class="token punctuation">,</span> sx<span class="token punctuation">,</span> sy<span class="token punctuation">,</span> color<span class="token operator">=</span>Color<span class="token punctuation">.</span>RED<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token triple-quoted-string string">"""初始化方法"""</span>
+        self<span class="token punctuation">.</span>x <span class="token operator">=</span> x
+        self<span class="token punctuation">.</span>y <span class="token operator">=</span> y
+        self<span class="token punctuation">.</span>radius <span class="token operator">=</span> radius
+        self<span class="token punctuation">.</span>sx <span class="token operator">=</span> sx
+        self<span class="token punctuation">.</span>sy <span class="token operator">=</span> sy
+        self<span class="token punctuation">.</span>color <span class="token operator">=</span> color
+        self<span class="token punctuation">.</span>alive <span class="token operator">=</span> <span class="token boolean">True</span>
+
+    <span class="token keyword">def</span> <span class="token function">move</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> screen<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token triple-quoted-string string">"""移动"""</span>
+        self<span class="token punctuation">.</span>x <span class="token operator">+=</span> self<span class="token punctuation">.</span>sx
+        self<span class="token punctuation">.</span>y <span class="token operator">+=</span> self<span class="token punctuation">.</span>sy
+        <span class="token keyword">if</span> self<span class="token punctuation">.</span>x <span class="token operator">-</span> self<span class="token punctuation">.</span>radius <span class="token operator">&lt;=</span> <span class="token number">0</span> <span class="token keyword">or</span> \
+                self<span class="token punctuation">.</span>x <span class="token operator">+</span> self<span class="token punctuation">.</span>radius <span class="token operator">&gt;=</span> screen<span class="token punctuation">.</span>get_width<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            self<span class="token punctuation">.</span>sx <span class="token operator">=</span> <span class="token operator">-</span>self<span class="token punctuation">.</span>sx
+        <span class="token keyword">if</span> self<span class="token punctuation">.</span>y <span class="token operator">-</span> self<span class="token punctuation">.</span>radius <span class="token operator">&lt;=</span> <span class="token number">0</span> <span class="token keyword">or</span> \
+                self<span class="token punctuation">.</span>y <span class="token operator">+</span> self<span class="token punctuation">.</span>radius <span class="token operator">&gt;=</span> screen<span class="token punctuation">.</span>get_height<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            self<span class="token punctuation">.</span>sy <span class="token operator">=</span> <span class="token operator">-</span>self<span class="token punctuation">.</span>sy
+
+    <span class="token keyword">def</span> <span class="token function">eat</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> other<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token triple-quoted-string string">"""吃其他球"""</span>
+        <span class="token keyword">if</span> self<span class="token punctuation">.</span>alive <span class="token keyword">and</span> other<span class="token punctuation">.</span>alive <span class="token keyword">and</span> self <span class="token operator">!=</span> other<span class="token punctuation">:</span>
+            dx<span class="token punctuation">,</span> dy <span class="token operator">=</span> self<span class="token punctuation">.</span>x <span class="token operator">-</span> other<span class="token punctuation">.</span>x<span class="token punctuation">,</span> self<span class="token punctuation">.</span>y <span class="token operator">-</span> other<span class="token punctuation">.</span>y
+            distance <span class="token operator">=</span> sqrt<span class="token punctuation">(</span>dx <span class="token operator">**</span> <span class="token number">2</span> <span class="token operator">+</span> dy <span class="token operator">**</span> <span class="token number">2</span><span class="token punctuation">)</span>
+            <span class="token keyword">if</span> distance <span class="token operator">&lt;</span> self<span class="token punctuation">.</span>radius <span class="token operator">+</span> other<span class="token punctuation">.</span>radius \
+                    <span class="token keyword">and</span> self<span class="token punctuation">.</span>radius <span class="token operator">&gt;</span> other<span class="token punctuation">.</span>radius<span class="token punctuation">:</span>
+                other<span class="token punctuation">.</span>alive <span class="token operator">=</span> <span class="token boolean">False</span>
+                self<span class="token punctuation">.</span>radius <span class="token operator">=</span> self<span class="token punctuation">.</span>radius <span class="token operator">+</span> <span class="token builtin">int</span><span class="token punctuation">(</span>other<span class="token punctuation">.</span>radius <span class="token operator">*</span> <span class="token number">0.146</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">draw</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> screen<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token triple-quoted-string string">"""在窗口上绘制球"""</span>
+        pygame<span class="token punctuation">.</span>draw<span class="token punctuation">.</span>circle<span class="token punctuation">(</span>screen<span class="token punctuation">,</span> self<span class="token punctuation">.</span>color<span class="token punctuation">,</span>
+                           <span class="token punctuation">(</span>self<span class="token punctuation">.</span>x<span class="token punctuation">,</span> self<span class="token punctuation">.</span>y<span class="token punctuation">)</span><span class="token punctuation">,</span> self<span class="token punctuation">.</span>radius<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">self_destroy</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> self<span class="token punctuation">.</span>radius <span class="token operator">&gt;=</span> <span class="token number">150</span><span class="token punctuation">:</span>
+            self<span class="token punctuation">.</span>alive <span class="token operator">=</span> <span class="token boolean">False</span>
+
+
+<span class="token keyword">def</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token comment"># 定义用来装所有球的容器</span>
+    balls <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+    <span class="token comment"># 初始化导入的pygame中的模块</span>
+    pygame<span class="token punctuation">.</span>init<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token comment"># 初始化用于显示的窗口并设置窗口尺寸</span>
+    screen <span class="token operator">=</span> pygame<span class="token punctuation">.</span>display<span class="token punctuation">.</span>set_mode<span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token number">800</span><span class="token punctuation">,</span> <span class="token number">600</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token comment"># 设置当前窗口的标题</span>
+    pygame<span class="token punctuation">.</span>display<span class="token punctuation">.</span>set_caption<span class="token punctuation">(</span><span class="token string">'大球吃小球'</span><span class="token punctuation">)</span>
+    running <span class="token operator">=</span> <span class="token boolean">True</span>
+    <span class="token comment"># 开启一个事件循环处理发生的事件</span>
+    <span class="token keyword">while</span> running<span class="token punctuation">:</span>
+        <span class="token comment"># 从消息队列中获取事件并对事件进行处理</span>
+        <span class="token keyword">for</span> event <span class="token keyword">in</span> pygame<span class="token punctuation">.</span>event<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword">if</span> event<span class="token punctuation">.</span><span class="token builtin">type</span> <span class="token operator">==</span> pygame<span class="token punctuation">.</span>QUIT<span class="token punctuation">:</span>
+                running <span class="token operator">=</span> <span class="token boolean">False</span>
+            <span class="token comment"># 处理鼠标事件的代码</span>
+            <span class="token keyword">if</span> event<span class="token punctuation">.</span><span class="token builtin">type</span> <span class="token operator">==</span> pygame<span class="token punctuation">.</span>MOUSEBUTTONDOWN <span class="token keyword">and</span> event<span class="token punctuation">.</span>button <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">:</span>
+                <span class="token comment"># 获得点击鼠标的位置</span>
+                x<span class="token punctuation">,</span> y <span class="token operator">=</span> event<span class="token punctuation">.</span>pos
+                radius <span class="token operator">=</span> randint<span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">)</span>
+                sx<span class="token punctuation">,</span> sy <span class="token operator">=</span> randint<span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">,</span> randint<span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span>
+                color <span class="token operator">=</span> Color<span class="token punctuation">.</span>random_color<span class="token punctuation">(</span><span class="token punctuation">)</span>
+                <span class="token comment"># 在点击鼠标的位置创建一个球(大小、速度和颜色随机)</span>
+                ball <span class="token operator">=</span> Ball<span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">,</span> radius<span class="token punctuation">,</span> sx<span class="token punctuation">,</span> sy<span class="token punctuation">,</span> color<span class="token punctuation">)</span>
+                <span class="token comment"># 将球添加到列表容器中</span>
+                balls<span class="token punctuation">.</span>append<span class="token punctuation">(</span>ball<span class="token punctuation">)</span>
+        screen<span class="token punctuation">.</span>fill<span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token number">255</span><span class="token punctuation">,</span> <span class="token number">255</span><span class="token punctuation">,</span> <span class="token number">255</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token comment"># 取出容器中的球 如果没被吃掉就绘制 被吃掉了就移除</span>
+        <span class="token keyword">for</span> ball <span class="token keyword">in</span> balls<span class="token punctuation">:</span>
+            ball<span class="token punctuation">.</span>self_destroy<span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment"># 球的体积太大就会自我销毁</span>
+            <span class="token keyword">if</span> ball<span class="token punctuation">.</span>alive<span class="token punctuation">:</span>
+                ball<span class="token punctuation">.</span>draw<span class="token punctuation">(</span>screen<span class="token punctuation">)</span>
+            <span class="token keyword">else</span><span class="token punctuation">:</span>
+                balls<span class="token punctuation">.</span>remove<span class="token punctuation">(</span>ball<span class="token punctuation">)</span>
+        pygame<span class="token punctuation">.</span>display<span class="token punctuation">.</span>flip<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token comment"># 每隔50毫秒就改变球的位置再刷新窗口</span>
+        pygame<span class="token punctuation">.</span>time<span class="token punctuation">.</span>delay<span class="token punctuation">(</span><span class="token number">50</span><span class="token punctuation">)</span>
+        <span class="token keyword">for</span> ball <span class="token keyword">in</span> balls<span class="token punctuation">:</span>
+            ball<span class="token punctuation">.</span>move<span class="token punctuation">(</span>screen<span class="token punctuation">)</span>
+            <span class="token comment"># 检查球有没有吃到其他的球</span>
+            <span class="token keyword">for</span> other <span class="token keyword">in</span> balls<span class="token punctuation">:</span>
+                ball<span class="token punctuation">.</span>eat<span class="token punctuation">(</span>other<span class="token punctuation">)</span>
+
+
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">'__main__'</span><span class="token punctuation">:</span>
+    main<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>实例：</p>
+<img src="/code/python/python-xiao-you-xi-xiao-qiu-chi-da-qiu/1.gif" class="" title="大球吃小球">
+
+
+
+<h4 id="UML"><a href="#UML" class="headerlink" title="UML"></a>UML</h4><img src="/code/python/python-xiao-you-xi-xiao-qiu-chi-da-qiu/%E5%A4%A7%E7%90%83%E5%90%83%E5%B0%8F%E7%90%83.png" class="" title="大球吃小球">
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">首页</a></li>
+        
+          <li><a href="/about/">关于</a></li>
+        
+          <li><a href="/archives/">归档</a></li>
+        
+          <li><a target="_blank" rel="noopener" href="http://github.com/probberechts">项目</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%A7%E7%90%83%E5%90%83%E5%B0%8F%E7%90%83"><span class="toc-number">1.</span> <span class="toc-text">大球吃小球</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#UML"><span class="toc-number">1.1.</span> <span class="toc-text">UML</span></a></li></ol></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://tuagt.github.io/code/python/python-xiao-you-xi-xiao-qiu-chi-da-qiu/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://tuagt.github.io/code/python/python-xiao-you-xi-xiao-qiu-chi-da-qiu/&text=python小游戏—小球吃大球"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://tuagt.github.io/code/python/python-xiao-you-xi-xiao-qiu-chi-da-qiu/&title=python小游戏—小球吃大球"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://tuagt.github.io/code/python/python-xiao-you-xi-xiao-qiu-chi-da-qiu/&is_video=false&description=python小游戏—小球吃大球"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=python小游戏—小球吃大球&body=Check out this article: https://tuagt.github.io/code/python/python-xiao-you-xi-xiao-qiu-chi-da-qiu/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://tuagt.github.io/code/python/python-xiao-you-xi-xiao-qiu-chi-da-qiu/&title=python小游戏—小球吃大球"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://tuagt.github.io/code/python/python-xiao-you-xi-xiao-qiu-chi-da-qiu/&title=python小游戏—小球吃大球"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://tuagt.github.io/code/python/python-xiao-you-xi-xiao-qiu-chi-da-qiu/&title=python小游戏—小球吃大球"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://tuagt.github.io/code/python/python-xiao-you-xi-xiao-qiu-chi-da-qiu/&title=python小游戏—小球吃大球"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://tuagt.github.io/code/python/python-xiao-you-xi-xiao-qiu-chi-da-qiu/&name=python小游戏—小球吃大球&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://tuagt.github.io/code/python/python-xiao-you-xi-xiao-qiu-chi-da-qiu/&t=python小游戏—小球吃大球"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2024
+    TuAg
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/probberechts">项目</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功！");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>
