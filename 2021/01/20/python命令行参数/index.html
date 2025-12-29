@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="python 处理命令行参数 sys.argvsys.argv是接受参数的列表，sys.argv[0]表示执行文件名，sys.argv[1:]表示接受的参数 1python test.py arg1 arg2 arg3    使用len(sys.argv)来判断是否传入参数，如果len(sys.argv)等于1，表示没有传入参数；如果len(sys.argv) &gt; 1，表示传入了参数，可以使">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python命令行参数">
+<meta property="og:url" content="https://tuagt.github.io/2021/01/20/python%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%8F%82%E6%95%B0/index.html">
+<meta property="og:site_name" content="TuAgT&#39;s Blog">
+<meta property="og:description" content="python 处理命令行参数 sys.argvsys.argv是接受参数的列表，sys.argv[0]表示执行文件名，sys.argv[1:]表示接受的参数 1python test.py arg1 arg2 arg3    使用len(sys.argv)来判断是否传入参数，如果len(sys.argv)等于1，表示没有传入参数；如果len(sys.argv) &gt; 1，表示传入了参数，可以使">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-01-20T02:13:01.000Z">
+<meta property="article:modified_time" content="2025-12-28T15:39:10.586Z">
+<meta property="article:author" content="TuAgT">
+<meta property="article:tag" content="python">
+<meta property="article:tag" content="命令行参数">
+<meta property="article:tag" content="sys.argv">
+<meta property="article:tag" content="getopt">
+<meta property="article:tag" content="optparse">
+<meta property="article:tag" content="argparse">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>python命令行参数</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="顶部" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/probberechts">项目</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="上一篇" href="/2021/01/20/python%E6%97%A5%E5%BF%97%E6%A8%A1%E5%9D%97/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="下一篇" href="/2021/01/19/wsl2%E9%85%8D%E7%BD%AE/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://tuagt.github.io/2021/01/20/python%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%8F%82%E6%95%B0/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://tuagt.github.io/2021/01/20/python%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%8F%82%E6%95%B0/&text=python命令行参数"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://tuagt.github.io/2021/01/20/python%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%8F%82%E6%95%B0/&title=python命令行参数"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://tuagt.github.io/2021/01/20/python%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%8F%82%E6%95%B0/&is_video=false&description=python命令行参数"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=python命令行参数&body=Check out this article: https://tuagt.github.io/2021/01/20/python%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%8F%82%E6%95%B0/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://tuagt.github.io/2021/01/20/python%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%8F%82%E6%95%B0/&title=python命令行参数"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://tuagt.github.io/2021/01/20/python%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%8F%82%E6%95%B0/&title=python命令行参数"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://tuagt.github.io/2021/01/20/python%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%8F%82%E6%95%B0/&title=python命令行参数"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://tuagt.github.io/2021/01/20/python%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%8F%82%E6%95%B0/&title=python命令行参数"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://tuagt.github.io/2021/01/20/python%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%8F%82%E6%95%B0/&name=python命令行参数&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://tuagt.github.io/2021/01/20/python%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%8F%82%E6%95%B0/&t=python命令行参数"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#sys-argv"><span class="toc-number">1.</span> <span class="toc-text">sys.argv</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#getopt%E6%A8%A1%E5%9D%97"><span class="toc-number">2.</span> <span class="toc-text">getopt模块</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#getopt-getopt-%E6%96%B9%E6%B3%95"><span class="toc-number">2.1.</span> <span class="toc-text">getopt.getopt()方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#getopt-gnu-getopt-%E6%96%B9%E6%B3%95"><span class="toc-number">2.2.</span> <span class="toc-text">getopt.gnu_getopt()方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BC%82%E5%B8%B8getopt-GetoptError"><span class="toc-number">2.3.</span> <span class="toc-text">异常getopt.GetoptError</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9E%E4%BE%8B"><span class="toc-number">2.4.</span> <span class="toc-text">实例</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#optparse%E6%A8%A1%E5%9D%97"><span class="toc-number">3.</span> <span class="toc-text">optparse模块</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9E%E4%BE%8B-1"><span class="toc-number">3.1.</span> <span class="toc-text">实例</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A2%9E%E5%8A%A0%E5%B8%AE%E5%8A%A9%E4%BF%A1%E6%81%AF%E5%88%86%E7%BB%84"><span class="toc-number">3.2.</span> <span class="toc-text">增加帮助信息分组</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E8%BD%AF%E4%BB%B6%E7%89%88%E6%9C%AC"><span class="toc-number">3.3.</span> <span class="toc-text">获取软件版本</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#argparse%E6%A8%A1%E5%9D%97"><span class="toc-number">4.</span> <span class="toc-text">argparse模块</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8"><span class="toc-number">4.1.</span> <span class="toc-text">使用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E5%8F%82%E6%95%B0"><span class="toc-number">4.2.</span> <span class="toc-text">添加参数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%9F%AD%E5%8F%82%E6%95%B0%E5%92%8C%E9%95%BF%E5%8F%82%E6%95%B0"><span class="toc-number">4.3.</span> <span class="toc-text">短参数和长参数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%8D%E7%BD%AE%E5%8F%98%E9%87%8F"><span class="toc-number">4.4.</span> <span class="toc-text">位置变量</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%AF%E9%80%89%E5%8F%98%E9%87%8F"><span class="toc-number">4.5.</span> <span class="toc-text">可选变量</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">5.</span> <span class="toc-text">参考</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        python命令行参数
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">ENDZHT</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2021-01-20T02:13:01.000Z" class="dt-published" itemprop="datePublished">2021-01-20</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fa-solid fa-archive"></i>
+        <a class="category-link" href="/categories/Code/">Code</a> › <a class="category-link" href="/categories/Code/python/">python</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/argparse/" rel="tag">argparse</a>, <a class="p-category" href="/tags/getopt/" rel="tag">getopt</a>, <a class="p-category" href="/tags/optparse/" rel="tag">optparse</a>, <a class="p-category" href="/tags/python/" rel="tag">python</a>, <a class="p-category" href="/tags/sys-argv/" rel="tag">sys.argv</a>, <a class="p-category" href="/tags/%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%8F%82%E6%95%B0/" rel="tag">命令行参数</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <p>python 处理命令行参数</p>
+<h3 id="sys-argv"><a href="#sys-argv" class="headerlink" title="sys.argv"></a>sys.argv</h3><p>sys.argv是接受参数的列表，sys.argv[0]表示执行文件名，sys.argv[1:]表示接受的参数</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python test.py arg1 arg2 arg3</span><br></pre></td></tr></table></figure>
+
+
+
+<p>使用len(sys.argv)来判断是否传入参数，如果len(sys.argv)等于1，表示没有传入参数；如果len(sys.argv) &gt; 1，表示传入了参数，可以使用sys.argv[1:]获取传入的参数。</p>
+<h3 id="getopt模块"><a href="#getopt模块" class="headerlink" title="getopt模块"></a>getopt模块</h3><p>getopt模块是专门处理命令行参数的模块，用于获取命令行选项和参数，也就是sys.argv。命令行选项使得程序的参数更加灵活。支持短选项模式（-）和长选项模式（–）。</p>
+<p>该模块提供了两个方法及一个异常处理来解析命令行参数。</p>
+<h4 id="getopt-getopt-方法"><a href="#getopt-getopt-方法" class="headerlink" title="getopt.getopt()方法"></a>getopt.getopt()方法</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">getopt.getopt(args, options[, long_options])</span><br></pre></td></tr></table></figure>
+
+<p>方法参数说明：</p>
+<ul>
+<li><strong>args</strong>: 要解析的命令行参数列表。</li>
+<li><strong>options</strong> : 以字符串的格式定义，<strong>options</strong> 后的冒号 <strong>:</strong> 表示如果设置该选项，必须有附加的参数，否则就不附加参数。</li>
+<li><strong>long_options</strong> : 以列表的格式定义，<strong>long_options</strong> 后的等号 <strong>&#x3D;</strong> 表示该选项必须有附加的参数，不带冒号表示该选项不附加参数。</li>
+<li>该方法返回值由两个元素组成: 第一个是 <strong>(option, value)</strong> 元组的列表。 第二个是参数列表，包含那些没有 <strong>-</strong> 或 <strong>–</strong> 的参数。</li>
+</ul>
+<h4 id="getopt-gnu-getopt-方法"><a href="#getopt-gnu-getopt-方法" class="headerlink" title="getopt.gnu_getopt()方法"></a>getopt.gnu_getopt()方法</h4><h4 id="异常getopt-GetoptError"><a href="#异常getopt-GetoptError" class="headerlink" title="异常getopt.GetoptError"></a>异常getopt.GetoptError</h4><p>在没有找到参数列表，或选项的需要的参数为空时会触发该异常。</p>
+<p>异常的参数是一个字符串，表示错误的原因。属性 <strong>msg</strong> 和 <strong>opt</strong> 为相关选项的错误信息。</p>
+<h4 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">helpinfo = <span class="string">&quot;python main.py&quot;</span></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    opts, args = getopt.getopt(sys.argv[<span class="number">1</span>:], <span class="string">&#x27;hi:o:&#x27;</span>, [<span class="string">&#x27;ifile=&#x27;</span>, <span class="string">&#x27;ofile=&#x27;</span>, <span class="string">&#x27;help&#x27;</span>])</span><br><span class="line">    <span class="keyword">except</span> getopt.GetoptError <span class="keyword">as</span> e:</span><br><span class="line">        <span class="built_in">print</span>(e)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(opts, args)</span><br><span class="line"><span class="keyword">if</span> opts == [] <span class="keyword">and</span> args == []:</span><br><span class="line">    <span class="built_in">print</span>(helpinfo)</span><br><span class="line">    sys.exit()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> opt, arg <span class="keyword">in</span> opts:</span><br><span class="line">        <span class="keyword">if</span> opt <span class="keyword">in</span> (<span class="string">&#x27;-h&#x27;</span>, <span class="string">&#x27;--help&#x27;</span>):</span><br><span class="line">            <span class="built_in">print</span>(helpinfo)</span><br><span class="line"></span><br><span class="line">       	<span class="keyword">elif</span> opt <span class="keyword">in</span> (<span class="string">&#x27;-i&#x27;</span>, <span class="string">&#x27;--ifile&#x27;</span>):</span><br><span class="line">            <span class="built_in">print</span>(arg)</span><br><span class="line">        <span class="keyword">elif</span> opt <span class="keyword">in</span> (<span class="string">&#x27;-o&#x27;</span>, <span class="string">&#x27;--ofile&#x27;</span>):</span><br><span class="line">            <span class="built_in">print</span>(arg)</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="optparse模块"><a href="#optparse模块" class="headerlink" title="optparse模块"></a>optparse模块</h3><p>optparse模块主要用来为脚本传递命令参数，采用预先定义好的选项来解析命令行参数，自动生成帮助信息，不需要sys.argv</p>
+<h4 id="实例-1"><a href="#实例-1" class="headerlink" title="实例"></a>实例</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> optparse</span><br><span class="line"></span><br><span class="line">usage=<span class="string">&quot;python %prog -u/--user &lt;target user&gt; -p/--password &lt;target password&gt;&quot;</span></span><br><span class="line">parser=optparse.OptionParser(usage) <span class="comment">## 写入上面定义的帮助信息</span></span><br><span class="line">parser.add_option(<span class="string">&#x27;-u&#x27;</span>, <span class="string">&#x27;--user&#x27;</span>,dest=<span class="string">&#x27;User&#x27;</span>,<span class="built_in">type</span>=<span class="string">&#x27;string&#x27;</span>,<span class="built_in">help</span>=<span class="string">&#x27;target user&#x27;</span>, default=<span class="string">&#x27;root&#x27;</span>)</span><br><span class="line">parser.add_option(<span class="string">&#x27;-p&#x27;</span>,<span class="string">&#x27;--password&#x27;</span>,dest=<span class="string">&#x27;Pwd&#x27;</span>,<span class="built_in">type</span>=<span class="string">&#x27;string&#x27;</span>,<span class="built_in">help</span>=<span class="string">&#x27;target password&#x27;</span>)</span><br><span class="line">options, args=parser.parse_args()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;options为&#x27;</span>, options)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;用户名为&quot;</span>, options.User)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;密码为&quot;</span>, options.Pwd)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;args为&#x27;</span>, args)</span><br></pre></td></tr></table></figure>
+
+<p>add_option参数：</p>
+<ul>
+<li>可以设置多个选项字符串，比如上面的 ‘-u’, ‘–user’ 这两个，用的时候任选其一</li>
+<li>dest用于定义选项值存放的位置，作为后面的第一个字典（options）的键，值为命令输入的参数</li>
+<li>type用于检测命令行输入参数的数据类型是否符合要求，有 string（字符串）、int（整数）、float（浮点数）等类型</li>
+<li>help用于定义帮助信息</li>
+<li>default设置默认值</li>
+</ul>
+<h4 id="增加帮助信息分组"><a href="#增加帮助信息分组" class="headerlink" title="增加帮助信息分组"></a>增加帮助信息分组</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> optparse</span><br><span class="line"></span><br><span class="line">usage=<span class="string">&quot;python %prog -u/--user &lt;target user&gt; -p/--password &lt;target password&gt;&quot;</span></span><br><span class="line">parser=optparse.OptionParser(usage) <span class="comment">## 写入上面定义的帮助信息</span></span><br><span class="line">parser.add_option(<span class="string">&#x27;-u&#x27;</span>, <span class="string">&#x27;--user&#x27;</span>,dest=<span class="string">&#x27;User&#x27;</span>,<span class="built_in">type</span>=<span class="string">&#x27;string&#x27;</span>,<span class="built_in">help</span>=<span class="string">&#x27;target user&#x27;</span>, default=<span class="string">&#x27;root&#x27;</span>)</span><br><span class="line">parser.add_option(<span class="string">&#x27;-p&#x27;</span>,<span class="string">&#x27;--password&#x27;</span>,dest=<span class="string">&#x27;Pwd&#x27;</span>,<span class="built_in">type</span>=<span class="string">&#x27;string&#x27;</span>,<span class="built_in">help</span>=<span class="string">&#x27;target password&#x27;</span>)</span><br><span class="line">group = optparse.OptionGroup(parser, <span class="string">&#x27;Debug Options&#x27;</span>) <span class="comment">## 创建group分组</span></span><br><span class="line">parser.add_option_group(group)  <span class="comment">## 把创建的组添加到parser中</span></span><br><span class="line">group.add_option(<span class="string">&#x27;-d&#x27;</span>, <span class="string">&#x27;--debug&#x27;</span>, action=<span class="string">&#x27;store_true&#x27;</span>, <span class="built_in">help</span>=<span class="string">&#x27;Print debug information&#x27;</span>)</span><br><span class="line">options, args=parser.parse_args()</span><br></pre></td></tr></table></figure>
+
+
+
+<p>action有三种类型：</p>
+<ul>
+<li>action&#x3D;’store’ 默认类型，可以忽略不写。用户必须给出一个明确的参数值，该类型定义了将实际参数值保存到dest指定变量中</li>
+<li>action&#x3D;’store_true’ 用户不需给出参数值，该类型定义了将布尔值true保存到dest指定的变量中(和上面getopt中不加 ‘:’ 、’&#x3D;’)</li>
+<li>action&#x3D;’store_false’ 用户不需给出参数值，该类型定义了将布尔值false保存到dest指定的变量中</li>
+</ul>
+<h4 id="获取软件版本"><a href="#获取软件版本" class="headerlink" title="获取软件版本"></a>获取软件版本</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">parser = OptionParser(usage=<span class="string">&quot;%prog [-f] [-q]&quot;</span>, version=<span class="string">&quot;%prog 1.0&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+<p>输出version</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python xxx.py --version</span><br></pre></td></tr></table></figure>
+
+<p>或者使用函数</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">parser.print_version() <span class="comment"># 打印版本</span></span><br><span class="line"><span class="built_in">print</span>(parser.get_version()) <span class="comment"># 返回版本</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="argparse模块"><a href="#argparse模块" class="headerlink" title="argparse模块"></a>argparse模块</h3><h4 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h4><ol>
+<li>新建解释器 argparse.ArgumentParser()</li>
+<li>添加命令 add_argument()</li>
+<li>添加子命令</li>
+</ol>
+<h4 id="添加参数"><a href="#添加参数" class="headerlink" title="添加参数"></a>添加参数</h4><p>分为添加位置参数-positional arguments和可选参数-optional arguments</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建解析器</span></span><br><span class="line">parse = argparse.ArgumentParser()</span><br><span class="line"><span class="comment"># 位置参数，没有前缀</span></span><br><span class="line">parse.add_argument(<span class="string">&#x27;foo&#x27;</span>)</span><br><span class="line"><span class="comment"># 可选参数，带有前缀，带’-‘为短参数，带’--‘为长参数</span></span><br><span class="line"><span class="comment"># 可以包含其中一个，也可以两个都包含</span></span><br><span class="line">parse.add_argument(<span class="string">&#x27;-r&#x27;</span>, <span class="built_in">help</span>=<span class="string">&quot;运行&quot;</span>)</span><br><span class="line">parse.add_argument(<span class="string">&#x27;-i&#x27;</span>, <span class="string">&#x27;--init&#x27;</span>, <span class="built_in">help</span>=<span class="string">&#x27;初始化&#x27;</span>)</span><br><span class="line">parse.add_argument(<span class="string">&#x27;--show&#x27;</span>, <span class="built_in">help</span>=<span class="string">&#x27;打印信息&#x27;</span>)</span><br><span class="line">args = parse.parse_args([<span class="string">&#x27;boo&#x27;</span>, <span class="string">&#x27;-r&#x27;</span>, <span class="string">&#x27;1&#x27;</span>, <span class="string">&#x27;-i&#x27;</span>, <span class="string">&#x27;2&#x27;</span>, <span class="string">&#x27;--show&#x27;</span>, <span class="string">&#x27;3&#x27;</span>])</span><br><span class="line">parse.print_help()  <span class="comment"># 打印帮助信息，和传入-h参数效果一些</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">dir</span>(args))  <span class="comment"># 打印对象参数</span></span><br><span class="line"><span class="built_in">print</span>(args)  <span class="comment"># 打印对象</span></span><br><span class="line"><span class="built_in">print</span>(args.foo)  <span class="comment"># 打印变量值</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="短参数和长参数"><a href="#短参数和长参数" class="headerlink" title="短参数和长参数"></a>短参数和长参数</h4><h4 id="位置变量"><a href="#位置变量" class="headerlink" title="位置变量"></a>位置变量</h4><h4 id="可选变量"><a href="#可选变量" class="headerlink" title="可选变量"></a>可选变量</h4><p>实例</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">parse = argparse.ArgumentParser(description=<span class="string">&#x27;帮助描述信息&#x27;</span>, prog=<span class="string">&#x27;%prog&#x27;</span>, epilog=<span class="string">&#x27;底部显示信息&#x27;</span>)</span><br><span class="line">parse.add_argument(<span class="string">&#x27;-u&#x27;</span>, <span class="string">&#x27;--user&#x27;</span>, dest=<span class="string">&#x27;user&#x27;</span>, <span class="built_in">type</span>=<span class="built_in">str</span>, default=<span class="string">&#x27;root&#x27;</span>, <span class="built_in">help</span>=<span class="string">&#x27;user name&#x27;</span>)</span><br><span class="line">parse.add_argument(<span class="string">&#x27;-p&#x27;</span>, <span class="string">&#x27;--password&#x27;</span>, dest=<span class="string">&#x27;password&#x27;</span>, <span class="built_in">type</span>=<span class="built_in">str</span>, default=<span class="string">&#x27;&#x27;</span>, <span class="built_in">help</span>=<span class="string">&#x27;user password&#x27;</span>)</span><br><span class="line">parse.add_argument(<span class="string">&#x27;-s&#x27;</span>, <span class="string">&#x27;--sex&#x27;</span>, dest=<span class="string">&#x27;sex&#x27;</span>, <span class="built_in">type</span>=<span class="built_in">str</span>, choices=[<span class="string">&#x27;男&#x27;</span>, <span class="string">&#x27;女&#x27;</span>], default=<span class="string">&#x27;男&#x27;</span>, <span class="built_in">help</span>=<span class="string">&#x27;target sex&#x27;</span>)</span><br><span class="line">group =parse.add_argument_group(title=<span class="string">&#x27;foo&#x27;</span>)</span><br><span class="line">group.add_argument(<span class="string">&#x27;-n&#x27;</span>, <span class="string">&#x27;--number&#x27;</span>, dest=<span class="string">&#x27;Num&#x27;</span>, nargs=<span class="number">2</span>, required=<span class="literal">True</span>, <span class="built_in">type</span>=<span class="built_in">int</span>, <span class="built_in">help</span>=<span class="string">&#x27;target Two Numbers&#x27;</span>)</span><br><span class="line">parse.add_argument_group(group)</span><br><span class="line"><span class="built_in">print</span>(parse.parse_args())</span><br></pre></td></tr></table></figure>
+
+<p>输出结果</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">usage: %prog [-h] [-u USER] [-p PASSWORD] [-s &#123;男,女&#125;] -n NUM NUM</span><br><span class="line"></span><br><span class="line">帮助描述信息</span><br><span class="line"></span><br><span class="line">optional arguments:</span><br><span class="line">  -h, --help            show this help message and exit</span><br><span class="line">  -u USER, --user USER  user name</span><br><span class="line">  -p PASSWORD, --password PASSWORD</span><br><span class="line">                        user password</span><br><span class="line">  -s &#123;男,女&#125;, --sex &#123;男,女&#125;</span><br><span class="line">                        target sex</span><br><span class="line"></span><br><span class="line">foo:</span><br><span class="line">  -n NUM NUM, --number NUM NUM</span><br><span class="line">                        target Two Numbers</span><br><span class="line"></span><br><span class="line">底部显示信息</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><ul>
+<li><a target="_blank" rel="noopener" href="http://www.360doc.com/content/18/0929/15/50979635_790696415.shtml">http://www.360doc.com/content/18/0929/15/50979635_790696415.shtml</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/argparse.html">https://docs.python.org/zh-cn/3/library/argparse.html</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/caidaoqq/article/details/44706005">https://blog.csdn.net/caidaoqq/article/details/44706005</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/songguoyou/p/11919730.html">https://www.cnblogs.com/songguoyou/p/11919730.html</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/yuandonghua/p/10619941.html">https://www.cnblogs.com/yuandonghua/p/10619941.html</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.runoob.com/python/python-command-line-arguments.html">https://www.runoob.com/python/python-command-line-arguments.html</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/cuhm/p/10643765.html#/c/subject/p/10643765.html">https://www.cnblogs.com/cuhm/p/10643765.html#/c/subject/p/10643765.html</a></li>
+</ul>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">首页</a></li>
+        
+          <li><a href="/about/">关于</a></li>
+        
+          <li><a href="/archives/">归档</a></li>
+        
+          <li><a target="_blank" rel="noopener" href="http://github.com/probberechts">项目</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#sys-argv"><span class="toc-number">1.</span> <span class="toc-text">sys.argv</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#getopt%E6%A8%A1%E5%9D%97"><span class="toc-number">2.</span> <span class="toc-text">getopt模块</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#getopt-getopt-%E6%96%B9%E6%B3%95"><span class="toc-number">2.1.</span> <span class="toc-text">getopt.getopt()方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#getopt-gnu-getopt-%E6%96%B9%E6%B3%95"><span class="toc-number">2.2.</span> <span class="toc-text">getopt.gnu_getopt()方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BC%82%E5%B8%B8getopt-GetoptError"><span class="toc-number">2.3.</span> <span class="toc-text">异常getopt.GetoptError</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9E%E4%BE%8B"><span class="toc-number">2.4.</span> <span class="toc-text">实例</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#optparse%E6%A8%A1%E5%9D%97"><span class="toc-number">3.</span> <span class="toc-text">optparse模块</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9E%E4%BE%8B-1"><span class="toc-number">3.1.</span> <span class="toc-text">实例</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A2%9E%E5%8A%A0%E5%B8%AE%E5%8A%A9%E4%BF%A1%E6%81%AF%E5%88%86%E7%BB%84"><span class="toc-number">3.2.</span> <span class="toc-text">增加帮助信息分组</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E8%BD%AF%E4%BB%B6%E7%89%88%E6%9C%AC"><span class="toc-number">3.3.</span> <span class="toc-text">获取软件版本</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#argparse%E6%A8%A1%E5%9D%97"><span class="toc-number">4.</span> <span class="toc-text">argparse模块</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8"><span class="toc-number">4.1.</span> <span class="toc-text">使用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E5%8F%82%E6%95%B0"><span class="toc-number">4.2.</span> <span class="toc-text">添加参数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%9F%AD%E5%8F%82%E6%95%B0%E5%92%8C%E9%95%BF%E5%8F%82%E6%95%B0"><span class="toc-number">4.3.</span> <span class="toc-text">短参数和长参数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%8D%E7%BD%AE%E5%8F%98%E9%87%8F"><span class="toc-number">4.4.</span> <span class="toc-text">位置变量</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%AF%E9%80%89%E5%8F%98%E9%87%8F"><span class="toc-number">4.5.</span> <span class="toc-text">可选变量</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">5.</span> <span class="toc-text">参考</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://tuagt.github.io/2021/01/20/python%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%8F%82%E6%95%B0/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://tuagt.github.io/2021/01/20/python%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%8F%82%E6%95%B0/&text=python命令行参数"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://tuagt.github.io/2021/01/20/python%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%8F%82%E6%95%B0/&title=python命令行参数"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://tuagt.github.io/2021/01/20/python%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%8F%82%E6%95%B0/&is_video=false&description=python命令行参数"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=python命令行参数&body=Check out this article: https://tuagt.github.io/2021/01/20/python%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%8F%82%E6%95%B0/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://tuagt.github.io/2021/01/20/python%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%8F%82%E6%95%B0/&title=python命令行参数"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://tuagt.github.io/2021/01/20/python%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%8F%82%E6%95%B0/&title=python命令行参数"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://tuagt.github.io/2021/01/20/python%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%8F%82%E6%95%B0/&title=python命令行参数"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://tuagt.github.io/2021/01/20/python%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%8F%82%E6%95%B0/&title=python命令行参数"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://tuagt.github.io/2021/01/20/python%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%8F%82%E6%95%B0/&name=python命令行参数&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://tuagt.github.io/2021/01/20/python%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%8F%82%E6%95%B0/&t=python命令行参数"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2025
+    TuAgT
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/probberechts">项目</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功！");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>
