@@ -1,0 +1,25 @@
+<section class="section fade-in">
+  <h2>🧮 简单计算器</h2>
+  <div class="input-group">
+    <label for="num1">数字 1:</label>
+    <input type="number" id="num1" value="10" />
+  </div>
+  <div class="input-group">
+    <label for="num2">数字 2:</label>
+    <input type="number" id="num2" value="5" />
+  </div>
+  <div>
+    <button class="btn" onclick="calculate('add')">加法 (+)</button>
+    <button class="btn" onclick="calculate('subtract')">
+      减法 (-)
+    </button>
+    <button class="btn" onclick="calculate('multiply')">
+      乘法 (×)
+    </button>
+    <button class="btn" onclick="calculate('divide')">除法 (÷)</button>
+  </div>
+  <div class="result">
+    <h3>计算结果：</h3>
+    <div id="calcResult"></div>
+  </div>
+</section>

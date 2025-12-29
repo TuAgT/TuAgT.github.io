@@ -1,0 +1,22 @@
+<section class="section fade-in">
+  <h2>📝 文本处理工具</h2>
+  <div class="input-group">
+    <label for="textInput">输入文本：</label>
+    <textarea
+      id="textInput"
+      placeholder="在这里输入要处理的文本..."
+    ></textarea>
+  </div>
+  <div>
+    <button class="btn" onclick="toUpperCase()">转换为大写</button>
+    <button class="btn" onclick="toLowerCase()">转换为小写</button>
+    <button class="btn" onclick="reverseText()">反转文本</button>
+    <button class="btn btn-danger" onclick="clearText()">
+      清空文本
+    </button>
+  </div>
+  <div class="result">
+    <h3>处理结果：</h3>
+    <div id="textResult"></div>
+  </div>
+</section>
