@@ -6,15 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="记录个人学习过程中的一些问题和解决方法">
+    <meta name="description" content="学习笔记数学基础层 必备知识：微积分、线性代数、离散数学（集合论、图论、数理逻辑）、概率论与数理统计作用：支撑算法推导、逻辑证明及建模能力，如算法复杂度分析依赖离散数学，机器学习依赖概率论（CS 自学指南） 计算机系统层 核心课程：计算机组成原理（CPU&#x2F;存储体系）、操作系统（进程管理&#x2F;内存调度）、计算机网络（TCP&#x2F;IP 协议栈）学习重点：理解软硬件交互机制，例如虚">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数据结构与算法.md">
 <meta property="og:url" content="https://tuagt.github.io/2025/12/29/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/index.html">
 <meta property="og:site_name" content="TuAgT&#39;s Blog">
-<meta property="og:description" content="记录个人学习过程中的一些问题和解决方法">
+<meta property="og:description" content="学习笔记数学基础层 必备知识：微积分、线性代数、离散数学（集合论、图论、数理逻辑）、概率论与数理统计作用：支撑算法推导、逻辑证明及建模能力，如算法复杂度分析依赖离散数学，机器学习依赖概率论（CS 自学指南） 计算机系统层 核心课程：计算机组成原理（CPU&#x2F;存储体系）、操作系统（进程管理&#x2F;内存调度）、计算机网络（TCP&#x2F;IP 协议栈）学习重点：理解软硬件交互机制，例如虚">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-12-29T12:25:21.000Z">
-<meta property="article:modified_time" content="2025-12-29T12:51:14.973Z">
+<meta property="article:modified_time" content="2025-12-30T05:38:57.437Z">
 <meta property="article:author" content="TuAgT">
 <meta name="twitter:card" content="summary">
     
@@ -81,7 +81,7 @@
      --><!--
        --><li><a href="/cybersecurity/">网络安全</a></li><!--
      --><!--
-       --><li><a href="/cyberchef/">cyberchef</a></li><!--
+       --><li><a href="/CyberChef/">CyberChef</a></li><!--
      --><!--
        --><li><a href="/test/">test</a></li><!--
      -->
@@ -118,6 +118,10 @@
 
     </div>
     
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0"><span class="toc-number">1.</span> <span class="toc-text">学习笔记</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#c-%E8%AF%AD%E8%A8%80"><span class="toc-number">1.1.</span> <span class="toc-text">c 语言</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95"><span class="toc-number">1.1.1.</span> <span class="toc-text">基础语法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E7%BB%84"><span class="toc-number">1.1.2.</span> <span class="toc-text">数组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-number">1.1.3.</span> <span class="toc-text">字符串</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%BD%E6%95%B0"><span class="toc-number">1.1.4.</span> <span class="toc-text">函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%93%E6%9E%84%E4%BD%93"><span class="toc-number">1.1.5.</span> <span class="toc-text">结构体</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B1%E7%94%A8%E4%BD%93"><span class="toc-number">1.1.6.</span> <span class="toc-text">共用体</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%87%E9%92%88"><span class="toc-number">1.1.7.</span> <span class="toc-text">指针</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86"><span class="toc-number">1.1.8.</span> <span class="toc-text">内存管理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C"><span class="toc-number">1.1.9.</span> <span class="toc-text">文件操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%84%E5%A4%84%E7%90%86%E5%91%BD%E4%BB%A4"><span class="toc-number">1.1.10.</span> <span class="toc-text">预处理命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#C-%E8%AF%AD%E8%A8%80%E6%A0%87%E5%87%86%E5%BA%93"><span class="toc-number">1.1.11.</span> <span class="toc-text">C 语言标准库</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#assert-h"><span class="toc-number">1.1.11.1.</span> <span class="toc-text">assert.h</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95"><span class="toc-number">1.2.</span> <span class="toc-text">数据结构与算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%88%86%E6%9E%90"><span class="toc-number">1.2.1.</span> <span class="toc-text">复杂度分析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6"><span class="toc-number">1.2.1.1.</span> <span class="toc-text">时间复杂度</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A9%BA%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6"><span class="toc-number">1.2.1.2.</span> <span class="toc-text">空间复杂度</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="toc-number">1.2.2.</span> <span class="toc-text">数据结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81"><span class="toc-number">1.2.3.</span> <span class="toc-text">字符编码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E5%AD%97%E7%BC%96%E7%A0%81"><span class="toc-number">1.2.4.</span> <span class="toc-text">数字编码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E7%BB%84-1"><span class="toc-number">1.2.5.</span> <span class="toc-text">数组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%93%BE%E8%A1%A8"><span class="toc-number">1.2.6.</span> <span class="toc-text">链表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%97%E8%A1%A8"><span class="toc-number">1.2.7.</span> <span class="toc-text">列表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%88"><span class="toc-number">1.2.8.</span> <span class="toc-text">栈</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%98%9F%E5%88%97"><span class="toc-number">1.2.9.</span> <span class="toc-text">队列</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%8C%E5%90%91%E9%98%9F%E5%88%97"><span class="toc-number">1.2.10.</span> <span class="toc-text">双向队列</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%93%88%E5%B8%8C%E8%A1%A8"><span class="toc-number">1.2.11.</span> <span class="toc-text">哈希表</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%93%88%E5%B8%8C%E5%86%B2%E7%AA%81"><span class="toc-number">1.2.11.1.</span> <span class="toc-text">哈希冲突</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%93%88%E5%B8%8C%E7%AE%97%E6%B3%95"><span class="toc-number">1.2.11.2.</span> <span class="toc-text">哈希算法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%91"><span class="toc-number">1.2.12.</span> <span class="toc-text">树</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%8C%E5%8F%89%E6%A0%91"><span class="toc-number">1.2.12.1.</span> <span class="toc-text">二叉树</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AE%8C%E7%BE%8E%E4%BA%8C%E5%8F%89%E6%A0%91"><span class="toc-number">1.2.12.1.1.</span> <span class="toc-text">完美二叉树</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AE%8C%E5%85%A8%E4%BA%8C%E5%8F%89%E6%A0%91"><span class="toc-number">1.2.12.1.2.</span> <span class="toc-text">完全二叉树</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AE%8C%E6%BB%A1%E4%BA%8C%E5%8F%89%E6%A0%91"><span class="toc-number">1.2.12.1.3.</span> <span class="toc-text">完满二叉树</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%B9%B3%E8%A1%A1%E4%BA%8C%E5%8F%89%E6%A0%91"><span class="toc-number">1.2.12.1.4.</span> <span class="toc-text">平衡二叉树</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%8C%E5%8F%89%E6%A0%91%E9%81%8D%E5%8E%86"><span class="toc-number">1.2.12.2.</span> <span class="toc-text">二叉树遍历</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%B1%82%E5%BA%8F%E9%81%8D%E5%8E%86"><span class="toc-number">1.2.12.2.1.</span> <span class="toc-text">层序遍历</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%89%8D%E5%BA%8F%E3%80%81%E4%B8%AD%E5%BA%8F%E3%80%81%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86"><span class="toc-number">1.2.12.2.2.</span> <span class="toc-text">前序、中序、后序遍历</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%8C%E5%8F%89%E6%A0%91%E6%95%B0%E7%BB%84%E8%A1%A8%E7%A4%BA"><span class="toc-number">1.2.12.3.</span> <span class="toc-text">二叉树数组表示</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91"><span class="toc-number">1.2.12.4.</span> <span class="toc-text">二叉搜索树</span></a></li></ol></li></ol></li></ol></li></ol>
+      </div>
     
   </span>
 </div>
@@ -156,7 +160,236 @@
   
 
   <div class="content e-content" itemprop="articleBody">
-    
+    <h1 id="学习笔记"><a href="#学习笔记" class="headerlink" title="学习笔记"></a>学习笔记</h1><p>数学基础层</p>
+<p>必备知识：微积分、线性代数、离散数学（集合论、图论、数理逻辑）、概率论与数理统计<br>作用：支撑算法推导、逻辑证明及建模能力，如算法复杂度分析依赖离散数学，机器学习依赖概率论（CS 自学指南）</p>
+<p>计算机系统层</p>
+<p>核心课程：计算机组成原理（CPU&#x2F;存储体系）、操作系统（进程管理&#x2F;内存调度）、计算机网络（TCP&#x2F;IP 协议栈）<br>学习重点：理解软硬件交互机制，例如虚拟内存技术如何关联 OS 与硬件（深入理解计算机系统）</p>
+<p>数据与算法层</p>
+<p>核心内容：数据结构（数组&#x2F;链表&#x2F;树）、算法设计（排序&#x2F;搜索&#x2F;动态规划）、数据库系统（SQL&#x2F;事务原理）<br>实践要求：通过 LeetCode 刷题（推荐按专题分类）、实现数据库索引（B+树结构）（数据结构与算法基础）</p>
+<p>开发工具与工程化层</p>
+<p>关键技能：版本控制（Git）、系统编程（Linux C）、软件工程（敏捷开发&#x2F;测试方法）<br>工具链：GCC 编译器、Docker 容器化、CI&#x2F;CD 自动化流程（Linux 程序设计）</p>
+<p>应用技术层</p>
+<p>主流方向：人工智能（机器学习&#x2F;深度学习）、Web 开发（前后端框架）、移动开发（iOS&#x2F;Android）<br>技术栈示例：Python+PyTorch（AI）、React+Node.js（Web）、Kotlin（Android）（AI 基础知识学习库）</p>
+<hr>
+<h2 id="c-语言"><a href="#c-语言" class="headerlink" title="c 语言"></a>c 语言</h2><p>学习路线：</p>
+<ol>
+<li>基础学习（语法入门、数据类型、运算符和表达式、控制流语句）</li>
+<li>进阶学习（Linux 系统编程、网络编程）</li>
+<li>应用学习（嵌入式开发、Linux 开发、底层驱动、逆向安全）</li>
+</ol>
+<h3 id="基础语法"><a href="#基础语法" class="headerlink" title="基础语法"></a>基础语法</h3><ul>
+<li>数据类型</li>
+<li>运算符和表达式</li>
+<li>控制流语句</li>
+</ul>
+<h3 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h3><h3 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h3><h3 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h3><h3 id="结构体"><a href="#结构体" class="headerlink" title="结构体"></a>结构体</h3><p>访问结构成员</p>
+<p>成员访问运算符</p>
+<ul>
+<li>点运算符（结构体变量）：<code>struct_name.member_name</code></li>
+<li>箭头运算符（结构体指针变量）：<code>struct_ptr-&gt;member_name</code></li>
+</ul>
+<h3 id="共用体"><a href="#共用体" class="headerlink" title="共用体"></a>共用体</h3><h3 id="指针"><a href="#指针" class="headerlink" title="指针"></a>指针</h3><p>指针变量存储的是地址。</p>
+<p>多级指针相当于指针数组</p>
+<h3 id="内存管理"><a href="#内存管理" class="headerlink" title="内存管理"></a>内存管理</h3><ul>
+<li>malloc</li>
+<li>calloc</li>
+<li>realloc</li>
+<li>free</li>
+<li>memcpy</li>
+</ul>
+<p>申请地址空间</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> *p = <span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="type">int</span>));</span><br><span class="line"><span class="type">int</span> *arr = <span class="built_in">calloc</span>(<span class="number">10</span>, <span class="keyword">sizeof</span>(<span class="type">int</span>));</span><br></pre></td></tr></table></figure>
+
+<p>释放地址空间</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">free</span>(p);</span><br></pre></td></tr></table></figure>
+
+<p>释放空间要从最小单位开始释放</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">buckets 变量（双指针）</span><br><span class="line">│</span><br><span class="line">↓</span><br><span class="line">┌────────┬────────┬────────┬────────┐</span><br><span class="line">│ 指针 0 │ 指针 1 │ 指针 2 │ 指针 3 │ ← 这就是指针数组！</span><br><span class="line">│ (Node*)| (Node*)| (Node*)| (Node*)│</span><br><span class="line">└────────┴────────┴────────┴────────┘</span><br><span class="line">│ │ │ │</span><br><span class="line">↓ ↓ ↓ ↓</span><br><span class="line">链表头 链表头 链表头 链表头</span><br></pre></td></tr></table></figure>
+
+<h3 id="文件操作"><a href="#文件操作" class="headerlink" title="文件操作"></a>文件操作</h3><h3 id="预处理命令"><a href="#预处理命令" class="headerlink" title="预处理命令"></a>预处理命令</h3><h3 id="C-语言标准库"><a href="#C-语言标准库" class="headerlink" title="C 语言标准库"></a>C 语言标准库</h3><h4 id="assert-h"><a href="#assert-h" class="headerlink" title="assert.h"></a>assert.h</h4><p>assert 是 c 语言中的一个宏，用于在程序运行时检查一个条件是否为真。如果条件为假，assert 会触发一个断言失败的错误，并且程序会终止运行。</p>
+<p>assert 宏的定义如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;assert.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">assert</span><span class="params">(<span class="type">int</span> expression)</span>;</span><br></pre></td></tr></table></figure>
+
+<p>其中，<code>expression</code> 是一个返回值为整数的表达式。如果 <code>expression</code> 的值为 0，assert 会触发断言失败的错误。</p>
+<h2 id="数据结构与算法"><a href="#数据结构与算法" class="headerlink" title="数据结构与算法"></a>数据结构与算法</h2><h3 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h3><h4 id="时间复杂度"><a href="#时间复杂度" class="headerlink" title="时间复杂度"></a>时间复杂度</h4><h4 id="空间复杂度"><a href="#空间复杂度" class="headerlink" title="空间复杂度"></a>空间复杂度</h4><h3 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h3><p>线性数据结构：</p>
+<ul>
+<li>数组</li>
+<li>链表</li>
+<li>栈</li>
+<li>队列</li>
+</ul>
+<p>非线性数据结构：</p>
+<ul>
+<li>树</li>
+<li>图</li>
+</ul>
+<h3 id="字符编码"><a href="#字符编码" class="headerlink" title="字符编码"></a>字符编码</h3><ul>
+<li>ASCII 码</li>
+<li>Unicode 码</li>
+<li>UTF-8 编码</li>
+</ul>
+<h3 id="数字编码"><a href="#数字编码" class="headerlink" title="数字编码"></a>数字编码</h3><ul>
+<li>原码<ul>
+<li>最高位为符号位，0 表示正数，1 表示负数</li>
+</ul>
+</li>
+<li>反码<ul>
+<li>正数的反码与原码相同</li>
+<li>负数的反码为其原码除符号位外各位取反</li>
+</ul>
+</li>
+<li>补码<ul>
+<li>正数的补码与原码相同</li>
+<li>负数的补码为其反码加 1</li>
+</ul>
+</li>
+</ul>
+<p>原码 -&gt; 补码</p>
+<ul>
+<li>正数的补码与原码相同</li>
+<li>负数的补码为其反码加 1</li>
+</ul>
+<p>补码 -&gt; 原码</p>
+<ul>
+<li>正数的原码与补码相同</li>
+<li>负数的原码为其补码除符号位外各位取反加 1</li>
+</ul>
+<h3 id="数组-1"><a href="#数组-1" class="headerlink" title="数组"></a>数组</h3><p>数组是一种线性数据结构，每个元素在内存中都是连续存储的。</p>
+<p>优点：</p>
+<ul>
+<li>访问操作效率高，时间复杂度为 O(1)</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>插入和删除操作效率低，时间复杂度为 O(n)</li>
+</ul>
+<p>操作：</p>
+<ul>
+<li>初始化</li>
+<li>访问</li>
+<li>插入</li>
+<li>删除</li>
+<li>扩容</li>
+</ul>
+<h3 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h3><p>链表是一种线性数据结构，每个节点元素包括数据域和指针域。</p>
+<p>优点：</p>
+<ul>
+<li>动态分配内存，不需要提前分配内存空间</li>
+<li>插入和删除操作效率高，时间复杂度为 O(1)</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>访问操作效率低，时间复杂度为 O(n)</li>
+</ul>
+<p>分类：</p>
+<ul>
+<li>单链表</li>
+<li>双链表</li>
+<li>循环链表</li>
+</ul>
+<p>操作：</p>
+<ul>
+<li>初始化</li>
+<li>插入</li>
+<li>删除</li>
+<li>访问</li>
+<li>遍历</li>
+<li>查找</li>
+</ul>
+<h3 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h3><p>列表是抽象的数据结构，它是一种有序的集合，每个元素都有一个唯一的索引。</p>
+<ul>
+<li>基于数组实现</li>
+<li>基于链表实现</li>
+</ul>
+<p>操作：</p>
+<ul>
+<li>初始化</li>
+<li>访问</li>
+<li>修改</li>
+<li>插入</li>
+<li>删除</li>
+<li>遍历</li>
+<li>查找</li>
+<li>排序</li>
+</ul>
+<h3 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h3><p>栈是一种线性数据结构，遵循后进先出（LIFO）的原则。</p>
+<p>实现：</p>
+<ul>
+<li>基于数组实现</li>
+<li>基于链表实现</li>
+</ul>
+<p>操作：</p>
+<ul>
+<li>初始化</li>
+<li>入栈</li>
+<li>出栈</li>
+<li>访问栈顶元素</li>
+<li>检查栈是否为空</li>
+<li>遍历栈元素</li>
+</ul>
+<h3 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h3><p>队列是一种线性数据结构，遵循先进先出（FIFO）的原则。</p>
+<p>操作：</p>
+<ul>
+<li>初始化</li>
+<li>入队</li>
+<li>出队</li>
+<li>访问队头元素</li>
+<li>检查队列是否为空</li>
+<li>遍历队列元素</li>
+</ul>
+<h3 id="双向队列"><a href="#双向队列" class="headerlink" title="双向队列"></a>双向队列</h3><p>双向队列是一种线性数据结构，允许在队列的两端进行入队和出队操作。<br>表现栈和队列的逻辑特征。</p>
+<p>实现：</p>
+<ul>
+<li>基于数组实现</li>
+<li>基于链表实现</li>
+</ul>
+<p>操作：</p>
+<ul>
+<li>初始化</li>
+<li>入队（队头入队、队尾入队）</li>
+<li>出队（队头出队、队尾出队）</li>
+<li>访问队头元素</li>
+<li>访问队尾元素</li>
+<li>检查队列是否为空</li>
+<li>遍历队列元素</li>
+</ul>
+<h3 id="哈希表"><a href="#哈希表" class="headerlink" title="哈希表"></a>哈希表</h3><p>哈希表（Hash Table），又称散列表，是一种基于哈希函数实现的键值对存储结构。<br>它通过将键映射到一个唯一的索引位置来存储和检索值。</p>
+<p>操作：</p>
+<ul>
+<li>查找</li>
+<li>添加键值对</li>
+<li>删除键值对</li>
+<li>遍历哈希表</li>
+</ul>
+<h4 id="哈希冲突"><a href="#哈希冲突" class="headerlink" title="哈希冲突"></a>哈希冲突</h4><p>哈希冲突是指不同的键映射到了相同的索引位置。<br>解决哈希冲突的方法有多种，包括：</p>
+<ul>
+<li>链地址法（拉链法）</li>
+<li>开放地址法<ul>
+<li>线性探测法</li>
+<li>平方探测法</li>
+<li>双哈希法</li>
+</ul>
+</li>
+</ul>
+<h4 id="哈希算法"><a href="#哈希算法" class="headerlink" title="哈希算法"></a>哈希算法</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="树"><a href="#树" class="headerlink" title="树"></a>树</h3><h4 id="二叉树"><a href="#二叉树" class="headerlink" title="二叉树"></a>二叉树</h4><h5 id="完美二叉树"><a href="#完美二叉树" class="headerlink" title="完美二叉树"></a>完美二叉树</h5><p>完美二叉树所有层的节点都被完全填满。</p>
+<p>完美二叉树的节点总数为 $2^h - 1$，其中 $h$ 是树的高度。</p>
+<h5 id="完全二叉树"><a href="#完全二叉树" class="headerlink" title="完全二叉树"></a>完全二叉树</h5><p>完全二叉树所有层的节点都被完全填满， 除了最后一层，且最后一层的节点都靠左填充。</p>
+<h5 id="完满二叉树"><a href="#完满二叉树" class="headerlink" title="完满二叉树"></a>完满二叉树</h5><p>完满二叉树要求每个节点要么是叶子节点，要么有两个子节点。</p>
+<h5 id="平衡二叉树"><a href="#平衡二叉树" class="headerlink" title="平衡二叉树"></a>平衡二叉树</h5><p>平衡二叉树中每个节点的左右子树高度差不超过 1。</p>
+<h4 id="二叉树遍历"><a href="#二叉树遍历" class="headerlink" title="二叉树遍历"></a>二叉树遍历</h4><p>遍历方式：</p>
+<ul>
+<li>层序遍历（根节点-&gt;左节点-&gt;右节点）</li>
+<li>前序遍历（根节点-&gt;左子树-&gt;右子树）</li>
+<li>中序遍历（左子树-&gt;根节点-&gt;右子树）</li>
+<li>后序遍历（左子树-&gt;右子树-&gt;根节点）</li>
+</ul>
+<h5 id="层序遍历"><a href="#层序遍历" class="headerlink" title="层序遍历"></a>层序遍历</h5><p>层序遍历是一种按层级顺序遍历二叉树的方法。本质上属于广度优先遍历（Breadth-First Traversal），也称广度优先搜索（Breadth-First Search，BFS）。</p>
+<h5 id="前序、中序、后序遍历"><a href="#前序、中序、后序遍历" class="headerlink" title="前序、中序、后序遍历"></a>前序、中序、后序遍历</h5><p>前序、中序、后序遍历都属于深度优先遍历（Depth-First Traversal），也称深度优先搜索（Depth-First Search，DFS）。</p>
+<h4 id="二叉树数组表示"><a href="#二叉树数组表示" class="headerlink" title="二叉树数组表示"></a>二叉树数组表示</h4><p>若节点的索引为 i，则它的左节点为$2<em>i + 1$，它的右节点为$2</em>i + 2$, 它的父节点为$(i-1)&#x2F;2$</p>
+<h4 id="二叉搜索树"><a href="#二叉搜索树" class="headerlink" title="二叉搜索树"></a>二叉搜索树</h4><p>对于根节点，所有左子树的节点值都小于根节点的值，所有右子树的节点值都大于根节点的值。</p>
+
   </div>
 </article>
 
@@ -181,7 +414,7 @@
         
           <li><a href="/cybersecurity/">网络安全</a></li>
         
-          <li><a href="/cyberchef/">cyberchef</a></li>
+          <li><a href="/CyberChef/">CyberChef</a></li>
         
           <li><a href="/test/">test</a></li>
         
@@ -189,6 +422,10 @@
     </div>
 
     
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0"><span class="toc-number">1.</span> <span class="toc-text">学习笔记</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#c-%E8%AF%AD%E8%A8%80"><span class="toc-number">1.1.</span> <span class="toc-text">c 语言</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95"><span class="toc-number">1.1.1.</span> <span class="toc-text">基础语法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E7%BB%84"><span class="toc-number">1.1.2.</span> <span class="toc-text">数组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-number">1.1.3.</span> <span class="toc-text">字符串</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%BD%E6%95%B0"><span class="toc-number">1.1.4.</span> <span class="toc-text">函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%93%E6%9E%84%E4%BD%93"><span class="toc-number">1.1.5.</span> <span class="toc-text">结构体</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B1%E7%94%A8%E4%BD%93"><span class="toc-number">1.1.6.</span> <span class="toc-text">共用体</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%87%E9%92%88"><span class="toc-number">1.1.7.</span> <span class="toc-text">指针</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86"><span class="toc-number">1.1.8.</span> <span class="toc-text">内存管理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C"><span class="toc-number">1.1.9.</span> <span class="toc-text">文件操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%84%E5%A4%84%E7%90%86%E5%91%BD%E4%BB%A4"><span class="toc-number">1.1.10.</span> <span class="toc-text">预处理命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#C-%E8%AF%AD%E8%A8%80%E6%A0%87%E5%87%86%E5%BA%93"><span class="toc-number">1.1.11.</span> <span class="toc-text">C 语言标准库</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#assert-h"><span class="toc-number">1.1.11.1.</span> <span class="toc-text">assert.h</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95"><span class="toc-number">1.2.</span> <span class="toc-text">数据结构与算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%88%86%E6%9E%90"><span class="toc-number">1.2.1.</span> <span class="toc-text">复杂度分析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6"><span class="toc-number">1.2.1.1.</span> <span class="toc-text">时间复杂度</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A9%BA%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6"><span class="toc-number">1.2.1.2.</span> <span class="toc-text">空间复杂度</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="toc-number">1.2.2.</span> <span class="toc-text">数据结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81"><span class="toc-number">1.2.3.</span> <span class="toc-text">字符编码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E5%AD%97%E7%BC%96%E7%A0%81"><span class="toc-number">1.2.4.</span> <span class="toc-text">数字编码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E7%BB%84-1"><span class="toc-number">1.2.5.</span> <span class="toc-text">数组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%93%BE%E8%A1%A8"><span class="toc-number">1.2.6.</span> <span class="toc-text">链表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%97%E8%A1%A8"><span class="toc-number">1.2.7.</span> <span class="toc-text">列表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%88"><span class="toc-number">1.2.8.</span> <span class="toc-text">栈</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%98%9F%E5%88%97"><span class="toc-number">1.2.9.</span> <span class="toc-text">队列</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%8C%E5%90%91%E9%98%9F%E5%88%97"><span class="toc-number">1.2.10.</span> <span class="toc-text">双向队列</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%93%88%E5%B8%8C%E8%A1%A8"><span class="toc-number">1.2.11.</span> <span class="toc-text">哈希表</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%93%88%E5%B8%8C%E5%86%B2%E7%AA%81"><span class="toc-number">1.2.11.1.</span> <span class="toc-text">哈希冲突</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%93%88%E5%B8%8C%E7%AE%97%E6%B3%95"><span class="toc-number">1.2.11.2.</span> <span class="toc-text">哈希算法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%91"><span class="toc-number">1.2.12.</span> <span class="toc-text">树</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%8C%E5%8F%89%E6%A0%91"><span class="toc-number">1.2.12.1.</span> <span class="toc-text">二叉树</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AE%8C%E7%BE%8E%E4%BA%8C%E5%8F%89%E6%A0%91"><span class="toc-number">1.2.12.1.1.</span> <span class="toc-text">完美二叉树</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AE%8C%E5%85%A8%E4%BA%8C%E5%8F%89%E6%A0%91"><span class="toc-number">1.2.12.1.2.</span> <span class="toc-text">完全二叉树</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AE%8C%E6%BB%A1%E4%BA%8C%E5%8F%89%E6%A0%91"><span class="toc-number">1.2.12.1.3.</span> <span class="toc-text">完满二叉树</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%B9%B3%E8%A1%A1%E4%BA%8C%E5%8F%89%E6%A0%91"><span class="toc-number">1.2.12.1.4.</span> <span class="toc-text">平衡二叉树</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%8C%E5%8F%89%E6%A0%91%E9%81%8D%E5%8E%86"><span class="toc-number">1.2.12.2.</span> <span class="toc-text">二叉树遍历</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%B1%82%E5%BA%8F%E9%81%8D%E5%8E%86"><span class="toc-number">1.2.12.2.1.</span> <span class="toc-text">层序遍历</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%89%8D%E5%BA%8F%E3%80%81%E4%B8%AD%E5%BA%8F%E3%80%81%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86"><span class="toc-number">1.2.12.2.2.</span> <span class="toc-text">前序、中序、后序遍历</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%8C%E5%8F%89%E6%A0%91%E6%95%B0%E7%BB%84%E8%A1%A8%E7%A4%BA"><span class="toc-number">1.2.12.3.</span> <span class="toc-text">二叉树数组表示</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91"><span class="toc-number">1.2.12.4.</span> <span class="toc-text">二叉搜索树</span></a></li></ol></li></ol></li></ol></li></ol>
+      </div>
     
 
     <div id="share-footer" style="display: none">
@@ -210,6 +447,8 @@
 
     <div id="actions-footer">
         <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> 目录</a>
         
         <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
         <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
@@ -243,7 +482,7 @@
      --><!--
        --><li><a href="/cybersecurity/">网络安全</a></li><!--
      --><!--
-       --><li><a href="/cyberchef/">cyberchef</a></li><!--
+       --><li><a href="/CyberChef/">CyberChef</a></li><!--
      --><!--
        --><li><a href="/test/">test</a></li><!--
      -->
