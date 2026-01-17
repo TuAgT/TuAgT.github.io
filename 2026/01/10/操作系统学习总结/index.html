@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="操作系统概述操作系统（Operating System，OS）是管理计算机硬件与软件资源的计算机程序，是计算机系统的核心与基石。它负责管理与配置内存、决定系统资源供需的优先次序、控制输入设备与输出设备、操作网络与管理文件系统等基本任务。 操作系统的主要功能 进程管理：负责进程的创建、调度、同步和通信 内存管理：负责内存的分配、回收和保护 文件系统：负责文件的存储、组织和访问 设备管理：负责设备的分">
+<meta property="og:type" content="article">
+<meta property="og:title" content="操作系统学习总结">
+<meta property="og:url" content="https://tuagt.github.io/2026/01/10/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/index.html">
+<meta property="og:site_name" content="TuAgT&#39;s Blog">
+<meta property="og:description" content="操作系统概述操作系统（Operating System，OS）是管理计算机硬件与软件资源的计算机程序，是计算机系统的核心与基石。它负责管理与配置内存、决定系统资源供需的优先次序、控制输入设备与输出设备、操作网络与管理文件系统等基本任务。 操作系统的主要功能 进程管理：负责进程的创建、调度、同步和通信 内存管理：负责内存的分配、回收和保护 文件系统：负责文件的存储、组织和访问 设备管理：负责设备的分">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-01-10T06:59:21.000Z">
+<meta property="article:modified_time" content="2026-01-17T11:51:46.357Z">
+<meta property="article:author" content="TuAgT">
+<meta property="article:tag" content="计算机基础">
+<meta property="article:tag" content="操作系统">
+<meta property="article:tag" content="系统编程">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>操作系统学习总结</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+      <link rel="alternate" href="/true" title="TuAgT&#39;s Blog" type="application/atom+xml" />
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="顶部" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a href="/projects/">项目</a></li><!--
+     --><!--
+       --><li><a href="/ctf/">ctf</a></li><!--
+     --><!--
+       --><li><a href="/cybersecurity/">网络安全</a></li><!--
+     --><!--
+       --><li><a href="/CyberChef/">CyberChef</a></li><!--
+     --><!--
+       --><li><a href="/test/">test</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="上一篇" href="/2026/01/11/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="下一篇" href="/2026/01/10/C-%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://tuagt.github.io/2026/01/10/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://tuagt.github.io/2026/01/10/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/&text=操作系统学习总结"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://tuagt.github.io/2026/01/10/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/&title=操作系统学习总结"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://tuagt.github.io/2026/01/10/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/&is_video=false&description=操作系统学习总结"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=操作系统学习总结&body=Check out this article: https://tuagt.github.io/2026/01/10/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://tuagt.github.io/2026/01/10/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/&title=操作系统学习总结"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://tuagt.github.io/2026/01/10/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/&title=操作系统学习总结"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://tuagt.github.io/2026/01/10/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/&title=操作系统学习总结"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://tuagt.github.io/2026/01/10/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/&title=操作系统学习总结"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://tuagt.github.io/2026/01/10/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/&name=操作系统学习总结&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://tuagt.github.io/2026/01/10/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/&t=操作系统学习总结"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text">操作系统概述</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E4%B8%BB%E8%A6%81%E5%8A%9F%E8%83%BD"><span class="toc-number">1.1.</span> <span class="toc-text">操作系统的主要功能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%88%86%E7%B1%BB"><span class="toc-number">1.2.</span> <span class="toc-text">操作系统的分类</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86"><span class="toc-number">2.</span> <span class="toc-text">进程管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E6%A6%82%E5%BF%B5"><span class="toc-number">2.1.</span> <span class="toc-text">进程概念</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%A8%8B%E5%BA%8F%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">2.1.1.</span> <span class="toc-text">进程与程序的区别</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E6%8E%A7%E5%88%B6%E5%9D%97%EF%BC%88PCB%EF%BC%89"><span class="toc-number">2.1.2.</span> <span class="toc-text">进程控制块（PCB）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E7%8A%B6%E6%80%81"><span class="toc-number">2.2.</span> <span class="toc-text">进程状态</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E8%B0%83%E5%BA%A6"><span class="toc-number">2.3.</span> <span class="toc-text">进程调度</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95"><span class="toc-number">2.3.1.</span> <span class="toc-text">调度算法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A4%BA%E4%BE%8B%EF%BC%9A%E6%97%B6%E9%97%B4%E7%89%87%E8%BD%AE%E8%BD%AC%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95"><span class="toc-number">2.3.2.</span> <span class="toc-text">示例：时间片轮转调度算法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E5%90%8C%E6%AD%A5"><span class="toc-number">2.4.</span> <span class="toc-text">进程同步</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%B4%E7%95%8C%E5%8C%BA%E9%97%AE%E9%A2%98"><span class="toc-number">2.4.1.</span> <span class="toc-text">临界区问题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%90%8C%E6%AD%A5%E6%9C%BA%E5%88%B6"><span class="toc-number">2.4.2.</span> <span class="toc-text">同步机制</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A4%BA%E4%BE%8B%EF%BC%9A%E4%BD%BF%E7%94%A8%E4%BF%A1%E5%8F%B7%E9%87%8F%E8%A7%A3%E5%86%B3%E7%94%9F%E4%BA%A7%E8%80%85-%E6%B6%88%E8%B4%B9%E8%80%85%E9%97%AE%E9%A2%98"><span class="toc-number">2.4.3.</span> <span class="toc-text">示例：使用信号量解决生产者-消费者问题</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E9%80%9A%E4%BF%A1"><span class="toc-number">2.5.</span> <span class="toc-text">进程通信</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%86%E7%B1%BB"><span class="toc-number">2.5.1.</span> <span class="toc-text">分类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E9%80%9A%E4%BF%A1%E6%96%B9%E5%BC%8F"><span class="toc-number">2.5.2.</span> <span class="toc-text">常见通信方式</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B"><span class="toc-number">2.6.</span> <span class="toc-text">线程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B%E4%B8%8E%E8%BF%9B%E7%A8%8B%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">2.6.1.</span> <span class="toc-text">线程与进程的区别</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B%E7%9A%84%E5%88%86%E7%B1%BB"><span class="toc-number">2.6.2.</span> <span class="toc-text">线程的分类</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86"><span class="toc-number">3.</span> <span class="toc-text">内存管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86%E6%A6%82%E8%BF%B0"><span class="toc-number">3.1.</span> <span class="toc-text">内存管理概述</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86%E7%9A%84%E4%B8%BB%E8%A6%81%E5%8A%9F%E8%83%BD"><span class="toc-number">3.1.1.</span> <span class="toc-text">内存管理的主要功能</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9E%E7%BB%AD%E5%88%86%E9%85%8D%E7%AE%A1%E7%90%86%E6%96%B9%E5%BC%8F"><span class="toc-number">3.2.</span> <span class="toc-text">连续分配管理方式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8D%95%E4%B8%80%E8%BF%9E%E7%BB%AD%E5%88%86%E9%85%8D"><span class="toc-number">3.2.1.</span> <span class="toc-text">单一连续分配</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9B%BA%E5%AE%9A%E5%88%86%E5%8C%BA%E5%88%86%E9%85%8D"><span class="toc-number">3.2.2.</span> <span class="toc-text">固定分区分配</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8A%A8%E6%80%81%E5%88%86%E5%8C%BA%E5%88%86%E9%85%8D"><span class="toc-number">3.2.3.</span> <span class="toc-text">动态分区分配</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9D%9E%E8%BF%9E%E7%BB%AD%E5%88%86%E9%85%8D%E7%AE%A1%E7%90%86%E6%96%B9%E5%BC%8F"><span class="toc-number">3.3.</span> <span class="toc-text">非连续分配管理方式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%86%E9%A1%B5%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86"><span class="toc-number">3.3.1.</span> <span class="toc-text">分页存储管理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%86%E6%AE%B5%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86"><span class="toc-number">3.3.2.</span> <span class="toc-text">分段存储管理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%AE%B5%E9%A1%B5%E5%BC%8F%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86"><span class="toc-number">3.3.3.</span> <span class="toc-text">段页式存储管理</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86"><span class="toc-number">3.4.</span> <span class="toc-text">虚拟内存管理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98%E7%9A%84%E7%89%B9%E5%BE%81"><span class="toc-number">3.4.1.</span> <span class="toc-text">虚拟内存的特征</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F"><span class="toc-number">3.4.2.</span> <span class="toc-text">虚拟内存的实现方式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95"><span class="toc-number">3.4.3.</span> <span class="toc-text">页面置换算法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A4%BA%E4%BE%8B%EF%BC%9A%E8%AF%B7%E6%B1%82%E5%88%86%E9%A1%B5%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86%E7%9A%84%E9%A1%B5%E8%A1%A8%E7%BB%93%E6%9E%84"><span class="toc-number">3.4.4.</span> <span class="toc-text">示例：请求分页存储管理的页表结构</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F"><span class="toc-number">4.</span> <span class="toc-text">文件系统</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0"><span class="toc-number">4.1.</span> <span class="toc-text">文件系统概述</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="toc-number">4.1.1.</span> <span class="toc-text">文件的概念</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E7%9A%84%E5%B1%9E%E6%80%A7"><span class="toc-number">4.1.2.</span> <span class="toc-text">文件的属性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E7%9A%84%E6%93%8D%E4%BD%9C"><span class="toc-number">4.1.3.</span> <span class="toc-text">文件的操作</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E7%9A%84%E7%BB%84%E7%BB%87%E7%BB%93%E6%9E%84"><span class="toc-number">4.2.</span> <span class="toc-text">文件的组织结构</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%97%A0%E7%BB%93%E6%9E%84%E6%96%87%E4%BB%B6%EF%BC%88%E6%B5%81%E5%BC%8F%E6%96%87%E4%BB%B6%EF%BC%89"><span class="toc-number">4.2.1.</span> <span class="toc-text">无结构文件（流式文件）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%89%E7%BB%93%E6%9E%84%E6%96%87%E4%BB%B6%EF%BC%88%E8%AE%B0%E5%BD%95%E5%BC%8F%E6%96%87%E4%BB%B6%EF%BC%89"><span class="toc-number">4.2.2.</span> <span class="toc-text">有结构文件（记录式文件）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E7%9A%84%E5%AD%98%E5%82%A8%E7%BB%93%E6%9E%84"><span class="toc-number">4.3.</span> <span class="toc-text">文件的存储结构</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%9E%E7%BB%AD%E5%88%86%E9%85%8D"><span class="toc-number">4.3.1.</span> <span class="toc-text">连续分配</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%93%BE%E6%8E%A5%E5%88%86%E9%85%8D"><span class="toc-number">4.3.2.</span> <span class="toc-text">链接分配</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%B4%A2%E5%BC%95%E5%88%86%E9%85%8D"><span class="toc-number">4.3.3.</span> <span class="toc-text">索引分配</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="toc-number">4.4.</span> <span class="toc-text">文件系统的实现</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E6%8E%A7%E5%88%B6%E5%9D%97%EF%BC%88FCB%EF%BC%89"><span class="toc-number">4.4.1.</span> <span class="toc-text">文件控制块（FCB）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84"><span class="toc-number">4.4.2.</span> <span class="toc-text">目录结构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AD%98%E5%82%A8%E7%A9%BA%E9%97%B4%E7%AE%A1%E7%90%86"><span class="toc-number">4.4.3.</span> <span class="toc-text">存储空间管理</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%93%8D%E4%BD%9C"><span class="toc-number">4.5.</span> <span class="toc-text">文件系统的操作</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A4%BA%E4%BE%8B%EF%BC%9A%E4%BD%BF%E7%94%A8%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8%E6%93%8D%E4%BD%9C%E6%96%87%E4%BB%B6"><span class="toc-number">4.5.1.</span> <span class="toc-text">示例：使用系统调用操作文件</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BE%E5%A4%87%E7%AE%A1%E7%90%86"><span class="toc-number">5.</span> <span class="toc-text">设备管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BE%E5%A4%87%E7%AE%A1%E7%90%86%E6%A6%82%E8%BF%B0"><span class="toc-number">5.1.</span> <span class="toc-text">设备管理概述</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AE%BE%E5%A4%87%E7%9A%84%E5%88%86%E7%B1%BB"><span class="toc-number">5.1.1.</span> <span class="toc-text">设备的分类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AE%BE%E5%A4%87%E7%AE%A1%E7%90%86%E7%9A%84%E4%B8%BB%E8%A6%81%E5%8A%9F%E8%83%BD"><span class="toc-number">5.1.2.</span> <span class="toc-text">设备管理的主要功能</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#I-O-%E6%8E%A7%E5%88%B6%E6%96%B9%E5%BC%8F"><span class="toc-number">5.2.</span> <span class="toc-text">I&#x2F;O 控制方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BE%E5%A4%87%E9%A9%B1%E5%8A%A8%E7%A8%8B%E5%BA%8F"><span class="toc-number">5.3.</span> <span class="toc-text">设备驱动程序</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AE%BE%E5%A4%87%E9%A9%B1%E5%8A%A8%E7%A8%8B%E5%BA%8F%E7%9A%84%E4%B8%BB%E8%A6%81%E5%8A%9F%E8%83%BD"><span class="toc-number">5.3.1.</span> <span class="toc-text">设备驱动程序的主要功能</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BE%E5%A4%87%E7%8B%AC%E7%AB%8B%E6%80%A7"><span class="toc-number">5.4.</span> <span class="toc-text">设备独立性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%93%E5%86%B2%E7%AE%A1%E7%90%86"><span class="toc-number">5.5.</span> <span class="toc-text">缓冲管理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BC%93%E5%86%B2%E7%9A%84%E7%B1%BB%E5%9E%8B"><span class="toc-number">5.5.1.</span> <span class="toc-text">缓冲的类型</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A3%81%E7%9B%98%E7%AE%A1%E7%90%86"><span class="toc-number">5.6.</span> <span class="toc-text">磁盘管理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A3%81%E7%9B%98%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95"><span class="toc-number">5.6.1.</span> <span class="toc-text">磁盘调度算法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A4%BA%E4%BE%8B%EF%BC%9A%E4%BD%BF%E7%94%A8%E6%89%AB%E6%8F%8F%E7%AE%97%E6%B3%95%EF%BC%88SCAN%EF%BC%89%E8%BF%9B%E8%A1%8C%E7%A3%81%E7%9B%98%E8%B0%83%E5%BA%A6"><span class="toc-number">5.6.2.</span> <span class="toc-text">示例：使用扫描算法（SCAN）进行磁盘调度</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%A8%E6%88%B7%E6%8E%A5%E5%8F%A3"><span class="toc-number">6.</span> <span class="toc-text">用户接口</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4%E6%8E%A5%E5%8F%A3"><span class="toc-number">6.1.</span> <span class="toc-text">命令接口</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%81%94%E6%9C%BA%E5%91%BD%E4%BB%A4%E6%8E%A5%E5%8F%A3"><span class="toc-number">6.1.1.</span> <span class="toc-text">联机命令接口</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%84%B1%E6%9C%BA%E5%91%BD%E4%BB%A4%E6%8E%A5%E5%8F%A3"><span class="toc-number">6.1.2.</span> <span class="toc-text">脱机命令接口</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A8%8B%E5%BA%8F%E6%8E%A5%E5%8F%A3"><span class="toc-number">6.2.</span> <span class="toc-text">程序接口</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8%E7%9A%84%E5%88%86%E7%B1%BB"><span class="toc-number">6.2.1.</span> <span class="toc-text">系统调用的分类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="toc-number">6.2.2.</span> <span class="toc-text">系统调用的实现</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E9%9D%A2%E8%AF%95%E9%A2%98"><span class="toc-number">7.</span> <span class="toc-text">操作系统面试题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E4%BB%80%E4%B9%88%E6%98%AF%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%EF%BC%9F%E5%AE%83%E7%9A%84%E4%B8%BB%E8%A6%81%E5%8A%9F%E8%83%BD%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-number">7.1.</span> <span class="toc-text">1. 什么是操作系统？它的主要功能是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B%E7%9A%84%E5%8C%BA%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-number">7.2.</span> <span class="toc-text">2. 进程和线程的区别是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E4%BB%80%E4%B9%88%E6%98%AF%E6%AD%BB%E9%94%81%EF%BC%9F%E4%BA%A7%E7%94%9F%E6%AD%BB%E9%94%81%E7%9A%84%E5%BF%85%E8%A6%81%E6%9D%A1%E4%BB%B6%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-number">7.3.</span> <span class="toc-text">3. 什么是死锁？产生死锁的必要条件是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E5%A6%82%E4%BD%95%E9%A2%84%E9%98%B2%E5%92%8C%E9%81%BF%E5%85%8D%E6%AD%BB%E9%94%81%EF%BC%9F"><span class="toc-number">7.4.</span> <span class="toc-text">4. 如何预防和避免死锁？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E4%BB%80%E4%B9%88%E6%98%AF%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98%EF%BC%9F%E5%AE%83%E7%9A%84%E4%BD%9C%E7%94%A8%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-number">7.5.</span> <span class="toc-text">5. 什么是虚拟内存？它的作用是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-%E5%88%86%E9%A1%B5%E5%92%8C%E5%88%86%E6%AE%B5%E7%9A%84%E5%8C%BA%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-number">7.6.</span> <span class="toc-text">6. 分页和分段的区别是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-%E5%B8%B8%E8%A7%81%E7%9A%84%E8%BF%9B%E7%A8%8B%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95%E6%9C%89%E5%93%AA%E4%BA%9B%EF%BC%9F"><span class="toc-number">7.7.</span> <span class="toc-text">7. 常见的进程调度算法有哪些？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-%E5%B8%B8%E8%A7%81%E7%9A%84%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95%E6%9C%89%E5%93%AA%E4%BA%9B%EF%BC%9F"><span class="toc-number">7.8.</span> <span class="toc-text">8. 常见的页面置换算法有哪些？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-number">8.</span> <span class="toc-text">参考资料</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">9.</span> <span class="toc-text">总结</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        操作系统学习总结
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">TuAgT</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2026-01-10T06:59:21.000Z" class="dt-published" itemprop="datePublished">2026-01-10</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag">操作系统</a>, <a class="p-category" href="/tags/%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B/" rel="tag">系统编程</a>, <a class="p-category" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/" rel="tag">计算机基础</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <h2 id="操作系统概述"><a href="#操作系统概述" class="headerlink" title="操作系统概述"></a>操作系统概述</h2><p>操作系统（Operating System，OS）是管理计算机硬件与软件资源的计算机程序，是计算机系统的核心与基石。它负责管理与配置内存、决定系统资源供需的优先次序、控制输入设备与输出设备、操作网络与管理文件系统等基本任务。</p>
+<h3 id="操作系统的主要功能"><a href="#操作系统的主要功能" class="headerlink" title="操作系统的主要功能"></a>操作系统的主要功能</h3><ul>
+<li><strong>进程管理</strong>：负责进程的创建、调度、同步和通信</li>
+<li><strong>内存管理</strong>：负责内存的分配、回收和保护</li>
+<li><strong>文件系统</strong>：负责文件的存储、组织和访问</li>
+<li><strong>设备管理</strong>：负责设备的分配、控制和驱动</li>
+<li><strong>用户接口</strong>：提供用户与操作系统交互的方式</li>
+</ul>
+<h3 id="操作系统的分类"><a href="#操作系统的分类" class="headerlink" title="操作系统的分类"></a>操作系统的分类</h3><ul>
+<li><strong>批处理操作系统</strong>：按批量处理作业，如早期的 IBM OS&#x2F;360</li>
+<li><strong>分时操作系统</strong>：允许多个用户同时使用计算机，如 UNIX、Linux</li>
+<li><strong>实时操作系统</strong>：对时间有严格要求，如 VxWorks、RTOS</li>
+<li><strong>网络操作系统</strong>：管理网络资源，如 Windows Server、Linux</li>
+<li><strong>分布式操作系统</strong>：管理分布式系统资源，如 Amoeba、Mach</li>
+</ul>
+<h2 id="进程管理"><a href="#进程管理" class="headerlink" title="进程管理"></a>进程管理</h2><h3 id="进程概念"><a href="#进程概念" class="headerlink" title="进程概念"></a>进程概念</h3><p>进程是程序的一次执行过程，是操作系统进行资源分配和调度的基本单位。</p>
+<h4 id="进程与程序的区别"><a href="#进程与程序的区别" class="headerlink" title="进程与程序的区别"></a>进程与程序的区别</h4><ul>
+<li><strong>程序</strong>：静态的，是一组指令的集合</li>
+<li><strong>进程</strong>：动态的，是程序的执行过程</li>
+<li>一个程序可以对应多个进程，一个进程可以包含多个程序</li>
+</ul>
+<h4 id="进程控制块（PCB）"><a href="#进程控制块（PCB）" class="headerlink" title="进程控制块（PCB）"></a>进程控制块（PCB）</h4><p>进程控制块是操作系统用于管理进程的核心数据结构，包含进程的所有信息：</p>
+<ul>
+<li>进程标识符（PID）</li>
+<li>进程状态</li>
+<li>程序计数器（PC）</li>
+<li>寄存器集合</li>
+<li>内存管理信息</li>
+<li>文件描述符表</li>
+<li>进程优先级</li>
+<li>进程间通信信息</li>
+</ul>
+<h3 id="进程状态"><a href="#进程状态" class="headerlink" title="进程状态"></a>进程状态</h3><p>进程在其生命周期中会经历不同的状态，典型的进程状态包括：</p>
+<ol>
+<li><strong>运行态（Running）</strong>：进程正在 CPU 上执行</li>
+<li><strong>就绪态（Ready）</strong>：进程已准备好执行，等待分配 CPU</li>
+<li><strong>阻塞态（Blocked）</strong>：进程等待某事件发生（如 I&#x2F;O 完成）</li>
+<li><strong>创建态（New）</strong>：进程正在被创建</li>
+<li><strong>终止态（Terminated）</strong>：进程执行完毕或被终止</li>
+</ol>
+<h3 id="进程调度"><a href="#进程调度" class="headerlink" title="进程调度"></a>进程调度</h3><p>进程调度是操作系统按照一定的算法从就绪队列中选择一个进程分配 CPU。</p>
+<h4 id="调度算法"><a href="#调度算法" class="headerlink" title="调度算法"></a>调度算法</h4><ul>
+<li><strong>先来先服务（FCFS）</strong>：按照进程到达的先后顺序调度</li>
+<li><strong>最短作业优先（SJF）</strong>：选择估计运行时间最短的进程调度</li>
+<li><strong>最短剩余时间优先（SRTF）</strong>：SJF 的抢占式版本</li>
+<li><strong>优先级调度</strong>：按照进程的优先级调度</li>
+<li><strong>时间片轮转（RR）</strong>：为每个进程分配一个时间片，时间片用完后切换到下一个进程</li>
+<li><strong>多级反馈队列调度</strong>：结合了多种调度算法的优点</li>
+</ul>
+<h4 id="示例：时间片轮转调度算法"><a href="#示例：时间片轮转调度算法" class="headerlink" title="示例：时间片轮转调度算法"></a>示例：时间片轮转调度算法</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">Process</span> &#123;</span></span><br><span class="line">    <span class="type">int</span> pid;           <span class="comment">// 进程ID</span></span><br><span class="line">    <span class="type">int</span> arrival_time;  <span class="comment">// 到达时间</span></span><br><span class="line">    <span class="type">int</span> burst_time;    <span class="comment">// 运行时间</span></span><br><span class="line">    <span class="type">int</span> remaining_time;<span class="comment">// 剩余运行时间</span></span><br><span class="line">    <span class="type">int</span> waiting_time;  <span class="comment">// 等待时间</span></span><br><span class="line">    <span class="type">int</span> turnaround_time; <span class="comment">// 周转时间</span></span><br><span class="line">&#125; Process;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">round_robin_scheduling</span><span class="params">(Process processes[], <span class="type">int</span> n, <span class="type">int</span> quantum)</span> &#123;</span><br><span class="line">    <span class="type">int</span> current_time = <span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span> completed = <span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span> *<span class="built_in">queue</span> = (<span class="type">int</span> *)<span class="built_in">malloc</span>(n * <span class="keyword">sizeof</span>(<span class="type">int</span>));</span><br><span class="line">    <span class="type">int</span> front = <span class="number">0</span>, rear = <span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span> *visited = (<span class="type">int</span> *)<span class="built_in">calloc</span>(n, <span class="keyword">sizeof</span>(<span class="type">int</span>));</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 先将所有已到达的进程加入队列</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (processes[i].arrival_time == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="built_in">queue</span>[rear++] = i;</span><br><span class="line">            visited[i] = <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (completed &lt; n) &#123;</span><br><span class="line">        <span class="type">int</span> current_process = <span class="built_in">queue</span>[front++];</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 执行一个时间片</span></span><br><span class="line">        <span class="keyword">if</span> (processes[current_process].remaining_time &gt; quantum) &#123;</span><br><span class="line">            current_time += quantum;</span><br><span class="line">            processes[current_process].remaining_time -= quantum;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            current_time += processes[current_process].remaining_time;</span><br><span class="line">            processes[current_process].remaining_time = <span class="number">0</span>;</span><br><span class="line">            completed++;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 计算等待时间和周转时间</span></span><br><span class="line">            processes[current_process].turnaround_time = current_time - processes[current_process].arrival_time;</span><br><span class="line">            processes[current_process].waiting_time = processes[current_process].turnaround_time - processes[current_process].burst_time;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 将新到达的进程加入队列</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (processes[i].arrival_time &lt;= current_time &amp;&amp; processes[i].remaining_time &gt; <span class="number">0</span> &amp;&amp; !visited[i]) &#123;</span><br><span class="line">                <span class="built_in">queue</span>[rear++] = i;</span><br><span class="line">                visited[i] = <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 如果当前进程还未完成，重新加入队列</span></span><br><span class="line">        <span class="keyword">if</span> (processes[current_process].remaining_time &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="built_in">queue</span>[rear++] = current_process;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">free</span>(<span class="built_in">queue</span>);</span><br><span class="line">    <span class="built_in">free</span>(visited);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">print_results</span><span class="params">(Process processes[], <span class="type">int</span> n)</span> &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;PID\t到达时间\t运行时间\t等待时间\t周转时间\n&quot;</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d\t%d\t\t%d\t\t%d\t\t%d\n&quot;</span>,</span><br><span class="line">               processes[i].pid,</span><br><span class="line">               processes[i].arrival_time,</span><br><span class="line">               processes[i].burst_time,</span><br><span class="line">               processes[i].waiting_time,</span><br><span class="line">               processes[i].turnaround_time);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 计算平均等待时间和平均周转时间</span></span><br><span class="line">    <span class="type">float</span> avg_waiting_time = <span class="number">0</span>, avg_turnaround_time = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">        avg_waiting_time += processes[i].waiting_time;</span><br><span class="line">        avg_turnaround_time += processes[i].turnaround_time;</span><br><span class="line">    &#125;</span><br><span class="line">    avg_waiting_time /= n;</span><br><span class="line">    avg_turnaround_time /= n;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\n平均等待时间: %.2f\n&quot;</span>, avg_waiting_time);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;平均周转时间: %.2f\n&quot;</span>, avg_turnaround_time);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">int</span> n, quantum;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;输入进程数量: &quot;</span>);</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;n);</span><br><span class="line"></span><br><span class="line">    Process *processes = (Process *)<span class="built_in">malloc</span>(n * <span class="keyword">sizeof</span>(Process));</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;\n输入进程 %d 的到达时间和运行时间: &quot;</span>, i + <span class="number">1</span>);</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d %d&quot;</span>, &amp;processes[i].arrival_time, &amp;processes[i].burst_time);</span><br><span class="line">        processes[i].pid = i + <span class="number">1</span>;</span><br><span class="line">        processes[i].remaining_time = processes[i].burst_time;</span><br><span class="line">        processes[i].waiting_time = <span class="number">0</span>;</span><br><span class="line">        processes[i].turnaround_time = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\n输入时间片大小: &quot;</span>);</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;quantum);</span><br><span class="line"></span><br><span class="line">    round_robin_scheduling(processes, n, quantum);</span><br><span class="line">    print_results(processes, n);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">free</span>(processes);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="进程同步"><a href="#进程同步" class="headerlink" title="进程同步"></a>进程同步</h3><p>进程同步是指协调并发进程的执行，使它们按照一定的顺序或规则访问共享资源，避免数据不一致或竞态条件。</p>
+<h4 id="临界区问题"><a href="#临界区问题" class="headerlink" title="临界区问题"></a>临界区问题</h4><p>临界区是进程中访问共享资源的代码段。解决临界区问题需要满足以下条件：</p>
+<ul>
+<li><strong>互斥</strong>：同一时间只能有一个进程进入临界区</li>
+<li><strong>前进</strong>：如果没有进程在临界区，应允许一个等待的进程进入</li>
+<li><strong>有限等待</strong>：进程在进入临界区前的等待时间是有限的</li>
+</ul>
+<h4 id="同步机制"><a href="#同步机制" class="headerlink" title="同步机制"></a>同步机制</h4><ul>
+<li><strong>信号量（Semaphore）</strong>：一种用于控制访问共享资源的计数器<ul>
+<li>整型信号量</li>
+<li>记录型信号量</li>
+</ul>
+</li>
+<li><strong>互斥锁（Mutex）</strong>：用于实现互斥的特殊信号量</li>
+<li><strong>条件变量（Condition Variable）</strong>：用于线程间的通信和同步</li>
+<li><strong>管程（Monitor）</strong>：将共享资源和操作封装起来的高级同步机制</li>
+</ul>
+<h4 id="示例：使用信号量解决生产者-消费者问题"><a href="#示例：使用信号量解决生产者-消费者问题" class="headerlink" title="示例：使用信号量解决生产者-消费者问题"></a>示例：使用信号量解决生产者-消费者问题</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;pthread.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;semaphore.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> BUFFER_SIZE 5</span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> buffer[BUFFER_SIZE];</span><br><span class="line"><span class="type">int</span> in = <span class="number">0</span>, out = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 信号量</span></span><br><span class="line"><span class="type">sem_t</span> empty;  <span class="comment">// 空缓冲区数量</span></span><br><span class="line"><span class="type">sem_t</span> full;   <span class="comment">// 满缓冲区数量</span></span><br><span class="line"><span class="type">sem_t</span> mutex;  <span class="comment">// 互斥锁</span></span><br><span class="line"></span><br><span class="line"><span class="type">void</span> *<span class="title function_">producer</span><span class="params">(<span class="type">void</span> *arg)</span> &#123;</span><br><span class="line">    <span class="type">int</span> item;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">        item = rand() % <span class="number">100</span>;  <span class="comment">// 生产一个随机数</span></span><br><span class="line"></span><br><span class="line">        sem_wait(&amp;empty);  <span class="comment">// 等待空缓冲区</span></span><br><span class="line">        sem_wait(&amp;mutex);  <span class="comment">// 加锁</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// 将 item 放入缓冲区</span></span><br><span class="line">        buffer[in] = item;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;生产者生产: %d, 放入位置: %d\n&quot;</span>, item, in);</span><br><span class="line">        in = (in + <span class="number">1</span>) % BUFFER_SIZE;</span><br><span class="line"></span><br><span class="line">        sem_post(&amp;mutex);  <span class="comment">// 解锁</span></span><br><span class="line">        sem_post(&amp;full);   <span class="comment">// 增加满缓冲区数量</span></span><br><span class="line"></span><br><span class="line">        sleep(rand() % <span class="number">2</span>);  <span class="comment">// 模拟生产时间</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> *<span class="title function_">consumer</span><span class="params">(<span class="type">void</span> *arg)</span> &#123;</span><br><span class="line">    <span class="type">int</span> item;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">        sem_wait(&amp;full);   <span class="comment">// 等待满缓冲区</span></span><br><span class="line">        sem_wait(&amp;mutex);  <span class="comment">// 加锁</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// 从缓冲区取出 item</span></span><br><span class="line">        item = buffer[out];</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;消费者消费: %d, 取出位置: %d\n&quot;</span>, item, out);</span><br><span class="line">        out = (out + <span class="number">1</span>) % BUFFER_SIZE;</span><br><span class="line"></span><br><span class="line">        sem_post(&amp;mutex);  <span class="comment">// 解锁</span></span><br><span class="line">        sem_post(&amp;empty);  <span class="comment">// 增加空缓冲区数量</span></span><br><span class="line"></span><br><span class="line">        sleep(rand() % <span class="number">3</span>);  <span class="comment">// 模拟消费时间</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">pthread_t</span> producer_thread, consumer_thread;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 初始化信号量</span></span><br><span class="line">    sem_init(&amp;empty, <span class="number">0</span>, BUFFER_SIZE);</span><br><span class="line">    sem_init(&amp;full, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">    sem_init(&amp;mutex, <span class="number">0</span>, <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 创建线程</span></span><br><span class="line">    pthread_create(&amp;producer_thread, <span class="literal">NULL</span>, producer, <span class="literal">NULL</span>);</span><br><span class="line">    pthread_create(&amp;consumer_thread, <span class="literal">NULL</span>, consumer, <span class="literal">NULL</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 等待线程结束</span></span><br><span class="line">    pthread_join(producer_thread, <span class="literal">NULL</span>);</span><br><span class="line">    pthread_join(consumer_thread, <span class="literal">NULL</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 销毁信号量</span></span><br><span class="line">    sem_destroy(&amp;empty);</span><br><span class="line">    sem_destroy(&amp;full);</span><br><span class="line">    sem_destroy(&amp;mutex);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="进程通信"><a href="#进程通信" class="headerlink" title="进程通信"></a>进程通信</h3><p>进程通信是指进程之间交换信息的机制。</p>
+<h4 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h4><ul>
+<li><strong>低级通信机制</strong>：信号、管道</li>
+<li><strong>高级通信机制</strong>：消息队列、共享内存、套接字</li>
+</ul>
+<h4 id="常见通信方式"><a href="#常见通信方式" class="headerlink" title="常见通信方式"></a>常见通信方式</h4><ul>
+<li><strong>管道（Pipe）</strong>：半双工通信，只能在父子进程或兄弟进程之间使用</li>
+<li><strong>命名管道（FIFO）</strong>：可以在不相关进程之间使用</li>
+<li><strong>消息队列（Message Queue）</strong>：存储消息的链表，支持消息的优先级</li>
+<li><strong>共享内存（Shared Memory）</strong>：进程共享同一块物理内存，是最快的通信方式</li>
+<li><strong>信号量（Semaphore）</strong>：主要用于同步，也可用于简单的通信</li>
+<li><strong>套接字（Socket）</strong>：用于网络通信，可以在不同主机上的进程之间通信</li>
+</ul>
+<h3 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h3><p>线程是进程内的一个执行单元，是 CPU 调度的基本单位。</p>
+<h4 id="线程与进程的区别"><a href="#线程与进程的区别" class="headerlink" title="线程与进程的区别"></a>线程与进程的区别</h4><ul>
+<li><strong>资源分配</strong>：进程是资源分配的基本单位，线程共享进程的资源</li>
+<li><strong>调度</strong>：线程是 CPU 调度的基本单位</li>
+<li><strong>并发性</strong>：一个进程内的多个线程可以并发执行</li>
+<li><strong>系统开销</strong>：创建和切换线程的开销比进程小</li>
+</ul>
+<h4 id="线程的分类"><a href="#线程的分类" class="headerlink" title="线程的分类"></a>线程的分类</h4><ul>
+<li><strong>用户级线程</strong>：由用户程序管理，操作系统不可见</li>
+<li><strong>内核级线程</strong>：由操作系统管理</li>
+<li><strong>混合级线程</strong>：结合了用户级线程和内核级线程的优点</li>
+</ul>
+<h2 id="内存管理"><a href="#内存管理" class="headerlink" title="内存管理"></a>内存管理</h2><h3 id="内存管理概述"><a href="#内存管理概述" class="headerlink" title="内存管理概述"></a>内存管理概述</h3><p>内存管理负责计算机内存的分配、回收和保护，确保多道程序能够高效、安全地运行。</p>
+<h4 id="内存管理的主要功能"><a href="#内存管理的主要功能" class="headerlink" title="内存管理的主要功能"></a>内存管理的主要功能</h4><ul>
+<li>内存分配与回收</li>
+<li>内存保护</li>
+<li>地址映射</li>
+<li>内存扩充</li>
+</ul>
+<h3 id="连续分配管理方式"><a href="#连续分配管理方式" class="headerlink" title="连续分配管理方式"></a>连续分配管理方式</h3><p>连续分配是指为进程分配连续的内存空间。</p>
+<h4 id="单一连续分配"><a href="#单一连续分配" class="headerlink" title="单一连续分配"></a>单一连续分配</h4><ul>
+<li>内存分为系统区和用户区</li>
+<li>一次只允许一个用户进程运行</li>
+<li>适用于单用户、单任务操作系统</li>
+</ul>
+<h4 id="固定分区分配"><a href="#固定分区分配" class="headerlink" title="固定分区分配"></a>固定分区分配</h4><ul>
+<li>将内存划分为固定大小的分区</li>
+<li>每个分区只能容纳一个进程</li>
+<li>存在内部碎片</li>
+</ul>
+<h4 id="动态分区分配"><a href="#动态分区分配" class="headerlink" title="动态分区分配"></a>动态分区分配</h4><ul>
+<li>根据进程的实际需要动态分配内存</li>
+<li>存在外部碎片</li>
+<li>分配算法：首次适应算法、最佳适应算法、最坏适应算法、邻近适应算法</li>
+</ul>
+<h3 id="非连续分配管理方式"><a href="#非连续分配管理方式" class="headerlink" title="非连续分配管理方式"></a>非连续分配管理方式</h3><p>非连续分配是指为进程分配不连续的内存空间。</p>
+<h4 id="分页存储管理"><a href="#分页存储管理" class="headerlink" title="分页存储管理"></a>分页存储管理</h4><ul>
+<li>将物理内存划分为大小相等的页框（Page Frame）</li>
+<li>将进程的逻辑地址空间划分为大小相等的页（Page）</li>
+<li>通过页表（Page Table）实现页到页框的映射</li>
+</ul>
+<h4 id="分段存储管理"><a href="#分段存储管理" class="headerlink" title="分段存储管理"></a>分段存储管理</h4><ul>
+<li>将进程的逻辑地址空间划分为若干个段（Segment）</li>
+<li>每个段对应一个逻辑单位（如函数、数组）</li>
+<li>通过段表（Segment Table）实现段到物理内存的映射</li>
+</ul>
+<h4 id="段页式存储管理"><a href="#段页式存储管理" class="headerlink" title="段页式存储管理"></a>段页式存储管理</h4><ul>
+<li>结合了分页和分段的优点</li>
+<li>先将逻辑地址空间划分为段，再将每个段划分为页</li>
+<li>通过段表和页表实现地址映射</li>
+</ul>
+<h3 id="虚拟内存管理"><a href="#虚拟内存管理" class="headerlink" title="虚拟内存管理"></a>虚拟内存管理</h3><p>虚拟内存是指操作系统为进程提供的一个比实际物理内存大得多的虚拟地址空间。</p>
+<h4 id="虚拟内存的特征"><a href="#虚拟内存的特征" class="headerlink" title="虚拟内存的特征"></a>虚拟内存的特征</h4><ul>
+<li><strong>多次性</strong>：进程可以分多次调入内存</li>
+<li><strong>对换性</strong>：进程可以在内存和外存之间对换</li>
+<li><strong>虚拟性</strong>：为进程提供大于实际物理内存的虚拟地址空间</li>
+</ul>
+<h4 id="虚拟内存的实现方式"><a href="#虚拟内存的实现方式" class="headerlink" title="虚拟内存的实现方式"></a>虚拟内存的实现方式</h4><ul>
+<li><strong>请求分页存储管理</strong></li>
+<li><strong>请求分段存储管理</strong></li>
+<li><strong>请求段页式存储管理</strong></li>
+</ul>
+<h4 id="页面置换算法"><a href="#页面置换算法" class="headerlink" title="页面置换算法"></a>页面置换算法</h4><ul>
+<li><strong>最佳置换算法（OPT）</strong>：选择未来最长时间不使用的页面置换</li>
+<li><strong>先进先出置换算法（FIFO）</strong>：选择最早调入的页面置换</li>
+<li><strong>最近最久未使用置换算法（LRU）</strong>：选择最近最久未使用的页面置换</li>
+<li><strong>时钟置换算法（Clock）</strong>：FIFO 的改进版本</li>
+<li><strong>最不常用置换算法（LFU）</strong>：选择访问次数最少的页面置换</li>
+</ul>
+<h4 id="示例：请求分页存储管理的页表结构"><a href="#示例：请求分页存储管理的页表结构" class="headerlink" title="示例：请求分页存储管理的页表结构"></a>示例：请求分页存储管理的页表结构</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PAGE_SIZE 4096  <span class="comment">// 页面大小为4KB</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PHYSICAL_MEMORY_SIZE 16384  <span class="comment">// 物理内存大小为16KB</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> NUM_PAGES (PHYSICAL_MEMORY_SIZE / PAGE_SIZE)  <span class="comment">// 物理内存页数</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 页表项结构</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">PageTableEntry</span> &#123;</span></span><br><span class="line">    <span class="type">int</span> valid;       <span class="comment">// 有效位，1表示页面在内存中</span></span><br><span class="line">    <span class="type">int</span> frame_number;<span class="comment">// 页框号</span></span><br><span class="line">    <span class="type">int</span> dirty;       <span class="comment">// 脏位，1表示页面被修改过</span></span><br><span class="line">    <span class="type">int</span> reference;   <span class="comment">// 引用位，1表示页面最近被访问过</span></span><br><span class="line">&#125; PageTableEntry;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 页表结构</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">PageTable</span> &#123;</span></span><br><span class="line">    PageTableEntry *entries;</span><br><span class="line">    <span class="type">int</span> num_entries;</span><br><span class="line">&#125; PageTable;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建页表</span></span><br><span class="line">PageTable* <span class="title function_">create_page_table</span><span class="params">(<span class="type">int</span> num_entries)</span> &#123;</span><br><span class="line">    PageTable *page_table = (PageTable *)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(PageTable));</span><br><span class="line">    page_table-&gt;num_entries = num_entries;</span><br><span class="line">    page_table-&gt;entries = (PageTableEntry *)<span class="built_in">calloc</span>(num_entries, <span class="keyword">sizeof</span>(PageTableEntry));</span><br><span class="line">    <span class="keyword">return</span> page_table;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 销毁页表</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">destroy_page_table</span><span class="params">(PageTable *page_table)</span> &#123;</span><br><span class="line">    <span class="built_in">free</span>(page_table-&gt;entries);</span><br><span class="line">    <span class="built_in">free</span>(page_table);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 地址转换：将逻辑地址转换为物理地址</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">translate_address</span><span class="params">(PageTable *page_table, <span class="type">int</span> logical_address)</span> &#123;</span><br><span class="line">    <span class="comment">// 计算页号和页内偏移</span></span><br><span class="line">    <span class="type">int</span> page_number = logical_address / PAGE_SIZE;</span><br><span class="line">    <span class="type">int</span> offset = logical_address % PAGE_SIZE;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 检查页号是否有效</span></span><br><span class="line">    <span class="keyword">if</span> (page_number &lt; <span class="number">0</span> || page_number &gt;= page_table-&gt;num_entries) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;页号越界：%d\n&quot;</span>, page_number);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    PageTableEntry *entry = &amp;page_table-&gt;entries[page_number];</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 检查页面是否在内存中</span></span><br><span class="line">    <span class="keyword">if</span> (!entry-&gt;valid) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;页面故障：页号 %d 不在内存中\n&quot;</span>, page_number);</span><br><span class="line">        <span class="comment">// 这里应该触发页面置换算法</span></span><br><span class="line">        <span class="comment">// 为了简化，我们假设页面已经被调入内存</span></span><br><span class="line">        entry-&gt;valid = <span class="number">1</span>;</span><br><span class="line">        entry-&gt;frame_number = page_number % NUM_PAGES;  <span class="comment">// 简单地分配一个页框</span></span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;页面 %d 已调入页框 %d\n&quot;</span>, page_number, entry-&gt;frame_number);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 更新引用位</span></span><br><span class="line">    entry-&gt;reference = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 计算物理地址</span></span><br><span class="line">    <span class="type">int</span> physical_address = entry-&gt;frame_number * PAGE_SIZE + offset;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;逻辑地址: %d (页号: %d, 偏移: %d) -&gt; 物理地址: %d\n&quot;</span>,</span><br><span class="line">           logical_address, page_number, offset, physical_address);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> physical_address;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="comment">// 创建一个包含10个页表项的页表</span></span><br><span class="line">    PageTable *page_table = create_page_table(<span class="number">10</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 测试地址转换</span></span><br><span class="line">    <span class="type">int</span> logical_addresses[] = &#123;<span class="number">1000</span>, <span class="number">5000</span>, <span class="number">10000</span>, <span class="number">15000</span>, <span class="number">20000</span>&#125;;</span><br><span class="line">    <span class="type">int</span> num_addresses = <span class="keyword">sizeof</span>(logical_addresses) / <span class="keyword">sizeof</span>(logical_addresses[<span class="number">0</span>]);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; num_addresses; i++) &#123;</span><br><span class="line">        <span class="type">int</span> logical_address = logical_addresses[i];</span><br><span class="line">        <span class="type">int</span> physical_address = translate_address(page_table, logical_address);</span><br><span class="line">        <span class="keyword">if</span> (physical_address != <span class="number">-1</span>) &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;地址转换成功\n&quot;</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;地址转换失败\n&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 销毁页表</span></span><br><span class="line">    destroy_page_table(page_table);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="文件系统"><a href="#文件系统" class="headerlink" title="文件系统"></a>文件系统</h2><h3 id="文件系统概述"><a href="#文件系统概述" class="headerlink" title="文件系统概述"></a>文件系统概述</h3><p>文件系统是操作系统用于管理文件的一套机制，负责文件的存储、组织和访问。</p>
+<h4 id="文件的概念"><a href="#文件的概念" class="headerlink" title="文件的概念"></a>文件的概念</h4><p>文件是具有文件名的一组相关数据的集合。</p>
+<h4 id="文件的属性"><a href="#文件的属性" class="headerlink" title="文件的属性"></a>文件的属性</h4><ul>
+<li>文件名</li>
+<li>文件类型</li>
+<li>文件大小</li>
+<li>文件位置</li>
+<li>文件保护</li>
+<li>文件时间（创建时间、修改时间、访问时间）</li>
+</ul>
+<h4 id="文件的操作"><a href="#文件的操作" class="headerlink" title="文件的操作"></a>文件的操作</h4><ul>
+<li>创建文件（create）</li>
+<li>打开文件（open）</li>
+<li>读文件（read）</li>
+<li>写文件（write）</li>
+<li>关闭文件（close）</li>
+<li>删除文件（delete）</li>
+<li>重命名文件（rename）</li>
+</ul>
+<h3 id="文件的组织结构"><a href="#文件的组织结构" class="headerlink" title="文件的组织结构"></a>文件的组织结构</h3><p>文件的组织结构是指文件的逻辑结构，即用户看到的文件组织形式。</p>
+<h4 id="无结构文件（流式文件）"><a href="#无结构文件（流式文件）" class="headerlink" title="无结构文件（流式文件）"></a>无结构文件（流式文件）</h4><ul>
+<li>文件是字节流的集合</li>
+<li>没有固定的记录结构</li>
+<li>适用于文本文件、二进制文件等</li>
+</ul>
+<h4 id="有结构文件（记录式文件）"><a href="#有结构文件（记录式文件）" class="headerlink" title="有结构文件（记录式文件）"></a>有结构文件（记录式文件）</h4><ul>
+<li>文件由若干个记录组成</li>
+<li>每个记录包含若干个字段</li>
+<li>适用于数据库文件等</li>
+</ul>
+<h3 id="文件的存储结构"><a href="#文件的存储结构" class="headerlink" title="文件的存储结构"></a>文件的存储结构</h3><p>文件的存储结构是指文件在物理存储设备上的组织形式。</p>
+<h4 id="连续分配"><a href="#连续分配" class="headerlink" title="连续分配"></a>连续分配</h4><ul>
+<li>文件的所有块连续存储在物理磁盘上</li>
+<li>优点：顺序访问速度快</li>
+<li>缺点：存在外部碎片，文件扩展困难</li>
+</ul>
+<h4 id="链接分配"><a href="#链接分配" class="headerlink" title="链接分配"></a>链接分配</h4><ul>
+<li>文件的块分散存储在物理磁盘上，通过指针链接</li>
+<li>优点：没有外部碎片，文件扩展方便</li>
+<li>缺点：顺序访问速度慢，可靠性差</li>
+</ul>
+<h4 id="索引分配"><a href="#索引分配" class="headerlink" title="索引分配"></a>索引分配</h4><ul>
+<li>为每个文件创建一个索引块，记录文件所有块的位置</li>
+<li>优点：支持随机访问，文件扩展方便</li>
+<li>缺点：需要额外的存储空间存储索引块</li>
+</ul>
+<h3 id="文件系统的实现"><a href="#文件系统的实现" class="headerlink" title="文件系统的实现"></a>文件系统的实现</h3><p>文件系统的实现包括文件控制块（FCB）、目录结构和存储空间管理。</p>
+<h4 id="文件控制块（FCB）"><a href="#文件控制块（FCB）" class="headerlink" title="文件控制块（FCB）"></a>文件控制块（FCB）</h4><p>文件控制块是操作系统用于管理文件的核心数据结构，包含文件的所有属性。</p>
+<h4 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h4><ul>
+<li><strong>单级目录结构</strong>：所有文件都放在一个目录中</li>
+<li><strong>两级目录结构</strong>：分为主目录和用户目录</li>
+<li><strong>树形目录结构</strong>：目录组织成树形结构，支持路径名</li>
+<li><strong>图形目录结构</strong>：树形目录结构的扩展，支持目录链接</li>
+</ul>
+<h4 id="存储空间管理"><a href="#存储空间管理" class="headerlink" title="存储空间管理"></a>存储空间管理</h4><ul>
+<li><strong>空闲表法</strong>：记录空闲的磁盘块</li>
+<li><strong>空闲链表法</strong>：将空闲磁盘块链接成链表</li>
+<li><strong>位示图法</strong>：用位表示磁盘块的使用情况</li>
+<li><strong>成组链接法</strong>：结合了空闲表法和空闲链表法的优点</li>
+</ul>
+<h3 id="文件系统的操作"><a href="#文件系统的操作" class="headerlink" title="文件系统的操作"></a>文件系统的操作</h3><h4 id="示例：使用系统调用操作文件"><a href="#示例：使用系统调用操作文件" class="headerlink" title="示例：使用系统调用操作文件"></a>示例：使用系统调用操作文件</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;fcntl.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">int</span> fd;</span><br><span class="line">    <span class="type">char</span> buffer[<span class="number">1024</span>];</span><br><span class="line">    <span class="type">ssize_t</span> bytes_read, bytes_written;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 创建文件</span></span><br><span class="line">    fd = open(<span class="string">&quot;test.txt&quot;</span>, O_CREAT | O_WRONLY | O_TRUNC, <span class="number">0644</span>);</span><br><span class="line">    <span class="keyword">if</span> (fd == <span class="number">-1</span>) &#123;</span><br><span class="line">        perror(<span class="string">&quot;open&quot;</span>);</span><br><span class="line">        <span class="built_in">exit</span>(EXIT_FAILURE);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 写入文件</span></span><br><span class="line">    <span class="type">const</span> <span class="type">char</span> *text = <span class="string">&quot;Hello, Operating System!\nThis is a test file.\n&quot;</span>;</span><br><span class="line">    bytes_written = write(fd, text, <span class="built_in">strlen</span>(text));</span><br><span class="line">    <span class="keyword">if</span> (bytes_written == <span class="number">-1</span>) &#123;</span><br><span class="line">        perror(<span class="string">&quot;write&quot;</span>);</span><br><span class="line">        close(fd);</span><br><span class="line">        <span class="built_in">exit</span>(EXIT_FAILURE);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;写入了 %ld 字节\n&quot;</span>, bytes_written);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 关闭文件</span></span><br><span class="line">    close(fd);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 打开文件读取</span></span><br><span class="line">    fd = open(<span class="string">&quot;test.txt&quot;</span>, O_RDONLY);</span><br><span class="line">    <span class="keyword">if</span> (fd == <span class="number">-1</span>) &#123;</span><br><span class="line">        perror(<span class="string">&quot;open&quot;</span>);</span><br><span class="line">        <span class="built_in">exit</span>(EXIT_FAILURE);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 读取文件</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\n文件内容：\n&quot;</span>);</span><br><span class="line">    <span class="keyword">while</span> ((bytes_read = read(fd, buffer, <span class="keyword">sizeof</span>(buffer))) &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        write(STDOUT_FILENO, buffer, bytes_read);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (bytes_read == <span class="number">-1</span>) &#123;</span><br><span class="line">        perror(<span class="string">&quot;read&quot;</span>);</span><br><span class="line">        close(fd);</span><br><span class="line">        <span class="built_in">exit</span>(EXIT_FAILURE);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 关闭文件</span></span><br><span class="line">    close(fd);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 删除文件</span></span><br><span class="line">    <span class="keyword">if</span> (unlink(<span class="string">&quot;test.txt&quot;</span>) == <span class="number">-1</span>) &#123;</span><br><span class="line">        perror(<span class="string">&quot;unlink&quot;</span>);</span><br><span class="line">        <span class="built_in">exit</span>(EXIT_FAILURE);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\n文件已删除\n&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="设备管理"><a href="#设备管理" class="headerlink" title="设备管理"></a>设备管理</h2><h3 id="设备管理概述"><a href="#设备管理概述" class="headerlink" title="设备管理概述"></a>设备管理概述</h3><p>设备管理负责计算机系统中各种 I&#x2F;O 设备的分配、控制和驱动，确保设备能够高效、可靠地工作。</p>
+<h4 id="设备的分类"><a href="#设备的分类" class="headerlink" title="设备的分类"></a>设备的分类</h4><ul>
+<li><strong>按传输速率</strong>：低速设备、中速设备、高速设备</li>
+<li><strong>按信息交换单位</strong>：字符设备、块设备</li>
+<li><strong>按设备共享属性</strong>：独占设备、共享设备、虚拟设备</li>
+</ul>
+<h4 id="设备管理的主要功能"><a href="#设备管理的主要功能" class="headerlink" title="设备管理的主要功能"></a>设备管理的主要功能</h4><ul>
+<li>设备分配与回收</li>
+<li>设备控制</li>
+<li>缓冲管理</li>
+<li>设备独立性</li>
+<li>设备驱动程序管理</li>
+</ul>
+<h3 id="I-O-控制方式"><a href="#I-O-控制方式" class="headerlink" title="I&#x2F;O 控制方式"></a>I&#x2F;O 控制方式</h3><p>I&#x2F;O 控制方式是指 CPU 与 I&#x2F;O 设备之间的信息交换方式。</p>
+<ol>
+<li><strong>程序直接控制方式</strong>：CPU 不断查询设备状态，直到 I&#x2F;O 完成</li>
+<li><strong>中断驱动方式</strong>：设备完成 I&#x2F;O 后向 CPU 发送中断信号</li>
+<li><strong>DMA 方式</strong>：直接内存访问，设备与内存直接交换数据，CPU 只需初始化和完成时处理</li>
+<li><strong>通道控制方式</strong>：通过通道（一种专用的 I&#x2F;O 处理器）控制 I&#x2F;O 设备</li>
+</ol>
+<h3 id="设备驱动程序"><a href="#设备驱动程序" class="headerlink" title="设备驱动程序"></a>设备驱动程序</h3><p>设备驱动程序是操作系统与 I&#x2F;O 设备之间的接口，负责将操作系统的请求转换为设备能够理解的命令。</p>
+<h4 id="设备驱动程序的主要功能"><a href="#设备驱动程序的主要功能" class="headerlink" title="设备驱动程序的主要功能"></a>设备驱动程序的主要功能</h4><ul>
+<li>初始化设备</li>
+<li>处理设备中断</li>
+<li>实现设备的各种操作（如读、写）</li>
+<li>管理设备的电源</li>
+</ul>
+<h3 id="设备独立性"><a href="#设备独立性" class="headerlink" title="设备独立性"></a>设备独立性</h3><p>设备独立性是指应用程序与实际使用的物理设备无关，提高了系统的可移植性和灵活性。</p>
+<h3 id="缓冲管理"><a href="#缓冲管理" class="headerlink" title="缓冲管理"></a>缓冲管理</h3><p>缓冲是指在内存中为 I&#x2F;O 设备分配的一块临时存储区域，用于缓解 CPU 与 I&#x2F;O 设备之间速度不匹配的问题。</p>
+<h4 id="缓冲的类型"><a href="#缓冲的类型" class="headerlink" title="缓冲的类型"></a>缓冲的类型</h4><ul>
+<li><strong>单缓冲</strong>：只有一个缓冲区</li>
+<li><strong>双缓冲</strong>：有两个缓冲区，一个用于输入，一个用于输出</li>
+<li><strong>循环缓冲</strong>：多个缓冲区组成一个循环队列</li>
+<li><strong>缓冲池</strong>：由多个缓冲区组成的公用缓冲区域</li>
+</ul>
+<h3 id="磁盘管理"><a href="#磁盘管理" class="headerlink" title="磁盘管理"></a>磁盘管理</h3><p>磁盘管理负责磁盘的调度、格式化和维护。</p>
+<h4 id="磁盘调度算法"><a href="#磁盘调度算法" class="headerlink" title="磁盘调度算法"></a>磁盘调度算法</h4><ul>
+<li><strong>先来先服务（FCFS）</strong>：按照请求到达的先后顺序处理</li>
+<li><strong>最短寻道时间优先（SSTF）</strong>：选择离当前磁头位置最近的请求处理</li>
+<li><strong>扫描算法（SCAN）</strong>：磁头在磁盘上双向移动，处理经过的所有请求</li>
+<li><strong>循环扫描算法（C-SCAN）</strong>：磁头只向一个方向移动，处理经过的所有请求</li>
+<li><strong>LOOK 算法</strong>：SCAN 算法的改进，磁头只移动到最远的请求位置</li>
+<li><strong>C-LOOK 算法</strong>：C-SCAN 算法的改进，磁头只移动到最远的请求位置</li>
+</ul>
+<h4 id="示例：使用扫描算法（SCAN）进行磁盘调度"><a href="#示例：使用扫描算法（SCAN）进行磁盘调度" class="headerlink" title="示例：使用扫描算法（SCAN）进行磁盘调度"></a>示例：使用扫描算法（SCAN）进行磁盘调度</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 比较函数，用于排序</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">compare</span><span class="params">(<span class="type">const</span> <span class="type">void</span> *a, <span class="type">const</span> <span class="type">void</span> *b)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> (*(<span class="type">int</span> *)a - *(<span class="type">int</span> *)b);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">scan_disk_scheduling</span><span class="params">(<span class="type">int</span> requests[], <span class="type">int</span> n, <span class="type">int</span> current_position, <span class="type">int</span> direction)</span> &#123;</span><br><span class="line">    <span class="type">int</span> total_seek_time = <span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span> *left = (<span class="type">int</span> *)<span class="built_in">malloc</span>(n * <span class="keyword">sizeof</span>(<span class="type">int</span>));</span><br><span class="line">    <span class="type">int</span> *right = (<span class="type">int</span> *)<span class="built_in">malloc</span>(n * <span class="keyword">sizeof</span>(<span class="type">int</span>));</span><br><span class="line">    <span class="type">int</span> left_count = <span class="number">0</span>, right_count = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 将请求分为左边和右边</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (requests[i] &lt; current_position) &#123;</span><br><span class="line">            left[left_count++] = requests[i];</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            right[right_count++] = requests[i];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 排序</span></span><br><span class="line">    qsort(left, left_count, <span class="keyword">sizeof</span>(<span class="type">int</span>), compare);</span><br><span class="line">    qsort(right, right_count, <span class="keyword">sizeof</span>(<span class="type">int</span>), compare);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;磁盘调度顺序: %d&quot;</span>, current_position);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 向右移动</span></span><br><span class="line">    <span class="keyword">if</span> (direction == <span class="number">1</span>) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; right_count; i++) &#123;</span><br><span class="line">            total_seek_time += <span class="built_in">abs</span>(right[i] - current_position);</span><br><span class="line">            current_position = right[i];</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot; -&gt; %d&quot;</span>, current_position);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 如果还有左边的请求，移动到最右端再向左移动</span></span><br><span class="line">        <span class="keyword">if</span> (left_count &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            total_seek_time += <span class="built_in">abs</span>(<span class="number">199</span> - current_position);  <span class="comment">// 假设磁盘最大磁道号为199</span></span><br><span class="line">            current_position = <span class="number">199</span>;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot; -&gt; %d&quot;</span>, current_position);</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> i = left_count - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">                total_seek_time += <span class="built_in">abs</span>(left[i] - current_position);</span><br><span class="line">                current_position = left[i];</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">&quot; -&gt; %d&quot;</span>, current_position);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 向左移动</span></span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = left_count - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">            total_seek_time += <span class="built_in">abs</span>(left[i] - current_position);</span><br><span class="line">            current_position = left[i];</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot; -&gt; %d&quot;</span>, current_position);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 如果还有右边的请求，移动到最左端再向右移动</span></span><br><span class="line">        <span class="keyword">if</span> (right_count &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            total_seek_time += <span class="built_in">abs</span>(current_position - <span class="number">0</span>);  <span class="comment">// 假设磁盘最小磁道号为0</span></span><br><span class="line">            current_position = <span class="number">0</span>;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot; -&gt; %d&quot;</span>, current_position);</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; right_count; i++) &#123;</span><br><span class="line">                total_seek_time += <span class="built_in">abs</span>(right[i] - current_position);</span><br><span class="line">                current_position = right[i];</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">&quot; -&gt; %d&quot;</span>, current_position);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\n总寻道时间: %d\n&quot;</span>, total_seek_time);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">free</span>(left);</span><br><span class="line">    <span class="built_in">free</span>(right);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">int</span> n, current_position, direction;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;输入请求数量: &quot;</span>);</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;n);</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> *requests = (<span class="type">int</span> *)<span class="built_in">malloc</span>(n * <span class="keyword">sizeof</span>(<span class="type">int</span>));</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;输入请求的磁道号: &quot;</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;requests[i]);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;输入当前磁头位置: &quot;</span>);</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;current_position);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;输入移动方向 (1: 向右, 0: 向左): &quot;</span>);</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;direction);</span><br><span class="line"></span><br><span class="line">    scan_disk_scheduling(requests, n, current_position, direction);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">free</span>(requests);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="用户接口"><a href="#用户接口" class="headerlink" title="用户接口"></a>用户接口</h2><p>用户接口是用户与操作系统交互的桥梁，提供了用户使用操作系统功能的方式。</p>
+<h3 id="命令接口"><a href="#命令接口" class="headerlink" title="命令接口"></a>命令接口</h3><p>命令接口是用户通过输入命令来操作计算机的接口。</p>
+<h4 id="联机命令接口"><a href="#联机命令接口" class="headerlink" title="联机命令接口"></a>联机命令接口</h4><ul>
+<li><strong>交互式命令接口</strong>：用户输入一条命令，系统执行后返回结果</li>
+<li><strong>命令行解释器</strong>：负责解释和执行用户输入的命令</li>
+</ul>
+<h4 id="脱机命令接口"><a href="#脱机命令接口" class="headerlink" title="脱机命令接口"></a>脱机命令接口</h4><ul>
+<li><strong>批处理命令接口</strong>：用户将命令写入批处理文件，系统批量执行</li>
+</ul>
+<h3 id="程序接口"><a href="#程序接口" class="headerlink" title="程序接口"></a>程序接口</h3><p>程序接口是应用程序与操作系统之间的接口，通过系统调用（System Call）实现。</p>
+<h4 id="系统调用的分类"><a href="#系统调用的分类" class="headerlink" title="系统调用的分类"></a>系统调用的分类</h4><ul>
+<li><strong>进程控制</strong>：创建进程、终止进程、进程通信等</li>
+<li><strong>文件操作</strong>：创建文件、打开文件、读文件、写文件等</li>
+<li><strong>设备操作</strong>：请求设备、释放设备、读写设备等</li>
+<li><strong>信息维护</strong>：获取系统时间、设置系统时间等</li>
+<li><strong>通信</strong>：创建管道、创建套接字等</li>
+</ul>
+<h4 id="系统调用的实现"><a href="#系统调用的实现" class="headerlink" title="系统调用的实现"></a>系统调用的实现</h4><ul>
+<li>用户程序通过陷入指令（Trap）进入内核态</li>
+<li>内核执行相应的系统调用处理函数</li>
+<li>处理完成后返回用户态，将结果返回给用户程序</li>
+</ul>
+<h2 id="操作系统面试题"><a href="#操作系统面试题" class="headerlink" title="操作系统面试题"></a>操作系统面试题</h2><h3 id="1-什么是操作系统？它的主要功能是什么？"><a href="#1-什么是操作系统？它的主要功能是什么？" class="headerlink" title="1. 什么是操作系统？它的主要功能是什么？"></a>1. 什么是操作系统？它的主要功能是什么？</h3><p>操作系统是管理计算机硬件与软件资源的计算机程序，是计算机系统的核心与基石。它的主要功能包括进程管理、内存管理、文件系统、设备管理和用户接口。</p>
+<h3 id="2-进程和线程的区别是什么？"><a href="#2-进程和线程的区别是什么？" class="headerlink" title="2. 进程和线程的区别是什么？"></a>2. 进程和线程的区别是什么？</h3><ul>
+<li>资源分配：进程是资源分配的基本单位，线程共享进程的资源</li>
+<li>调度：线程是 CPU 调度的基本单位</li>
+<li>并发性：一个进程内的多个线程可以并发执行</li>
+<li>系统开销：创建和切换线程的开销比进程小</li>
+</ul>
+<h3 id="3-什么是死锁？产生死锁的必要条件是什么？"><a href="#3-什么是死锁？产生死锁的必要条件是什么？" class="headerlink" title="3. 什么是死锁？产生死锁的必要条件是什么？"></a>3. 什么是死锁？产生死锁的必要条件是什么？</h3><p>死锁是指多个进程因竞争资源而造成的一种僵局，若无外力作用，这些进程都将无法继续执行。产生死锁的必要条件包括：</p>
+<ul>
+<li>互斥条件：资源不能被共享</li>
+<li>请求和保持条件：进程已获得的资源在未使用完之前不能被剥夺</li>
+<li>不剥夺条件：进程已获得的资源在未使用完之前不能被剥夺</li>
+<li>循环等待条件：若干进程之间形成一种头尾相接的循环等待资源关系</li>
+</ul>
+<h3 id="4-如何预防和避免死锁？"><a href="#4-如何预防和避免死锁？" class="headerlink" title="4. 如何预防和避免死锁？"></a>4. 如何预防和避免死锁？</h3><ul>
+<li><strong>预防死锁</strong>：破坏产生死锁的四个必要条件之一</li>
+<li><strong>避免死锁</strong>：在资源分配时进行安全性检查，确保系统处于安全状态</li>
+<li><strong>检测和解除死锁</strong>：允许死锁发生，然后检测并解除</li>
+</ul>
+<h3 id="5-什么是虚拟内存？它的作用是什么？"><a href="#5-什么是虚拟内存？它的作用是什么？" class="headerlink" title="5. 什么是虚拟内存？它的作用是什么？"></a>5. 什么是虚拟内存？它的作用是什么？</h3><p>虚拟内存是指操作系统为进程提供的一个比实际物理内存大得多的虚拟地址空间。它的作用是：</p>
+<ul>
+<li>扩大地址空间</li>
+<li>内存保护</li>
+<li>内存共享</li>
+<li>内存分配优化</li>
+</ul>
+<h3 id="6-分页和分段的区别是什么？"><a href="#6-分页和分段的区别是什么？" class="headerlink" title="6. 分页和分段的区别是什么？"></a>6. 分页和分段的区别是什么？</h3><ul>
+<li><strong>分页</strong>：将物理内存划分为大小相等的页框，将进程的逻辑地址空间划分为大小相等的页</li>
+<li><strong>分段</strong>：将进程的逻辑地址空间划分为若干个段，每个段对应一个逻辑单位</li>
+<li><strong>目的</strong>：分页主要是为了提高内存利用率，分段主要是为了满足用户的需求</li>
+<li><strong>大小</strong>：页的大小固定，段的大小不固定</li>
+<li><strong>地址空间</strong>：分页的地址空间是一维的，分段的地址空间是二维的</li>
+</ul>
+<h3 id="7-常见的进程调度算法有哪些？"><a href="#7-常见的进程调度算法有哪些？" class="headerlink" title="7. 常见的进程调度算法有哪些？"></a>7. 常见的进程调度算法有哪些？</h3><ul>
+<li>先来先服务（FCFS）</li>
+<li>最短作业优先（SJF）</li>
+<li>最短剩余时间优先（SRTF）</li>
+<li>优先级调度</li>
+<li>时间片轮转（RR）</li>
+<li>多级反馈队列调度</li>
+</ul>
+<h3 id="8-常见的页面置换算法有哪些？"><a href="#8-常见的页面置换算法有哪些？" class="headerlink" title="8. 常见的页面置换算法有哪些？"></a>8. 常见的页面置换算法有哪些？</h3><ul>
+<li>最佳置换算法（OPT）</li>
+<li>先进先出置换算法（FIFO）</li>
+<li>最近最久未使用置换算法（LRU）</li>
+<li>时钟置换算法（Clock）</li>
+<li>最不常用置换算法（LFU）</li>
+</ul>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ol>
+<li>《操作系统概念》（第九版），Abraham Silberschatz 等著</li>
+<li>《现代操作系统》（第四版），Andrew S. Tanenbaum 著</li>
+<li>《深入理解计算机系统》（第三版），Randal E. Bryant 等著</li>
+<li>《Linux 内核设计与实现》（第三版），Robert Love 著</li>
+</ol>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>操作系统是计算机系统的核心软件，负责管理和协调计算机的所有资源。本文从操作系统概述入手，详细介绍了进程管理、内存管理、文件系统、设备管理和用户接口等核心内容，并通过示例代码演示了一些重要的概念和算法。同时，本文还解答了一些常见的操作系统面试题，帮助读者更好地理解和应用操作系统知识。</p>
+<p>学习操作系统不仅可以帮助我们理解计算机系统的工作原理，还可以提高我们的程序设计能力和系统调优能力。希望本文能够为读者提供一个全面、系统的操作系统学习总结，为进一步深入学习操作系统打下坚实的基础。</p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">首页</a></li>
+        
+          <li><a href="/about/">关于</a></li>
+        
+          <li><a href="/archives/">归档</a></li>
+        
+          <li><a href="/projects/">项目</a></li>
+        
+          <li><a href="/ctf/">ctf</a></li>
+        
+          <li><a href="/cybersecurity/">网络安全</a></li>
+        
+          <li><a href="/CyberChef/">CyberChef</a></li>
+        
+          <li><a href="/test/">test</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text">操作系统概述</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E4%B8%BB%E8%A6%81%E5%8A%9F%E8%83%BD"><span class="toc-number">1.1.</span> <span class="toc-text">操作系统的主要功能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%88%86%E7%B1%BB"><span class="toc-number">1.2.</span> <span class="toc-text">操作系统的分类</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86"><span class="toc-number">2.</span> <span class="toc-text">进程管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E6%A6%82%E5%BF%B5"><span class="toc-number">2.1.</span> <span class="toc-text">进程概念</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%A8%8B%E5%BA%8F%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">2.1.1.</span> <span class="toc-text">进程与程序的区别</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E6%8E%A7%E5%88%B6%E5%9D%97%EF%BC%88PCB%EF%BC%89"><span class="toc-number">2.1.2.</span> <span class="toc-text">进程控制块（PCB）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E7%8A%B6%E6%80%81"><span class="toc-number">2.2.</span> <span class="toc-text">进程状态</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E8%B0%83%E5%BA%A6"><span class="toc-number">2.3.</span> <span class="toc-text">进程调度</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95"><span class="toc-number">2.3.1.</span> <span class="toc-text">调度算法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A4%BA%E4%BE%8B%EF%BC%9A%E6%97%B6%E9%97%B4%E7%89%87%E8%BD%AE%E8%BD%AC%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95"><span class="toc-number">2.3.2.</span> <span class="toc-text">示例：时间片轮转调度算法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E5%90%8C%E6%AD%A5"><span class="toc-number">2.4.</span> <span class="toc-text">进程同步</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%B4%E7%95%8C%E5%8C%BA%E9%97%AE%E9%A2%98"><span class="toc-number">2.4.1.</span> <span class="toc-text">临界区问题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%90%8C%E6%AD%A5%E6%9C%BA%E5%88%B6"><span class="toc-number">2.4.2.</span> <span class="toc-text">同步机制</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A4%BA%E4%BE%8B%EF%BC%9A%E4%BD%BF%E7%94%A8%E4%BF%A1%E5%8F%B7%E9%87%8F%E8%A7%A3%E5%86%B3%E7%94%9F%E4%BA%A7%E8%80%85-%E6%B6%88%E8%B4%B9%E8%80%85%E9%97%AE%E9%A2%98"><span class="toc-number">2.4.3.</span> <span class="toc-text">示例：使用信号量解决生产者-消费者问题</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E9%80%9A%E4%BF%A1"><span class="toc-number">2.5.</span> <span class="toc-text">进程通信</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%86%E7%B1%BB"><span class="toc-number">2.5.1.</span> <span class="toc-text">分类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E9%80%9A%E4%BF%A1%E6%96%B9%E5%BC%8F"><span class="toc-number">2.5.2.</span> <span class="toc-text">常见通信方式</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B"><span class="toc-number">2.6.</span> <span class="toc-text">线程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B%E4%B8%8E%E8%BF%9B%E7%A8%8B%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">2.6.1.</span> <span class="toc-text">线程与进程的区别</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B%E7%9A%84%E5%88%86%E7%B1%BB"><span class="toc-number">2.6.2.</span> <span class="toc-text">线程的分类</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86"><span class="toc-number">3.</span> <span class="toc-text">内存管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86%E6%A6%82%E8%BF%B0"><span class="toc-number">3.1.</span> <span class="toc-text">内存管理概述</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86%E7%9A%84%E4%B8%BB%E8%A6%81%E5%8A%9F%E8%83%BD"><span class="toc-number">3.1.1.</span> <span class="toc-text">内存管理的主要功能</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9E%E7%BB%AD%E5%88%86%E9%85%8D%E7%AE%A1%E7%90%86%E6%96%B9%E5%BC%8F"><span class="toc-number">3.2.</span> <span class="toc-text">连续分配管理方式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8D%95%E4%B8%80%E8%BF%9E%E7%BB%AD%E5%88%86%E9%85%8D"><span class="toc-number">3.2.1.</span> <span class="toc-text">单一连续分配</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9B%BA%E5%AE%9A%E5%88%86%E5%8C%BA%E5%88%86%E9%85%8D"><span class="toc-number">3.2.2.</span> <span class="toc-text">固定分区分配</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8A%A8%E6%80%81%E5%88%86%E5%8C%BA%E5%88%86%E9%85%8D"><span class="toc-number">3.2.3.</span> <span class="toc-text">动态分区分配</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9D%9E%E8%BF%9E%E7%BB%AD%E5%88%86%E9%85%8D%E7%AE%A1%E7%90%86%E6%96%B9%E5%BC%8F"><span class="toc-number">3.3.</span> <span class="toc-text">非连续分配管理方式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%86%E9%A1%B5%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86"><span class="toc-number">3.3.1.</span> <span class="toc-text">分页存储管理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%86%E6%AE%B5%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86"><span class="toc-number">3.3.2.</span> <span class="toc-text">分段存储管理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%AE%B5%E9%A1%B5%E5%BC%8F%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86"><span class="toc-number">3.3.3.</span> <span class="toc-text">段页式存储管理</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86"><span class="toc-number">3.4.</span> <span class="toc-text">虚拟内存管理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98%E7%9A%84%E7%89%B9%E5%BE%81"><span class="toc-number">3.4.1.</span> <span class="toc-text">虚拟内存的特征</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F"><span class="toc-number">3.4.2.</span> <span class="toc-text">虚拟内存的实现方式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95"><span class="toc-number">3.4.3.</span> <span class="toc-text">页面置换算法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A4%BA%E4%BE%8B%EF%BC%9A%E8%AF%B7%E6%B1%82%E5%88%86%E9%A1%B5%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86%E7%9A%84%E9%A1%B5%E8%A1%A8%E7%BB%93%E6%9E%84"><span class="toc-number">3.4.4.</span> <span class="toc-text">示例：请求分页存储管理的页表结构</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F"><span class="toc-number">4.</span> <span class="toc-text">文件系统</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0"><span class="toc-number">4.1.</span> <span class="toc-text">文件系统概述</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="toc-number">4.1.1.</span> <span class="toc-text">文件的概念</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E7%9A%84%E5%B1%9E%E6%80%A7"><span class="toc-number">4.1.2.</span> <span class="toc-text">文件的属性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E7%9A%84%E6%93%8D%E4%BD%9C"><span class="toc-number">4.1.3.</span> <span class="toc-text">文件的操作</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E7%9A%84%E7%BB%84%E7%BB%87%E7%BB%93%E6%9E%84"><span class="toc-number">4.2.</span> <span class="toc-text">文件的组织结构</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%97%A0%E7%BB%93%E6%9E%84%E6%96%87%E4%BB%B6%EF%BC%88%E6%B5%81%E5%BC%8F%E6%96%87%E4%BB%B6%EF%BC%89"><span class="toc-number">4.2.1.</span> <span class="toc-text">无结构文件（流式文件）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%89%E7%BB%93%E6%9E%84%E6%96%87%E4%BB%B6%EF%BC%88%E8%AE%B0%E5%BD%95%E5%BC%8F%E6%96%87%E4%BB%B6%EF%BC%89"><span class="toc-number">4.2.2.</span> <span class="toc-text">有结构文件（记录式文件）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E7%9A%84%E5%AD%98%E5%82%A8%E7%BB%93%E6%9E%84"><span class="toc-number">4.3.</span> <span class="toc-text">文件的存储结构</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%9E%E7%BB%AD%E5%88%86%E9%85%8D"><span class="toc-number">4.3.1.</span> <span class="toc-text">连续分配</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%93%BE%E6%8E%A5%E5%88%86%E9%85%8D"><span class="toc-number">4.3.2.</span> <span class="toc-text">链接分配</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%B4%A2%E5%BC%95%E5%88%86%E9%85%8D"><span class="toc-number">4.3.3.</span> <span class="toc-text">索引分配</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="toc-number">4.4.</span> <span class="toc-text">文件系统的实现</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E6%8E%A7%E5%88%B6%E5%9D%97%EF%BC%88FCB%EF%BC%89"><span class="toc-number">4.4.1.</span> <span class="toc-text">文件控制块（FCB）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84"><span class="toc-number">4.4.2.</span> <span class="toc-text">目录结构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AD%98%E5%82%A8%E7%A9%BA%E9%97%B4%E7%AE%A1%E7%90%86"><span class="toc-number">4.4.3.</span> <span class="toc-text">存储空间管理</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%93%8D%E4%BD%9C"><span class="toc-number">4.5.</span> <span class="toc-text">文件系统的操作</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A4%BA%E4%BE%8B%EF%BC%9A%E4%BD%BF%E7%94%A8%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8%E6%93%8D%E4%BD%9C%E6%96%87%E4%BB%B6"><span class="toc-number">4.5.1.</span> <span class="toc-text">示例：使用系统调用操作文件</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BE%E5%A4%87%E7%AE%A1%E7%90%86"><span class="toc-number">5.</span> <span class="toc-text">设备管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BE%E5%A4%87%E7%AE%A1%E7%90%86%E6%A6%82%E8%BF%B0"><span class="toc-number">5.1.</span> <span class="toc-text">设备管理概述</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AE%BE%E5%A4%87%E7%9A%84%E5%88%86%E7%B1%BB"><span class="toc-number">5.1.1.</span> <span class="toc-text">设备的分类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AE%BE%E5%A4%87%E7%AE%A1%E7%90%86%E7%9A%84%E4%B8%BB%E8%A6%81%E5%8A%9F%E8%83%BD"><span class="toc-number">5.1.2.</span> <span class="toc-text">设备管理的主要功能</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#I-O-%E6%8E%A7%E5%88%B6%E6%96%B9%E5%BC%8F"><span class="toc-number">5.2.</span> <span class="toc-text">I&#x2F;O 控制方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BE%E5%A4%87%E9%A9%B1%E5%8A%A8%E7%A8%8B%E5%BA%8F"><span class="toc-number">5.3.</span> <span class="toc-text">设备驱动程序</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AE%BE%E5%A4%87%E9%A9%B1%E5%8A%A8%E7%A8%8B%E5%BA%8F%E7%9A%84%E4%B8%BB%E8%A6%81%E5%8A%9F%E8%83%BD"><span class="toc-number">5.3.1.</span> <span class="toc-text">设备驱动程序的主要功能</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BE%E5%A4%87%E7%8B%AC%E7%AB%8B%E6%80%A7"><span class="toc-number">5.4.</span> <span class="toc-text">设备独立性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%93%E5%86%B2%E7%AE%A1%E7%90%86"><span class="toc-number">5.5.</span> <span class="toc-text">缓冲管理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BC%93%E5%86%B2%E7%9A%84%E7%B1%BB%E5%9E%8B"><span class="toc-number">5.5.1.</span> <span class="toc-text">缓冲的类型</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A3%81%E7%9B%98%E7%AE%A1%E7%90%86"><span class="toc-number">5.6.</span> <span class="toc-text">磁盘管理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A3%81%E7%9B%98%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95"><span class="toc-number">5.6.1.</span> <span class="toc-text">磁盘调度算法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A4%BA%E4%BE%8B%EF%BC%9A%E4%BD%BF%E7%94%A8%E6%89%AB%E6%8F%8F%E7%AE%97%E6%B3%95%EF%BC%88SCAN%EF%BC%89%E8%BF%9B%E8%A1%8C%E7%A3%81%E7%9B%98%E8%B0%83%E5%BA%A6"><span class="toc-number">5.6.2.</span> <span class="toc-text">示例：使用扫描算法（SCAN）进行磁盘调度</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%A8%E6%88%B7%E6%8E%A5%E5%8F%A3"><span class="toc-number">6.</span> <span class="toc-text">用户接口</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4%E6%8E%A5%E5%8F%A3"><span class="toc-number">6.1.</span> <span class="toc-text">命令接口</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%81%94%E6%9C%BA%E5%91%BD%E4%BB%A4%E6%8E%A5%E5%8F%A3"><span class="toc-number">6.1.1.</span> <span class="toc-text">联机命令接口</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%84%B1%E6%9C%BA%E5%91%BD%E4%BB%A4%E6%8E%A5%E5%8F%A3"><span class="toc-number">6.1.2.</span> <span class="toc-text">脱机命令接口</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A8%8B%E5%BA%8F%E6%8E%A5%E5%8F%A3"><span class="toc-number">6.2.</span> <span class="toc-text">程序接口</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8%E7%9A%84%E5%88%86%E7%B1%BB"><span class="toc-number">6.2.1.</span> <span class="toc-text">系统调用的分类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="toc-number">6.2.2.</span> <span class="toc-text">系统调用的实现</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E9%9D%A2%E8%AF%95%E9%A2%98"><span class="toc-number">7.</span> <span class="toc-text">操作系统面试题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E4%BB%80%E4%B9%88%E6%98%AF%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%EF%BC%9F%E5%AE%83%E7%9A%84%E4%B8%BB%E8%A6%81%E5%8A%9F%E8%83%BD%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-number">7.1.</span> <span class="toc-text">1. 什么是操作系统？它的主要功能是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B%E7%9A%84%E5%8C%BA%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-number">7.2.</span> <span class="toc-text">2. 进程和线程的区别是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E4%BB%80%E4%B9%88%E6%98%AF%E6%AD%BB%E9%94%81%EF%BC%9F%E4%BA%A7%E7%94%9F%E6%AD%BB%E9%94%81%E7%9A%84%E5%BF%85%E8%A6%81%E6%9D%A1%E4%BB%B6%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-number">7.3.</span> <span class="toc-text">3. 什么是死锁？产生死锁的必要条件是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E5%A6%82%E4%BD%95%E9%A2%84%E9%98%B2%E5%92%8C%E9%81%BF%E5%85%8D%E6%AD%BB%E9%94%81%EF%BC%9F"><span class="toc-number">7.4.</span> <span class="toc-text">4. 如何预防和避免死锁？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E4%BB%80%E4%B9%88%E6%98%AF%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98%EF%BC%9F%E5%AE%83%E7%9A%84%E4%BD%9C%E7%94%A8%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-number">7.5.</span> <span class="toc-text">5. 什么是虚拟内存？它的作用是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-%E5%88%86%E9%A1%B5%E5%92%8C%E5%88%86%E6%AE%B5%E7%9A%84%E5%8C%BA%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-number">7.6.</span> <span class="toc-text">6. 分页和分段的区别是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-%E5%B8%B8%E8%A7%81%E7%9A%84%E8%BF%9B%E7%A8%8B%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95%E6%9C%89%E5%93%AA%E4%BA%9B%EF%BC%9F"><span class="toc-number">7.7.</span> <span class="toc-text">7. 常见的进程调度算法有哪些？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-%E5%B8%B8%E8%A7%81%E7%9A%84%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95%E6%9C%89%E5%93%AA%E4%BA%9B%EF%BC%9F"><span class="toc-number">7.8.</span> <span class="toc-text">8. 常见的页面置换算法有哪些？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-number">8.</span> <span class="toc-text">参考资料</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">9.</span> <span class="toc-text">总结</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://tuagt.github.io/2026/01/10/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://tuagt.github.io/2026/01/10/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/&text=操作系统学习总结"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://tuagt.github.io/2026/01/10/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/&title=操作系统学习总结"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://tuagt.github.io/2026/01/10/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/&is_video=false&description=操作系统学习总结"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=操作系统学习总结&body=Check out this article: https://tuagt.github.io/2026/01/10/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://tuagt.github.io/2026/01/10/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/&title=操作系统学习总结"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://tuagt.github.io/2026/01/10/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/&title=操作系统学习总结"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://tuagt.github.io/2026/01/10/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/&title=操作系统学习总结"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://tuagt.github.io/2026/01/10/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/&title=操作系统学习总结"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://tuagt.github.io/2026/01/10/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/&name=操作系统学习总结&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://tuagt.github.io/2026/01/10/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/&t=操作系统学习总结"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2020-2026
+    TuAgT
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a href="/projects/">项目</a></li><!--
+     --><!--
+       --><li><a href="/ctf/">ctf</a></li><!--
+     --><!--
+       --><li><a href="/cybersecurity/">网络安全</a></li><!--
+     --><!--
+       --><li><a href="/CyberChef/">CyberChef</a></li><!--
+     --><!--
+       --><li><a href="/test/">test</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功！");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>

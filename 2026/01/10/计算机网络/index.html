@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="计算机网络概述计算机网络是指将地理位置不同的具有独立功能的多台计算机及其外部设备，通过通信线路连接起来，在网络操作系统、网络管理软件及网络通信协议的管理和协调下，实现资源共享和信息传递的计算机系统。 网络层次划分计算机网络采用分层架构，每一层负责特定的功能，层与层之间通过接口进行通信。常见的网络层次划分有两种： 1. OSI 七层参考模型OSI（Open Systems Interconnecti">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算机网络">
+<meta property="og:url" content="https://tuagt.github.io/2026/01/10/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/index.html">
+<meta property="og:site_name" content="TuAgT&#39;s Blog">
+<meta property="og:description" content="计算机网络概述计算机网络是指将地理位置不同的具有独立功能的多台计算机及其外部设备，通过通信线路连接起来，在网络操作系统、网络管理软件及网络通信协议的管理和协调下，实现资源共享和信息传递的计算机系统。 网络层次划分计算机网络采用分层架构，每一层负责特定的功能，层与层之间通过接口进行通信。常见的网络层次划分有两种： 1. OSI 七层参考模型OSI（Open Systems Interconnecti">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-01-10T06:10:18.000Z">
+<meta property="article:modified_time" content="2026-01-17T11:48:32.568Z">
+<meta property="article:author" content="TuAgT">
+<meta property="article:tag" content="计算机基础">
+<meta property="article:tag" content="计算机网络">
+<meta property="article:tag" content="网络协议">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>计算机网络</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+      <link rel="alternate" href="/true" title="TuAgT&#39;s Blog" type="application/atom+xml" />
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="顶部" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a href="/projects/">项目</a></li><!--
+     --><!--
+       --><li><a href="/ctf/">ctf</a></li><!--
+     --><!--
+       --><li><a href="/cybersecurity/">网络安全</a></li><!--
+     --><!--
+       --><li><a href="/CyberChef/">CyberChef</a></li><!--
+     --><!--
+       --><li><a href="/test/">test</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="上一篇" href="/2026/01/10/%E8%B4%B9%E6%9B%BC%E5%AD%A6%E4%B9%A0%E6%B3%95/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="下一篇" href="/2026/01/01/2026%E5%90%AF%E8%88%AA/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://tuagt.github.io/2026/01/10/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://tuagt.github.io/2026/01/10/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/&text=计算机网络"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://tuagt.github.io/2026/01/10/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/&title=计算机网络"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://tuagt.github.io/2026/01/10/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/&is_video=false&description=计算机网络"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=计算机网络&body=Check out this article: https://tuagt.github.io/2026/01/10/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://tuagt.github.io/2026/01/10/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/&title=计算机网络"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://tuagt.github.io/2026/01/10/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/&title=计算机网络"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://tuagt.github.io/2026/01/10/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/&title=计算机网络"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://tuagt.github.io/2026/01/10/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/&title=计算机网络"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://tuagt.github.io/2026/01/10/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/&name=计算机网络&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://tuagt.github.io/2026/01/10/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/&t=计算机网络"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%A6%82%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text">计算机网络概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E5%B1%82%E6%AC%A1%E5%88%92%E5%88%86"><span class="toc-number">2.</span> <span class="toc-text">网络层次划分</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-OSI-%E4%B8%83%E5%B1%82%E5%8F%82%E8%80%83%E6%A8%A1%E5%9E%8B"><span class="toc-number">2.1.</span> <span class="toc-text">1. OSI 七层参考模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-TCP-IP-%E4%BA%94%E5%B1%82%E5%8D%8F%E8%AE%AE%E6%A0%88"><span class="toc-number">2.2.</span> <span class="toc-text">2. TCP&#x2F;IP 五层协议栈</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%89%A9%E7%90%86%E5%B1%82"><span class="toc-number">3.</span> <span class="toc-text">物理层</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BB%E8%A6%81%E5%8A%9F%E8%83%BD"><span class="toc-number">3.1.</span> <span class="toc-text">主要功能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%A0%E8%BE%93%E4%BB%8B%E8%B4%A8"><span class="toc-number">3.2.</span> <span class="toc-text">传输介质</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%89%A9%E7%90%86%E5%B1%82%E8%AE%BE%E5%A4%87"><span class="toc-number">3.3.</span> <span class="toc-text">物理层设备</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82"><span class="toc-number">4.</span> <span class="toc-text">数据链路层</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BB%E8%A6%81%E5%8A%9F%E8%83%BD-1"><span class="toc-number">4.1.</span> <span class="toc-text">主要功能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%87%8D%E8%A6%81%E6%A6%82%E5%BF%B5"><span class="toc-number">4.2.</span> <span class="toc-text">重要概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82%E5%8D%8F%E8%AE%AE"><span class="toc-number">4.3.</span> <span class="toc-text">数据链路层协议</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82%E8%AE%BE%E5%A4%87"><span class="toc-number">4.4.</span> <span class="toc-text">数据链路层设备</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E5%B1%82"><span class="toc-number">5.</span> <span class="toc-text">网络层</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BB%E8%A6%81%E5%8A%9F%E8%83%BD-2"><span class="toc-number">5.1.</span> <span class="toc-text">主要功能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#IP-%E5%9C%B0%E5%9D%80"><span class="toc-number">5.2.</span> <span class="toc-text">IP 地址</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#IPv4-%E5%9C%B0%E5%9D%80"><span class="toc-number">5.2.1.</span> <span class="toc-text">IPv4 地址</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#IPv6-%E5%9C%B0%E5%9D%80"><span class="toc-number">5.2.2.</span> <span class="toc-text">IPv6 地址</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%90%E7%BD%91%E6%8E%A9%E7%A0%81%E5%8F%8A%E7%BD%91%E7%BB%9C%E5%88%92%E5%88%86"><span class="toc-number">5.3.</span> <span class="toc-text">子网掩码及网络划分</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ARP-RARP-%E5%8D%8F%E8%AE%AE"><span class="toc-number">5.4.</span> <span class="toc-text">ARP&#x2F;RARP 协议</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B7%AF%E7%94%B1%E9%80%89%E6%8B%A9%E5%8D%8F%E8%AE%AE"><span class="toc-number">5.5.</span> <span class="toc-text">路由选择协议</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%86%E7%B1%BB"><span class="toc-number">5.5.1.</span> <span class="toc-text">分类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E8%B7%AF%E7%94%B1%E5%8D%8F%E8%AE%AE"><span class="toc-number">5.5.2.</span> <span class="toc-text">常见路由协议</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E5%B1%82%E8%AE%BE%E5%A4%87"><span class="toc-number">5.6.</span> <span class="toc-text">网络层设备</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%A0%E8%BE%93%E5%B1%82"><span class="toc-number">6.</span> <span class="toc-text">传输层</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BB%E8%A6%81%E5%8A%9F%E8%83%BD-3"><span class="toc-number">6.1.</span> <span class="toc-text">主要功能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TCP-%E5%8D%8F%E8%AE%AE"><span class="toc-number">6.2.</span> <span class="toc-text">TCP 协议</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BB%E8%A6%81%E7%89%B9%E7%82%B9"><span class="toc-number">6.2.1.</span> <span class="toc-text">主要特点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#TCP-%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B"><span class="toc-number">6.2.2.</span> <span class="toc-text">TCP 三次握手</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#TCP-%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B"><span class="toc-number">6.2.3.</span> <span class="toc-text">TCP 四次挥手</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#UDP-%E5%8D%8F%E8%AE%AE"><span class="toc-number">6.3.</span> <span class="toc-text">UDP 协议</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BB%E8%A6%81%E7%89%B9%E7%82%B9-1"><span class="toc-number">6.3.1.</span> <span class="toc-text">主要特点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-number">6.3.2.</span> <span class="toc-text">应用场景</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TCP-%E4%B8%8E-UDP-%E7%9A%84%E6%AF%94%E8%BE%83"><span class="toc-number">6.4.</span> <span class="toc-text">TCP 与 UDP 的比较</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E5%B1%82"><span class="toc-number">7.</span> <span class="toc-text">应用层</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BB%E8%A6%81%E5%8A%9F%E8%83%BD-4"><span class="toc-number">7.1.</span> <span class="toc-text">主要功能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E5%BA%94%E7%94%A8%E5%B1%82%E5%8D%8F%E8%AE%AE"><span class="toc-number">7.2.</span> <span class="toc-text">常见应用层协议</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#HTTP-HTTPS"><span class="toc-number">7.2.1.</span> <span class="toc-text">HTTP&#x2F;HTTPS</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#DNS"><span class="toc-number">7.2.2.</span> <span class="toc-text">DNS</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#FTP"><span class="toc-number">7.2.3.</span> <span class="toc-text">FTP</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#SMTP-POP3-IMAP"><span class="toc-number">7.2.4.</span> <span class="toc-text">SMTP&#x2F;POP3&#x2F;IMAP</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#DHCP"><span class="toc-number">7.2.5.</span> <span class="toc-text">DHCP</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#NAT"><span class="toc-number">7.2.6.</span> <span class="toc-text">NAT</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E9%9D%A2%E8%AF%95%E9%A2%98"><span class="toc-number">8.</span> <span class="toc-text">计算机网络面试题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-TCP-%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%EF%BC%9F"><span class="toc-number">8.1.</span> <span class="toc-text">1. TCP 为什么需要三次握手？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-TCP-%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B%EF%BC%9F"><span class="toc-number">8.2.</span> <span class="toc-text">2. TCP 为什么需要四次挥手？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-TCP-%E5%92%8C-UDP-%E7%9A%84%E5%8C%BA%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-number">8.3.</span> <span class="toc-text">3. TCP 和 UDP 的区别是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-HTTP-%E5%92%8C-HTTPS-%E7%9A%84%E5%8C%BA%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-number">8.4.</span> <span class="toc-text">4. HTTP 和 HTTPS 的区别是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-DNS-%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-number">8.5.</span> <span class="toc-text">5. DNS 的工作原理是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-%E4%BB%80%E4%B9%88%E6%98%AF-ARP-%E6%AC%BA%E9%AA%97%EF%BC%9F"><span class="toc-number">8.6.</span> <span class="toc-text">6. 什么是 ARP 欺骗？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-%E4%BB%80%E4%B9%88%E6%98%AF-DDos-%E6%94%BB%E5%87%BB%EF%BC%9F"><span class="toc-number">8.7.</span> <span class="toc-text">7. 什么是 DDos 攻击？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-%E4%BB%80%E4%B9%88%E6%98%AF%E5%AD%90%E7%BD%91%E6%8E%A9%E7%A0%81%EF%BC%9F%E5%AE%83%E7%9A%84%E4%BD%9C%E7%94%A8%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-number">8.8.</span> <span class="toc-text">8. 什么是子网掩码？它的作用是什么？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-number">9.</span> <span class="toc-text">参考资料</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">10.</span> <span class="toc-text">总结</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        计算机网络
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">TuAgT</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2026-01-10T06:10:18.000Z" class="dt-published" itemprop="datePublished">2026-01-10</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/" rel="tag">网络协议</a>, <a class="p-category" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/" rel="tag">计算机基础</a>, <a class="p-category" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" rel="tag">计算机网络</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <h2 id="计算机网络概述"><a href="#计算机网络概述" class="headerlink" title="计算机网络概述"></a>计算机网络概述</h2><p>计算机网络是指将地理位置不同的具有独立功能的多台计算机及其外部设备，通过通信线路连接起来，在网络操作系统、网络管理软件及网络通信协议的管理和协调下，实现资源共享和信息传递的计算机系统。</p>
+<h2 id="网络层次划分"><a href="#网络层次划分" class="headerlink" title="网络层次划分"></a>网络层次划分</h2><p>计算机网络采用分层架构，每一层负责特定的功能，层与层之间通过接口进行通信。常见的网络层次划分有两种：</p>
+<h3 id="1-OSI-七层参考模型"><a href="#1-OSI-七层参考模型" class="headerlink" title="1. OSI 七层参考模型"></a>1. OSI 七层参考模型</h3><p>OSI（Open Systems Interconnection）七层参考模型是国际标准化组织（ISO）制定的网络架构标准，从下到上分为七层：</p>
+<table>
+<thead>
+<tr>
+<th>层级</th>
+<th>名称</th>
+<th>主要功能</th>
+<th>典型协议</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>7</td>
+<td>应用层</td>
+<td>为用户提供网络服务</td>
+<td>HTTP, FTP, SMTP, DNS</td>
+</tr>
+<tr>
+<td>6</td>
+<td>表示层</td>
+<td>数据格式转换、加密解密</td>
+<td>JPEG, MPEG, SSL&#x2F;TLS</td>
+</tr>
+<tr>
+<td>5</td>
+<td>会话层</td>
+<td>建立、管理和终止会话</td>
+<td>RPC, NetBIOS</td>
+</tr>
+<tr>
+<td>4</td>
+<td>传输层</td>
+<td>端到端的可靠传输</td>
+<td>TCP, UDP</td>
+</tr>
+<tr>
+<td>3</td>
+<td>网络层</td>
+<td>路由选择、数据包转发</td>
+<td>IP, ICMP, ARP, RIP</td>
+</tr>
+<tr>
+<td>2</td>
+<td>数据链路层</td>
+<td>帧的封装、差错检测</td>
+<td>Ethernet, PPP, HDLC</td>
+</tr>
+<tr>
+<td>1</td>
+<td>物理层</td>
+<td>物理介质、比特流传输</td>
+<td>RS-232, Ethernet, WiFi</td>
+</tr>
+</tbody></table>
+<h3 id="2-TCP-IP-五层协议栈"><a href="#2-TCP-IP-五层协议栈" class="headerlink" title="2. TCP&#x2F;IP 五层协议栈"></a>2. TCP&#x2F;IP 五层协议栈</h3><p>TCP&#x2F;IP 协议栈是实际应用中最广泛使用的网络架构，从下到上分为五层：</p>
+<table>
+<thead>
+<tr>
+<th>层级</th>
+<th>名称</th>
+<th>主要功能</th>
+<th>典型协议</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>5</td>
+<td>应用层</td>
+<td>为用户提供网络服务</td>
+<td>HTTP, FTP, SMTP, DNS</td>
+</tr>
+<tr>
+<td>4</td>
+<td>传输层</td>
+<td>端到端的可靠传输</td>
+<td>TCP, UDP</td>
+</tr>
+<tr>
+<td>3</td>
+<td>网络层</td>
+<td>路由选择、数据包转发</td>
+<td>IP, ICMP, ARP, RIP</td>
+</tr>
+<tr>
+<td>2</td>
+<td>数据链路层</td>
+<td>帧的封装、差错检测</td>
+<td>Ethernet, PPP</td>
+</tr>
+<tr>
+<td>1</td>
+<td>物理层</td>
+<td>物理介质、比特流传输</td>
+<td>RS-232, Ethernet, WiFi</td>
+</tr>
+</tbody></table>
+<h2 id="物理层"><a href="#物理层" class="headerlink" title="物理层"></a>物理层</h2><p>物理层是网络体系结构的最底层，负责在物理介质上传输原始比特流。</p>
+<h3 id="主要功能"><a href="#主要功能" class="headerlink" title="主要功能"></a>主要功能</h3><ul>
+<li>定义物理介质的特性（如电缆类型、接口形状）</li>
+<li>定义传输速率（如 10Mbps、1Gbps）</li>
+<li>定义信号类型（如模拟信号、数字信号）</li>
+<li>定义编码方式（如曼彻斯特编码、差分曼彻斯特编码）</li>
+</ul>
+<h3 id="传输介质"><a href="#传输介质" class="headerlink" title="传输介质"></a>传输介质</h3><ul>
+<li><strong>有线介质</strong>：双绞线、同轴电缆、光纤</li>
+<li><strong>无线介质</strong>：无线电波、微波、红外线</li>
+</ul>
+<h3 id="物理层设备"><a href="#物理层设备" class="headerlink" title="物理层设备"></a>物理层设备</h3><ul>
+<li>中继器（Repeater）：放大信号，延长传输距离</li>
+<li>集线器（Hub）：多端口中继器，广播信号到所有端口</li>
+</ul>
+<h2 id="数据链路层"><a href="#数据链路层" class="headerlink" title="数据链路层"></a>数据链路层</h2><p>数据链路层负责将网络层的数据包封装成帧，并在物理链路中传输。</p>
+<h3 id="主要功能-1"><a href="#主要功能-1" class="headerlink" title="主要功能"></a>主要功能</h3><ul>
+<li>帧的封装与解封装</li>
+<li>差错检测（如 CRC 校验）</li>
+<li>流量控制</li>
+<li>访问控制（如 CSMA&#x2F;CD、CSMA&#x2F;CA）</li>
+</ul>
+<h3 id="重要概念"><a href="#重要概念" class="headerlink" title="重要概念"></a>重要概念</h3><ul>
+<li><strong>帧</strong>：数据链路层的传输单元，包含帧头、数据和帧尾</li>
+<li><strong>MAC 地址</strong>：媒体访问控制地址，是网络设备的物理地址，全球唯一</li>
+<li><strong>广播域</strong>：网络中能够接收到同一广播数据包的设备集合</li>
+</ul>
+<h3 id="数据链路层协议"><a href="#数据链路层协议" class="headerlink" title="数据链路层协议"></a>数据链路层协议</h3><ul>
+<li><strong>Ethernet（以太网）</strong>：最常用的局域网协议</li>
+<li><strong>PPP（Point-to-Point Protocol）</strong>：点到点协议，用于拨号连接</li>
+<li><strong>HDLC（High-Level Data Link Control）</strong>：高级数据链路控制协议</li>
+</ul>
+<h3 id="数据链路层设备"><a href="#数据链路层设备" class="headerlink" title="数据链路层设备"></a>数据链路层设备</h3><ul>
+<li>网桥（Bridge）：连接两个局域网，隔离广播域</li>
+<li>交换机（Switch）：多端口网桥，根据 MAC 地址转发数据</li>
+</ul>
+<h2 id="网络层"><a href="#网络层" class="headerlink" title="网络层"></a>网络层</h2><p>网络层负责将数据包从源主机传输到目的主机，实现端到端的路由和寻址。</p>
+<h3 id="主要功能-2"><a href="#主要功能-2" class="headerlink" title="主要功能"></a>主要功能</h3><ul>
+<li>逻辑地址（IP 地址）的分配</li>
+<li>路由选择</li>
+<li>数据包转发</li>
+<li>拥塞控制</li>
+</ul>
+<h3 id="IP-地址"><a href="#IP-地址" class="headerlink" title="IP 地址"></a>IP 地址</h3><p>IP 地址是网络层的逻辑地址，用于标识网络中的设备。</p>
+<h4 id="IPv4-地址"><a href="#IPv4-地址" class="headerlink" title="IPv4 地址"></a>IPv4 地址</h4><ul>
+<li>32 位二进制数，通常表示为 4 个十进制数，用点分隔（如 192.168.1.1）</li>
+<li>由网络号和主机号组成</li>
+<li>分类：A 类、B 类、C 类、D 类（组播）、E 类（保留）</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>类别</th>
+<th>网络号位数</th>
+<th>主机号位数</th>
+<th>地址范围</th>
+<th>网络数量</th>
+<th>每网络主机数</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>A</td>
+<td>8</td>
+<td>24</td>
+<td>1.0.0.0 - 126.255.255.255</td>
+<td>126</td>
+<td>16,777,214</td>
+</tr>
+<tr>
+<td>B</td>
+<td>16</td>
+<td>16</td>
+<td>128.0.0.0 - 191.255.255.255</td>
+<td>16,384</td>
+<td>65,534</td>
+</tr>
+<tr>
+<td>C</td>
+<td>24</td>
+<td>8</td>
+<td>192.0.0.0 - 223.255.255.255</td>
+<td>2,097,152</td>
+<td>254</td>
+</tr>
+</tbody></table>
+<h4 id="IPv6-地址"><a href="#IPv6-地址" class="headerlink" title="IPv6 地址"></a>IPv6 地址</h4><ul>
+<li>128 位二进制数，通常表示为 8 组十六进制数，用冒号分隔（如 2001:0db8:85a3:0000:0000:8a2e:0370:7334）</li>
+<li>解决了 IPv4 地址枯竭问题</li>
+<li>支持自动配置、QoS 等新特性</li>
+</ul>
+<h3 id="子网掩码及网络划分"><a href="#子网掩码及网络划分" class="headerlink" title="子网掩码及网络划分"></a>子网掩码及网络划分</h3><p>子网掩码用于将 IP 地址划分为网络号和主机号两部分。</p>
+<ul>
+<li><strong>子网划分</strong>：将一个大的网络划分为多个小的子网，提高 IP 地址利用率</li>
+<li><strong>子网掩码计算</strong>：与 IP 地址进行 AND 运算，得到网络地址</li>
+</ul>
+<p>示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">IP地址:   192.168.1.100   (11000000.10101000.00000001.01100100)</span><br><span class="line">子网掩码: 255.255.255.0   (11111111.11111111.11111111.00000000)</span><br><span class="line">网络地址: 192.168.1.0     (11000000.10101000.00000001.00000000)</span><br></pre></td></tr></table></figure>
+
+<h3 id="ARP-RARP-协议"><a href="#ARP-RARP-协议" class="headerlink" title="ARP&#x2F;RARP 协议"></a>ARP&#x2F;RARP 协议</h3><ul>
+<li><strong>ARP（Address Resolution Protocol）</strong>：地址解析协议，将 IP 地址转换为 MAC 地址</li>
+<li><strong>RARP（Reverse Address Resolution Protocol）</strong>：反向地址解析协议，将 MAC 地址转换为 IP 地址</li>
+</ul>
+<p>ARP 工作过程：</p>
+<ol>
+<li>主机 A 需要向主机 B 发送数据，但不知道 B 的 MAC 地址</li>
+<li>主机 A 发送 ARP 请求广播，包含 A 的 IP 和 MAC 地址，以及 B 的 IP 地址</li>
+<li>所有主机接收 ARP 请求，主机 B 识别出自己的 IP 地址</li>
+<li>主机 B 发送 ARP 响应，包含自己的 MAC 地址</li>
+<li>主机 A 收到响应，将 B 的 IP 和 MAC 地址存入 ARP 缓存</li>
+</ol>
+<h3 id="路由选择协议"><a href="#路由选择协议" class="headerlink" title="路由选择协议"></a>路由选择协议</h3><p>路由选择协议用于在路由器之间交换路由信息，构建路由表。</p>
+<h4 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h4><ul>
+<li><strong>按作用范围</strong>：内部网关协议（IGP）和外部网关协议（EGP）</li>
+<li><strong>按算法</strong>：距离向量协议和链路状态协议</li>
+</ul>
+<h4 id="常见路由协议"><a href="#常见路由协议" class="headerlink" title="常见路由协议"></a>常见路由协议</h4><ul>
+<li><strong>RIP（Routing Information Protocol）</strong>：距离向量协议，基于跳数计算路由</li>
+<li><strong>OSPF（Open Shortest Path First）</strong>：链路状态协议，基于 Dijkstra 算法计算最短路径</li>
+<li><strong>BGP（Border Gateway Protocol）</strong>：外部网关协议，用于自治系统之间的路由</li>
+</ul>
+<h3 id="网络层设备"><a href="#网络层设备" class="headerlink" title="网络层设备"></a>网络层设备</h3><ul>
+<li>路由器（Router）：连接不同网络，根据 IP 地址转发数据，隔离广播域</li>
+<li>三层交换机：具有路由功能的交换机</li>
+</ul>
+<h2 id="传输层"><a href="#传输层" class="headerlink" title="传输层"></a>传输层</h2><p>传输层负责为应用程序提供端到端的通信服务。</p>
+<h3 id="主要功能-3"><a href="#主要功能-3" class="headerlink" title="主要功能"></a>主要功能</h3><ul>
+<li>端到端的可靠传输</li>
+<li>流量控制</li>
+<li>拥塞控制</li>
+<li>多路复用与多路分解</li>
+</ul>
+<h3 id="TCP-协议"><a href="#TCP-协议" class="headerlink" title="TCP 协议"></a>TCP 协议</h3><p>TCP（Transmission Control Protocol）是一种面向连接的、可靠的传输层协议。</p>
+<h4 id="主要特点"><a href="#主要特点" class="headerlink" title="主要特点"></a>主要特点</h4><ul>
+<li><strong>面向连接</strong>：通信前需要建立连接，通信后需要释放连接</li>
+<li><strong>可靠传输</strong>：通过序列号、确认应答、重传机制等保证数据的可靠传输</li>
+<li><strong>流量控制</strong>：通过滑动窗口协议控制发送速率</li>
+<li><strong>拥塞控制</strong>：通过慢开始、拥塞避免、快重传、快恢复等算法控制网络拥塞</li>
+</ul>
+<h4 id="TCP-三次握手"><a href="#TCP-三次握手" class="headerlink" title="TCP 三次握手"></a>TCP 三次握手</h4><p>TCP 连接建立需要三次握手：</p>
+<ol>
+<li>客户端发送 SYN 包（同步序列编号），请求建立连接</li>
+<li>服务器发送 SYN+ACK 包，确认客户端的请求并请求建立连接</li>
+<li>客户端发送 ACK 包，确认服务器的请求</li>
+</ol>
+<h4 id="TCP-四次挥手"><a href="#TCP-四次挥手" class="headerlink" title="TCP 四次挥手"></a>TCP 四次挥手</h4><p>TCP 连接释放需要四次挥手：</p>
+<ol>
+<li>客户端发送 FIN 包，请求释放连接</li>
+<li>服务器发送 ACK 包，确认客户端的请求</li>
+<li>服务器发送 FIN 包，请求释放连接</li>
+<li>客户端发送 ACK 包，确认服务器的请求</li>
+</ol>
+<h3 id="UDP-协议"><a href="#UDP-协议" class="headerlink" title="UDP 协议"></a>UDP 协议</h3><p>UDP（User Datagram Protocol）是一种无连接的、不可靠的传输层协议。</p>
+<h4 id="主要特点-1"><a href="#主要特点-1" class="headerlink" title="主要特点"></a>主要特点</h4><ul>
+<li><strong>无连接</strong>：通信前不需要建立连接，通信后不需要释放连接</li>
+<li><strong>不可靠传输</strong>：不保证数据的可靠传输，不提供重传机制</li>
+<li><strong>传输效率高</strong>：开销小，延迟低</li>
+<li><strong>支持广播和多播</strong></li>
+</ul>
+<h4 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h4><ul>
+<li>实时应用（如视频会议、在线游戏）</li>
+<li>简单请求-响应应用（如 DNS 查询）</li>
+</ul>
+<h3 id="TCP-与-UDP-的比较"><a href="#TCP-与-UDP-的比较" class="headerlink" title="TCP 与 UDP 的比较"></a>TCP 与 UDP 的比较</h3><table>
+<thead>
+<tr>
+<th>特性</th>
+<th>TCP</th>
+<th>UDP</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>连接类型</td>
+<td>面向连接</td>
+<td>无连接</td>
+</tr>
+<tr>
+<td>可靠性</td>
+<td>可靠</td>
+<td>不可靠</td>
+</tr>
+<tr>
+<td>传输效率</td>
+<td>低</td>
+<td>高</td>
+</tr>
+<tr>
+<td>流量控制</td>
+<td>有</td>
+<td>无</td>
+</tr>
+<tr>
+<td>拥塞控制</td>
+<td>有</td>
+<td>无</td>
+</tr>
+<tr>
+<td>应用场景</td>
+<td>Web 浏览、文件传输</td>
+<td>视频会议、在线游戏、DNS</td>
+</tr>
+</tbody></table>
+<h2 id="应用层"><a href="#应用层" class="headerlink" title="应用层"></a>应用层</h2><p>应用层是网络体系结构的最高层，为用户提供各种网络服务。</p>
+<h3 id="主要功能-4"><a href="#主要功能-4" class="headerlink" title="主要功能"></a>主要功能</h3><ul>
+<li>为用户提供网络应用服务</li>
+<li>定义应用程序之间的通信协议</li>
+</ul>
+<h3 id="常见应用层协议"><a href="#常见应用层协议" class="headerlink" title="常见应用层协议"></a>常见应用层协议</h3><h4 id="HTTP-HTTPS"><a href="#HTTP-HTTPS" class="headerlink" title="HTTP&#x2F;HTTPS"></a>HTTP&#x2F;HTTPS</h4><p>HTTP（HyperText Transfer Protocol）是超文本传输协议，用于在 Web 浏览器和 Web 服务器之间传输超文本数据。</p>
+<ul>
+<li><strong>HTTP 特点</strong>：无状态、明文传输</li>
+<li><strong>HTTPS</strong>：HTTP over SSL&#x2F;TLS，加密传输，提供安全保障</li>
+<li><strong>HTTP 方法</strong>：GET（获取资源）、POST（提交数据）、PUT（更新资源）、DELETE（删除资源）等</li>
+<li><strong>HTTP 状态码</strong>：200（成功）、301（永久重定向）、404（资源未找到）、500（服务器错误）等</li>
+</ul>
+<h4 id="DNS"><a href="#DNS" class="headerlink" title="DNS"></a>DNS</h4><p>DNS（Domain Name System）是域名系统，用于将域名转换为 IP 地址。</p>
+<ul>
+<li><strong>DNS 服务器</strong>：根服务器、顶级域名服务器、权威域名服务器、本地域名服务器</li>
+<li><strong>DNS 查询类型</strong>：A 记录（IPv4 地址）、AAAA 记录（IPv6 地址）、CNAME 记录（别名）、MX 记录（邮件服务器）等</li>
+<li><strong>DNS 查询过程</strong>：递归查询、迭代查询</li>
+</ul>
+<h4 id="FTP"><a href="#FTP" class="headerlink" title="FTP"></a>FTP</h4><p>FTP（File Transfer Protocol）是文件传输协议，用于在网络上传输文件。</p>
+<ul>
+<li><strong>FTP 特点</strong>：需要用户名和密码认证，使用两个端口（21 端口用于控制，20 端口用于数据传输）</li>
+<li><strong>FTP 类型</strong>：主动 FTP、被动 FTP</li>
+</ul>
+<h4 id="SMTP-POP3-IMAP"><a href="#SMTP-POP3-IMAP" class="headerlink" title="SMTP&#x2F;POP3&#x2F;IMAP"></a>SMTP&#x2F;POP3&#x2F;IMAP</h4><ul>
+<li><strong>SMTP（Simple Mail Transfer Protocol）</strong>：简单邮件传输协议，用于发送邮件</li>
+<li><strong>POP3（Post Office Protocol 3）</strong>：邮局协议版本 3，用于接收邮件</li>
+<li><strong>IMAP（Internet Message Access Protocol）</strong>： Internet 消息访问协议，用于接收邮件，支持邮件在服务器上的管理</li>
+</ul>
+<h4 id="DHCP"><a href="#DHCP" class="headerlink" title="DHCP"></a>DHCP</h4><p>DHCP（Dynamic Host Configuration Protocol）是动态主机配置协议，用于自动分配 IP 地址、子网掩码、网关等网络配置信息。</p>
+<p>DHCP 工作过程：</p>
+<ol>
+<li>客户端发送 DHCP Discover 广播，寻找 DHCP 服务器</li>
+<li>DHCP 服务器发送 DHCP Offer，提供 IP 地址等信息</li>
+<li>客户端发送 DHCP Request，请求使用提供的 IP 地址</li>
+<li>DHCP 服务器发送 DHCP ACK，确认客户端的请求</li>
+</ol>
+<h4 id="NAT"><a href="#NAT" class="headerlink" title="NAT"></a>NAT</h4><p>NAT（Network Address Translation）是网络地址转换，用于将私有 IP 地址转换为公有 IP 地址。</p>
+<ul>
+<li><strong>NAT 类型</strong>：静态 NAT、动态 NAT、PAT（Port Address Translation，端口地址转换）</li>
+<li><strong>NAT 优点</strong>：解决 IPv4 地址枯竭问题，提高网络安全性</li>
+</ul>
+<h2 id="计算机网络面试题"><a href="#计算机网络面试题" class="headerlink" title="计算机网络面试题"></a>计算机网络面试题</h2><h3 id="1-TCP-为什么需要三次握手？"><a href="#1-TCP-为什么需要三次握手？" class="headerlink" title="1. TCP 为什么需要三次握手？"></a>1. TCP 为什么需要三次握手？</h3><p>TCP 需要三次握手是为了防止已失效的连接请求报文段突然又传送到了服务端，导致错误。三次握手可以确保双方都了解对方的接收和发送能力。</p>
+<h3 id="2-TCP-为什么需要四次挥手？"><a href="#2-TCP-为什么需要四次挥手？" class="headerlink" title="2. TCP 为什么需要四次挥手？"></a>2. TCP 为什么需要四次挥手？</h3><p>TCP 需要四次挥手是因为 TCP 是全双工通信，发送方和接收方都需要分别释放连接。当一方发送 FIN 报文表示不再发送数据，但仍能接收数据，需要另一方确认后再发送自己的 FIN 报文。</p>
+<h3 id="3-TCP-和-UDP-的区别是什么？"><a href="#3-TCP-和-UDP-的区别是什么？" class="headerlink" title="3. TCP 和 UDP 的区别是什么？"></a>3. TCP 和 UDP 的区别是什么？</h3><p>见 TCP 与 UDP 的比较表。</p>
+<h3 id="4-HTTP-和-HTTPS-的区别是什么？"><a href="#4-HTTP-和-HTTPS-的区别是什么？" class="headerlink" title="4. HTTP 和 HTTPS 的区别是什么？"></a>4. HTTP 和 HTTPS 的区别是什么？</h3><ul>
+<li>HTTP 是明文传输，HTTPS 是加密传输</li>
+<li>HTTP 使用 80 端口，HTTPS 使用 443 端口</li>
+<li>HTTPS 需要 SSL&#x2F;TLS 证书</li>
+<li>HTTPS 比 HTTP 更安全，但性能开销更大</li>
+</ul>
+<h3 id="5-DNS-的工作原理是什么？"><a href="#5-DNS-的工作原理是什么？" class="headerlink" title="5. DNS 的工作原理是什么？"></a>5. DNS 的工作原理是什么？</h3><p>DNS 将域名转换为 IP 地址的过程：</p>
+<ol>
+<li>客户端向本地 DNS 服务器发送 DNS 查询请求</li>
+<li>本地 DNS 服务器如果有缓存，直接返回结果</li>
+<li>如果没有缓存，本地 DNS 服务器向根 DNS 服务器发送查询请求</li>
+<li>根 DNS 服务器返回顶级域名服务器的地址</li>
+<li>本地 DNS 服务器向顶级域名服务器发送查询请求</li>
+<li>顶级域名服务器返回权威 DNS 服务器的地址</li>
+<li>本地 DNS 服务器向权威 DNS 服务器发送查询请求</li>
+<li>权威 DNS 服务器返回 IP 地址</li>
+<li>本地 DNS 服务器将 IP 地址返回给客户端，并缓存结果</li>
+</ol>
+<h3 id="6-什么是-ARP-欺骗？"><a href="#6-什么是-ARP-欺骗？" class="headerlink" title="6. 什么是 ARP 欺骗？"></a>6. 什么是 ARP 欺骗？</h3><p>ARP 欺骗是一种网络攻击，攻击者发送伪造的 ARP 数据包，将自己的 MAC 地址与目标 IP 地址关联，导致网络流量被重定向到攻击者的计算机。</p>
+<h3 id="7-什么是-DDos-攻击？"><a href="#7-什么是-DDos-攻击？" class="headerlink" title="7. 什么是 DDos 攻击？"></a>7. 什么是 DDos 攻击？</h3><p>DDos（Distributed Denial of Service）攻击是一种分布式拒绝服务攻击，攻击者通过控制大量僵尸计算机向目标服务器发送大量请求，导致服务器无法正常响应合法用户的请求。</p>
+<h3 id="8-什么是子网掩码？它的作用是什么？"><a href="#8-什么是子网掩码？它的作用是什么？" class="headerlink" title="8. 什么是子网掩码？它的作用是什么？"></a>8. 什么是子网掩码？它的作用是什么？</h3><p>子网掩码是一个 32 位的二进制数，用于将 IP 地址划分为网络号和主机号两部分。它的作用是确定 IP 地址所属的网络，以及网络中可用的主机数量。</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ol>
+<li>《计算机网络》（第七版），谢希仁 编著</li>
+<li>《TCP&#x2F;IP 详解》（卷 1：协议），W. Richard Stevens 著</li>
+<li>《计算机网络：自顶向下方法》，James F. Kurose 等著</li>
+<li>RFC 文档（如 RFC 791：IPv4，RFC 793：TCP）</li>
+</ol>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>计算机网络是现代信息技术的基础，掌握计算机网络的基本概念和原理对于理解和应用网络技术至关重要。本文从网络层次划分入手，详细介绍了物理层、数据链路层、网络层、传输层和应用层的主要功能、协议和设备，并解答了一些常见的计算机网络面试题。通过学习本文，读者可以对计算机网络有一个全面的认识，为进一步深入学习网络技术打下基础。</p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">首页</a></li>
+        
+          <li><a href="/about/">关于</a></li>
+        
+          <li><a href="/archives/">归档</a></li>
+        
+          <li><a href="/projects/">项目</a></li>
+        
+          <li><a href="/ctf/">ctf</a></li>
+        
+          <li><a href="/cybersecurity/">网络安全</a></li>
+        
+          <li><a href="/CyberChef/">CyberChef</a></li>
+        
+          <li><a href="/test/">test</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%A6%82%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text">计算机网络概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E5%B1%82%E6%AC%A1%E5%88%92%E5%88%86"><span class="toc-number">2.</span> <span class="toc-text">网络层次划分</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-OSI-%E4%B8%83%E5%B1%82%E5%8F%82%E8%80%83%E6%A8%A1%E5%9E%8B"><span class="toc-number">2.1.</span> <span class="toc-text">1. OSI 七层参考模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-TCP-IP-%E4%BA%94%E5%B1%82%E5%8D%8F%E8%AE%AE%E6%A0%88"><span class="toc-number">2.2.</span> <span class="toc-text">2. TCP&#x2F;IP 五层协议栈</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%89%A9%E7%90%86%E5%B1%82"><span class="toc-number">3.</span> <span class="toc-text">物理层</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BB%E8%A6%81%E5%8A%9F%E8%83%BD"><span class="toc-number">3.1.</span> <span class="toc-text">主要功能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%A0%E8%BE%93%E4%BB%8B%E8%B4%A8"><span class="toc-number">3.2.</span> <span class="toc-text">传输介质</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%89%A9%E7%90%86%E5%B1%82%E8%AE%BE%E5%A4%87"><span class="toc-number">3.3.</span> <span class="toc-text">物理层设备</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82"><span class="toc-number">4.</span> <span class="toc-text">数据链路层</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BB%E8%A6%81%E5%8A%9F%E8%83%BD-1"><span class="toc-number">4.1.</span> <span class="toc-text">主要功能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%87%8D%E8%A6%81%E6%A6%82%E5%BF%B5"><span class="toc-number">4.2.</span> <span class="toc-text">重要概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82%E5%8D%8F%E8%AE%AE"><span class="toc-number">4.3.</span> <span class="toc-text">数据链路层协议</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82%E8%AE%BE%E5%A4%87"><span class="toc-number">4.4.</span> <span class="toc-text">数据链路层设备</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E5%B1%82"><span class="toc-number">5.</span> <span class="toc-text">网络层</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BB%E8%A6%81%E5%8A%9F%E8%83%BD-2"><span class="toc-number">5.1.</span> <span class="toc-text">主要功能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#IP-%E5%9C%B0%E5%9D%80"><span class="toc-number">5.2.</span> <span class="toc-text">IP 地址</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#IPv4-%E5%9C%B0%E5%9D%80"><span class="toc-number">5.2.1.</span> <span class="toc-text">IPv4 地址</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#IPv6-%E5%9C%B0%E5%9D%80"><span class="toc-number">5.2.2.</span> <span class="toc-text">IPv6 地址</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%90%E7%BD%91%E6%8E%A9%E7%A0%81%E5%8F%8A%E7%BD%91%E7%BB%9C%E5%88%92%E5%88%86"><span class="toc-number">5.3.</span> <span class="toc-text">子网掩码及网络划分</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ARP-RARP-%E5%8D%8F%E8%AE%AE"><span class="toc-number">5.4.</span> <span class="toc-text">ARP&#x2F;RARP 协议</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B7%AF%E7%94%B1%E9%80%89%E6%8B%A9%E5%8D%8F%E8%AE%AE"><span class="toc-number">5.5.</span> <span class="toc-text">路由选择协议</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%86%E7%B1%BB"><span class="toc-number">5.5.1.</span> <span class="toc-text">分类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E8%B7%AF%E7%94%B1%E5%8D%8F%E8%AE%AE"><span class="toc-number">5.5.2.</span> <span class="toc-text">常见路由协议</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E5%B1%82%E8%AE%BE%E5%A4%87"><span class="toc-number">5.6.</span> <span class="toc-text">网络层设备</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%A0%E8%BE%93%E5%B1%82"><span class="toc-number">6.</span> <span class="toc-text">传输层</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BB%E8%A6%81%E5%8A%9F%E8%83%BD-3"><span class="toc-number">6.1.</span> <span class="toc-text">主要功能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TCP-%E5%8D%8F%E8%AE%AE"><span class="toc-number">6.2.</span> <span class="toc-text">TCP 协议</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BB%E8%A6%81%E7%89%B9%E7%82%B9"><span class="toc-number">6.2.1.</span> <span class="toc-text">主要特点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#TCP-%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B"><span class="toc-number">6.2.2.</span> <span class="toc-text">TCP 三次握手</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#TCP-%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B"><span class="toc-number">6.2.3.</span> <span class="toc-text">TCP 四次挥手</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#UDP-%E5%8D%8F%E8%AE%AE"><span class="toc-number">6.3.</span> <span class="toc-text">UDP 协议</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BB%E8%A6%81%E7%89%B9%E7%82%B9-1"><span class="toc-number">6.3.1.</span> <span class="toc-text">主要特点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-number">6.3.2.</span> <span class="toc-text">应用场景</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TCP-%E4%B8%8E-UDP-%E7%9A%84%E6%AF%94%E8%BE%83"><span class="toc-number">6.4.</span> <span class="toc-text">TCP 与 UDP 的比较</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E5%B1%82"><span class="toc-number">7.</span> <span class="toc-text">应用层</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BB%E8%A6%81%E5%8A%9F%E8%83%BD-4"><span class="toc-number">7.1.</span> <span class="toc-text">主要功能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E5%BA%94%E7%94%A8%E5%B1%82%E5%8D%8F%E8%AE%AE"><span class="toc-number">7.2.</span> <span class="toc-text">常见应用层协议</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#HTTP-HTTPS"><span class="toc-number">7.2.1.</span> <span class="toc-text">HTTP&#x2F;HTTPS</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#DNS"><span class="toc-number">7.2.2.</span> <span class="toc-text">DNS</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#FTP"><span class="toc-number">7.2.3.</span> <span class="toc-text">FTP</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#SMTP-POP3-IMAP"><span class="toc-number">7.2.4.</span> <span class="toc-text">SMTP&#x2F;POP3&#x2F;IMAP</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#DHCP"><span class="toc-number">7.2.5.</span> <span class="toc-text">DHCP</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#NAT"><span class="toc-number">7.2.6.</span> <span class="toc-text">NAT</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E9%9D%A2%E8%AF%95%E9%A2%98"><span class="toc-number">8.</span> <span class="toc-text">计算机网络面试题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-TCP-%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%EF%BC%9F"><span class="toc-number">8.1.</span> <span class="toc-text">1. TCP 为什么需要三次握手？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-TCP-%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B%EF%BC%9F"><span class="toc-number">8.2.</span> <span class="toc-text">2. TCP 为什么需要四次挥手？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-TCP-%E5%92%8C-UDP-%E7%9A%84%E5%8C%BA%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-number">8.3.</span> <span class="toc-text">3. TCP 和 UDP 的区别是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-HTTP-%E5%92%8C-HTTPS-%E7%9A%84%E5%8C%BA%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-number">8.4.</span> <span class="toc-text">4. HTTP 和 HTTPS 的区别是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-DNS-%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-number">8.5.</span> <span class="toc-text">5. DNS 的工作原理是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-%E4%BB%80%E4%B9%88%E6%98%AF-ARP-%E6%AC%BA%E9%AA%97%EF%BC%9F"><span class="toc-number">8.6.</span> <span class="toc-text">6. 什么是 ARP 欺骗？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-%E4%BB%80%E4%B9%88%E6%98%AF-DDos-%E6%94%BB%E5%87%BB%EF%BC%9F"><span class="toc-number">8.7.</span> <span class="toc-text">7. 什么是 DDos 攻击？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-%E4%BB%80%E4%B9%88%E6%98%AF%E5%AD%90%E7%BD%91%E6%8E%A9%E7%A0%81%EF%BC%9F%E5%AE%83%E7%9A%84%E4%BD%9C%E7%94%A8%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-number">8.8.</span> <span class="toc-text">8. 什么是子网掩码？它的作用是什么？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-number">9.</span> <span class="toc-text">参考资料</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">10.</span> <span class="toc-text">总结</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://tuagt.github.io/2026/01/10/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://tuagt.github.io/2026/01/10/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/&text=计算机网络"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://tuagt.github.io/2026/01/10/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/&title=计算机网络"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://tuagt.github.io/2026/01/10/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/&is_video=false&description=计算机网络"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=计算机网络&body=Check out this article: https://tuagt.github.io/2026/01/10/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://tuagt.github.io/2026/01/10/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/&title=计算机网络"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://tuagt.github.io/2026/01/10/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/&title=计算机网络"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://tuagt.github.io/2026/01/10/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/&title=计算机网络"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://tuagt.github.io/2026/01/10/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/&title=计算机网络"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://tuagt.github.io/2026/01/10/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/&name=计算机网络&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://tuagt.github.io/2026/01/10/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/&t=计算机网络"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2020-2026
+    TuAgT
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a href="/projects/">项目</a></li><!--
+     --><!--
+       --><li><a href="/ctf/">ctf</a></li><!--
+     --><!--
+       --><li><a href="/cybersecurity/">网络安全</a></li><!--
+     --><!--
+       --><li><a href="/CyberChef/">CyberChef</a></li><!--
+     --><!--
+       --><li><a href="/test/">test</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功！");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>
